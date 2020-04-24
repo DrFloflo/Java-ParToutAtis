@@ -36,6 +36,8 @@ public class SocialNetwork implements ISocialNetwork {
 	@Override
 	public void addMember(String login, String password, String profile)
 			throws BadEntryException, MemberAlreadyExistsException {
+		if(login==null) { throw new BadEntryException("Erreur le login est null");}
+
 		// TODO Auto-generated method stub
 
 	}
