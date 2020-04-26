@@ -54,6 +54,12 @@ public class SocialNetwork implements ISocialNetwork {
 			String kind, String director, String scriptwriter, int duration)
 			throws BadEntryException, NotMemberException,
 			ItemFilmAlreadyExistsException {
+		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le login est null");}
+		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
+		if(password!=null && password.replaceAll(" ", "").length()<4) { throw new BadEntryException("Erreur le password est compose de moins de 4 char");}
+		if(title==null || title.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le profile est null");}
+
+
 		// TODO Auto-generated method stub
 
 	}
