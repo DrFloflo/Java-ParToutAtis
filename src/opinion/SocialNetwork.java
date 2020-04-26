@@ -14,12 +14,12 @@ import exceptions.NotMemberException;
  * 
  */
 public class SocialNetwork implements ISocialNetwork {
-
+	private int nbMembers;
 
 	@Override
 	public int nbMembers() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.nbMembers;
 	}
 
 	@Override
@@ -41,8 +41,12 @@ public class SocialNetwork implements ISocialNetwork {
 		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
 		if(password!=null && password.replaceAll(" ", "").length()<4) { throw new BadEntryException("Erreur le password est compose de moins de 4 char");}
 		if(profile==null || profile.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le profile est null");}
-		// TODO Auto-generated method stub
+		this.nbMembers+=1;
 
+
+
+
+		// TODO Auto-generated method stub
 	}
 
 	@Override
