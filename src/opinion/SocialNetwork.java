@@ -38,6 +38,9 @@ public class SocialNetwork implements ISocialNetwork {
 	public void addMember(String login, String password, String profile)
 			throws BadEntryException, MemberAlreadyExistsException {
 		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le login est null");}
+		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
+		if(password!=null && password.replaceAll(" ", "").length()<4) { throw new BadEntryException("Erreur le password est compose de moins de 4 char");}
+		if(profile==null || profile.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le profile est null");}
 		// TODO Auto-generated method stub
 
 	}
