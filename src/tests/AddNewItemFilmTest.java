@@ -6,11 +6,11 @@ import opinion.SocialNetwork;
 
 
 import exceptions.BadEntryException;
-import exceptions.MemberAlreadyExistsException;
+import exceptions.ItemFilmAlreadyExistsException;
 import exceptions.NotTestReportException;
 
 /**
- * Tests for the SocialNetwork.<i>addMember()</i> method.
+ * Tests for the SocialNetwork.<i>addFilm()</i> method.
  *
  * @author B. Prou, E. Cousin, GO
  * @version V2.0 - April 2018
@@ -19,25 +19,30 @@ import exceptions.NotTestReportException;
 public class AddNewItemFilmTest {
 
     /**
-     * Check that trying to add this new member (login, pwd, profile) raises a
-     * BadEntry exception and does not change content of the
-     * <i>ISocialNetwork</i>. If OK, the method just returns 0. If not OK,
-     * displays an error message and returns 1.
+     * Check that this new film (login, password, title, kind, director, scenarist, duration) can be (and <i>is</i>)
+     * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
+     * : the new film was added.</br> If not OK, an error message is displayed
+     * and 1 is returned ; the new film was not correctly added.
      *
      * @param sn
      *            - the <i>ISocialNetwork</i>
      * @param login
-     *            - new member's login
+     *            - Member's login
      * @param password
-     *            - new member's password
-     * @param profile
-     *            - new member's profile
+     *            - Member's password
+     * @param title
+     *            - Titre du film
+     * @param kind
+     *            - Genre du Film
+     * @param director
+     *            - Directeur du film
+     * @param scenarist
+     *            - Scénariste du film
+     * @param duration
+     *            - Durée du film
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
-     * @param errorMessage
-     *            - the error message that will be displayed if no exception is
-     *            thrown when adding this member
      * @return 0 if the test is OK, 1 if not
      */
     private static int addNewItemFilmBadEntryTest(ISocialNetwork sn, String login, String password,
@@ -45,39 +50,39 @@ public class AddNewItemFilmTest {
                                                   String scenarist, int duration, String testId,
                                                   String errorMessage) {
 
-        int nbFilms = sn.nbFilms(); // Number of members when starting to
+        int nbFilms = sn.nbFilms(); // Number of films when starting to
         // run this method
         try {
-            sn.addItemFilm(login, password, title, kind, director, scenarist, duration); // Try to add this member
+            sn.addItemFilm(login, password, title, kind, director, scenarist, duration); // Try to add this film
             // Reaching this point means that no exception was thrown by
-            // addMember()
+            // addFilm()
             System.out.println("Err " + testId + " : " + errorMessage); // display
             // the
             // error
             // message
             return 1; // and return the "error" value
         } catch (BadEntryException e) { // BadEntry exception was thrown by
-            // addMember() : this is a good start!
+            // addFilm() : this is a good start!
             // Let's now check if 'sn' was not
             // impacted
-            if (sn.nbMembers() != nbFilms) { // The number of members has
+            if (sn.nbFilms() != nbFilms) { // The number of films has
                 // changed : this is an error
                 // case.
                 System.out
                         .println("Err "
                                 + testId
-                                + " : BadEntry was thrown but the number of members was changed"); // Display
+                                + " : BadEntry was thrown but the number of films was changed"); // Display
                 // a
                 // specific
                 // error
                 // message
                 return 1; // return "error" value
             } else
-                // The number of members hasn't changed, which is considered a
+                // The number of films hasn't changed, which is considered a
                 // good indicator that 'sn' was not modified
                 return 0; // return success value : everything seems OK, nothing
             // to display
-        } catch (Exception e) { // An exception was thrown by addMember(), but
+        } catch (Exception e) { // An exception was thrown by addfilm(), but
             // it was not the expected exception BadEntry
             System.out.println("Err " + testId + " : unexpected exception. "
                     + e); // Display a specific error message
@@ -87,40 +92,49 @@ public class AddNewItemFilmTest {
     }
 
     /**
-     * Check that trying to add this new member (login, pwd, profile) raises an
-     * AlreadyExists exception and does not change content of the
-     * <i>ISocialNetwork</i>. If OK, the method just returns 0. If not OK,
-     * displays an error message and returns 1.
+     * Check that this new film (login, password, title, kind, director, scenarist, duration) can be (and <i>is</i>)
+     * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
+     * : the new film was added.</br> If not OK, an error message is displayed
+     * and 1 is returned ; the new film was not correctly added.
      *
      * @param sn
      *            - the <i>ISocialNetwork</i>
      * @param login
-     *            - new member's login
+     *            - Member's login
+     * @param password
+     *            - Member's password
+     * @param title
+     *            - Titre du film
+     * @param kind
+     *            - Genre du Film
+     * @param director
+     *            - Directeur du film
+     * @param scenarist
+     *            - Scénariste du film
+     * @param duration
+     *            - Durée du film
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
-     * @param errorMessage
-     *            - the error message that will be displayed if no exception is
-     *            thrown when adding this member
      * @return 0 if the test is OK, 1 if not
      */
     private static int addNewItemFilmAlreadyExistsTest(ISocialNetwork sn,
                                                        String login, String password, String title,
                                                        String kind, String director, String scenarist,
                                                        int duration, String testId, String errorMessage) {
-        int nbFilms = sn.nbFilms(); // Number of members when starting to
+        int nbFilms = sn.nbFilms(); // Number of films when starting to
         // process this method
         try {
-            sn.addItemFilm(login, password, title, kind, director, scenarist, duration); // Try to add this member
+            sn.addItemFilm(login, password, title, kind, director, scenarist, duration); // Try to add this film
             // Reaching this point means that no exception was thrown by
-            // addMember()
+            // addFilm()
             System.out.println("Err " + testId + " : " + errorMessage); // display
             // the
             // error
             // message
             return 1; // and return the "error" value
         } catch (ItemFilmAlreadyExistsException e) {// AlreadyExists exception was
-            // thrown by addMember() :
+            // thrown by addFilm() :
             // this is a good start!
             // Let's now check if 'sn'
             // was not impacted
@@ -128,7 +142,7 @@ public class AddNewItemFilmTest {
                 System.out
                         .println("Err "
                                 + testId
-                                + " : MemberAlreadyExists was thrown, but the number of members was changed"); // Display
+                                + " : FilmAlreadyExists was thrown, but the number of Films was changed"); // Display
                 // a
                 // specific
                 // error
@@ -137,7 +151,7 @@ public class AddNewItemFilmTest {
             } else
                 return 0; // return success value : everything is OK, nothing to
             // display
-        } catch (Exception e) { // An exception was thrown by addMember(), but
+        } catch (Exception e) { // An exception was thrown by addFilm(), but
             // it was not the expected exception
             // AlreadyExists
             System.out.println("Err " + testId + " : unexpected exception. "
@@ -148,19 +162,27 @@ public class AddNewItemFilmTest {
     }
 
     /**
-     * Check that this new member (login, pwd, profile) can be (and <i>is</i>)
+     * Check that this new film (login, password, title, kind, director, scenarist, duration) can be (and <i>is</i>)
      * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
-     * : the new member was added.</br> If not OK, an error message is displayed
-     * and 1 is returned ; the new member was not correctly added.
+     * : the new film was added.</br> If not OK, an error message is displayed
+     * and 1 is returned ; the new film was not correctly added.
      *
      * @param sn
      *            - the <i>ISocialNetwork</i>
      * @param login
-     *            - new member's login
-     * @param pwd
-     *            - new member's password
-     * @param profile
-     *            - new member's profile
+     *            - Member's login
+     * @param password
+     *            - Member's password
+     * @param title
+     *            - Titre du film
+     * @param kind
+     *            - Genre du Film
+     * @param director
+     *            - Directeur du film
+     * @param scenarist
+     *            - Scénariste du film
+     * @param duration
+     *            - Durée du film
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
@@ -169,22 +191,22 @@ public class AddNewItemFilmTest {
     private static int addNewItemFilmOKTest(ISocialNetwork sn, String login, String password,
                                             String title, String kind, String director,
                                             String scenarist, int duration, String testId) {
-        int nbFilms = sn.nbFilms(); // Number of members when starting to
+        int nbFilms = sn.nbFilms(); // Number of films when starting to
         // process this method
         try {
-            sn.addItemFilm(login, password, title, kind, director, scenarist, duration); // Try to add this member
+            sn.addItemFilm(login, password, title, kind, director, scenarist, duration); // Try to add this film
             // No exception was thrown. That's a good start !
-            if (sn.nbFilms() != nbFilms + 1) { // But the number of members
+            if (sn.nbFilms() != nbFilms + 1) { // But the number of films
                 // hasn't changed
                 // accordingly
                 System.out.println("Err " + testId
-                        + " : the number of members (" + nbFilms
+                        + " : the number of films (" + nbFilms
                         + ") was not incremented"); // Error message displayed
                 return 1; // return error code
             } else
                 return 0; // return success code : everything is OK, nothing to
             // display
-        } catch (Exception e) {// An exception was thrown by addMember() : this
+        } catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
             System.out
                     .println("Err " + testId + " : unexpected exception " + e); // Error
@@ -196,12 +218,12 @@ public class AddNewItemFilmTest {
     }
 
     /**
-     * <i>addMember()</i> main test :
+     * <i>addFilm()</i> main test :
      * <ul>
-     * <li>check if members can be added</li>
-     * <li>check if incorrect parameters cause addMember() to throw BadEntry
+     * <li>check if Films can be added</li>
+     * <li>check if incorrect parameters cause addFilm() to throw BadEntry
      * exception</li>
-     * <li>check if adding already registered members cause addMember() to throw
+     * <li>check if adding already registered Films cause addFilm() to throw
      * AlreadyExists exception</li>
      * </ul>
      *
@@ -213,7 +235,7 @@ public class AddNewItemFilmTest {
 
         int nbBooks = sn.nbBooks(); // number of books in 'sn' (should be 0
         // here)
-        int nbFilms = sn.nbFilms(); // number of films in 'sn' (should be 0
+        int nbMembers = sn.nbMembers(); // number of members in 'sn' (should be 0
         // here)
 
         int nbTests = 0; // total number of performed tests
@@ -223,92 +245,80 @@ public class AddNewItemFilmTest {
 
         // <=> test n°1
 
-        // check if incorrect parameters cause addMember() to throw BadEntry
+        // check if incorrect parameters cause addFilm() to throw BadEntry
         // exception
 
         nbTests++;
-        nbErrors += addNewItemFilmBadEntryTest(null, null, "aaaa",
+        nbErrors += addNewItemFilmBadEntryTest(sn, null, "aaaa",
                 "aaaa", "aaa", "aaaa", "aaaaa",
                 100000000, "1.1","addFilm doit rejeter les logins null");
-        nbErrors += addNewItemFilmBadEntryTest(null, "aaaa", null,
+        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", null,
                 "aaaa", "aaa", "aaaa", "aaaaa",
                 100000000, "1.2","addFilm doit rejeter les passwords null");
-        nbErrors += addNewItemFilmBadEntryTest(null, "aaaa", "aaaa",
+        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
                 null, "aaa", "aaaa", "aaaaa",
                 100000000, "1.3","addFilm doit rejeter les variables films null");
-        nbErrors += addNewItemFilmBadEntryTest(null, "aaaa", "aaaa",
+        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
                 "aaaa", null, "aaaa", "aaaaa",
                 100000000, "1.4","addFilm doit rejeter les variable kind null");
-        nbErrors += addNewItemFilmBadEntryTest(null, "aaaa", "aaaa",
+        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
                 "aaaa", "aaa", null, "aaaaa",
                 100000000, "1.5","addFilm doit rejeter les variables directors null");
-        nbErrors += addNewItemFilmBadEntryTest(null, "aaaa", "aaaa",
+        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
                 "aaaa", "aaa", "aaaa", null,
                 100000000, "1.6","addFilm doit rejeter les variables scenarist null");
-        nbErrors += addNewItemFilmBadEntryTest(null, "aaaa", "aaaa",
+        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
                 "aaaa", "aaa", "aaaa", "aaaaa",
                 -1000, "1.7","addFilm doit rejeter les variables durations négatives");
 
         // <=> test n°2
 
-        // populate 'sn' with 3 members
+        // populate 'sn' with 3 films
 
         nbTests++;
-        nbErrors += addNewItemFilmOKTest(sn, "Paul", "paul", "lecteur impulsif",
-                "2.1a");
+        nbErrors += addNewItemFilmOKTest(sn, "Paul", "paul", "The big Lebowski",
+                " Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",
+                120,"2.1a");
         nbTests++;
-        nbErrors += addNewItemFilmOKTest(sn, "Antoine", "antoine",
-                "grand amoureux de la littérature", "2.1b");
+        nbErrors += addNewItemFilmOKTest(sn, "Paul", "paul", "Gran Torino",
+                " Drame/Thriller", "Clint Eastwood", " Nick Schenk",
+                119,"2.2a");
         nbTests++;
-        nbErrors += addNewItemFilmOKTest(sn, "Alice", "alice",
-                "passionnée de bande dessinée", "2.1c");
+        nbErrors += addNewItemFilmOKTest(sn, "Paul", "paul", "Gatsby le magnifique",
+                " Amour/Drame", "Baz Luhrmann", "Baz Luhrmann,Craig Pearce",
+                118,"2.3a");
 
-        // try to add already registered members
-
+        // try to add already registered films
         nbTests++;
-        nbErrors += addNewItemFilmAlreadyExistsTest(sn, new String("Paul"),
-                "abcdefghij", "", "2.2",
-                "The login of the first member was accepted as login for a new member");
+        nbErrors += addNewItemFilmAlreadyExistsTest(sn, "Paul", "paul", "The big Lebowski",
+                " Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",
+                120,"2.1", "Le film est déjà enregistré");
         nbTests++;
-        nbErrors += addNewItemFilmAlreadyExistsTest(sn, new String("Alice"),
-                "abcdefghij", "", "2.3",
-                "The login of the last member was accepted as login for a new member");
+        nbErrors += addNewItemFilmAlreadyExistsTest(sn, "Paul", "paul", "Gran Torino",
+                " Drame/Thriller", "Clint Eastwood", " Nick Schenk",
+                122,"2.2", "Le film est déjà enregistré");
         nbTests++;
-        nbErrors += addNewItemFilmAlreadyExistsTest(
-                sn,
-                new String("anToine"),
-                "abcdefghij",
-                "",
-                "2.4",
-                "An already registered login, but with different case, was accepted as login for a new member");
+        nbErrors += addNewItemFilmAlreadyExistsTest(sn, "Paul", "paul", "GaTsBy le MAGnifique",
+                " Amour/Drame", "Baz Luhrmann", "Baz Luhrmann,Craig Pearce",
+                118,"2.3", "Le film est déjà enregistré avec des majuscules différentes");
         nbTests++;
-        nbErrors += addNewItemFilmAlreadyExistsTest(
-                sn,
-                new String(" Antoine "),
-                "abcdefghij",
-                "",
-                "2.5",
-                "An already registered login, surrounded by leading/trailing blanks, was accepted as login for a new member");
+        nbErrors += addNewItemFilmAlreadyExistsTest(sn, "Paul", "paul", " Gatsby le magnifique ",
+                " Amour/Drame", "Baz Luhrmann", "Baz Luhrmann,Craig Pearce",
+                118,"2.4", "Le film est déjà enregistré mais sans espaces autour");
         nbTests++;
-        nbErrors += addNewItemFilmAlreadyExistsTest(
-                sn,
-                "An" + "toi" + "ne",
-                "abcdefghij",
-                "",
-                "2.6",
-                "A String concatenation building an already registered login was accepted as login for a new member");
-
-        nbTests++;
+        nbErrors += addNewItemFilmAlreadyExistsTest(sn, "Paul", "paul", "Gatsby"+"le"+"magnifique",
+                " Amour/Drame", "Baz Luhrmann", "Baz Luhrmann,Craig Pearce",
+                118,"2.5", "A String concatenation building an already registered film was accepted as film for a new item");
         // check that 'sn' was not modified
-        if (nbFilms != sn.nbFilms()) {
+        if (nbMembers != sn.nbMembers()) {
             System.out
-                    .println("Error : the number of films was unexepectedly changed by addMember()");
+                    .println("Error : the number of members was unexepectedly changed by addFilm()");
             nbErrors++;
         }
         nbTests++;
         if (nbBooks != sn.nbBooks()) {
             System.out
-                    .println("Error : the number of books was unexepectedly changed by addMember()");
+                    .println("Error : the number of books was unexepectedly changed by addFilm()");
             nbErrors++;
         }
 
@@ -318,11 +328,11 @@ public class AddNewItemFilmTest {
         // Print a summary of the tests and return test results
         try{
             TestReport tr = new TestReport(nbTests, nbErrors);
-            System.out.println("AddMemberTest : " + tr);
+            System.out.println("AddFilmTest : " + tr);
             return tr;
         }
         catch (NotTestReportException e){ //This shouldn't happen
-            System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
+            System.out.println("Unexpected error in AddFilmTest test code - Can't return valuable test results");
             return null;
         }
     }
