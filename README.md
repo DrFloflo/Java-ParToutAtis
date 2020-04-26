@@ -1,3 +1,3 @@
 # Java-ParToutAtis
 
-Projet etudiant IMT Atlantique FIP1A
+Projet étudiants IMT Atlantique FIP1A
