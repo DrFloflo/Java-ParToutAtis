@@ -95,10 +95,6 @@ public class AddNewItemFilmTest {
      *            - the <i>ISocialNetwork</i>
      * @param login
      *            - new member's login
-     * @param pwd
-     *            - new member's password
-     * @param profile
-     *            - new member's profile
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
@@ -114,7 +110,7 @@ public class AddNewItemFilmTest {
         int nbMembers = sn.nbFilms(); // Number of members when starting to
         // process this method
         try {
-            sn.addItemFilm(login, pass, profile); // Try to add this member
+            sn.addItemFilm(login, password, profile); // Try to add this member
             // Reaching this point means that no exception was thrown by
             // addMember()
             System.out.println("Err " + testId + " : " + errorMessage); // display
