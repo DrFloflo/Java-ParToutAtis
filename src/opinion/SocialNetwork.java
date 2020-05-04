@@ -50,8 +50,6 @@ public class SocialNetwork implements ISocialNetwork {
 		if(profile==null) {}
 		this.nbMembers+=1;
 
-
-
 		// TODO Auto-generated method stub
 	}
 
