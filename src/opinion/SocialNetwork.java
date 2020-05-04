@@ -15,6 +15,7 @@ import exceptions.NotMemberException;
  */
 public class SocialNetwork implements ISocialNetwork {
 	private int nbMembers;
+	public static int lastID = 0;
 
 	@Override
 	public int nbMembers() {
