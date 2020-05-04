@@ -48,7 +48,7 @@ public class SocialNetwork implements ISocialNetwork {
 		if(password==null || password.replaceAll(" ", "").length()==0) { }
 		if(password!=null && password.replaceAll(" ", "").length()<4) { }
 		if(profile==null) { }
-		else if(profile.replaceAll(" ", "")) { }
+		else if(profile.replaceAll(" ", "") == "") { }
 		Member newMembre = new Member(profile, "03/05/20", login, password, "");
 		this.nbMembers+=1;
 		listeMember.add(newMembre);
