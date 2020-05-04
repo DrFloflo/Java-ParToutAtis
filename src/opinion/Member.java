@@ -8,4 +8,11 @@ public class Member {
     private String pwd;
     private String mail;
 
+    public Member(String name, int date, String login, String pwd, String mail) {
+        this.name = name;
+        this.date = date;
+        this.login = login;
+        this.pwd = pwd;
+        this.mail = mail;
+    }
 }
