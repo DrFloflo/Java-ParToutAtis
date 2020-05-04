@@ -11,7 +11,7 @@ public class Review {
     public static int lastID;
 
     public Review(String title, int date, String member, int note, String comment) {
-        lastID = lastID +1;
+        lastID++;
         this.title = title;
         this.date = date;
         this.member = member;
