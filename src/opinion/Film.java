@@ -6,6 +6,7 @@ public class Film {
     private String title;
     private String scenarist;
     private int duration;
+    public String listeReview[];
 
     public Film(String director, String kind, String title, String scenarist, int duration){
         this.director=director;
