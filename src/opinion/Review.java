@@ -9,10 +9,10 @@ public class Review {
     private String comment;
 
     public Review(String title, int date, String member, int note, String comment) {
-        this.name = title;
+        this.title = title;
         this.date = date;
-        this.login = member;
-        this.pwd = note;
-        this.mail = comment;
+        this.member = member;
+        this.note = note;
+        this.comment = comment;
     }
 }
