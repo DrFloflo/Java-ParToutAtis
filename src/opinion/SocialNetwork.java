@@ -48,16 +48,10 @@ public class SocialNetwork implements ISocialNetwork {
 		if(password==null || password.replaceAll(" ", "").length()==0) { }
 		if(password!=null && password.replaceAll(" ", "").length()<4) { }
 		if(profile==null) { }
-		if(profile!=null) {
-			String profile2=profile.replaceAll(" ", "");
-			if(profile2.length()==0) {
-				}
-			}
+		else if(profile.replaceAll(" ", "")) { }
 		Member newMembre = new Member(profile, "03/05/20", login, password, "");
 		this.nbMembers+=1;
 		listeMember.add(newMembre);
-
-
 
 		// TODO Auto-generated method stub
 	}
