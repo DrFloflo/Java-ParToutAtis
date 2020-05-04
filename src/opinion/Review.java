@@ -7,6 +7,7 @@ public class Review {
     public String member;
     private int note;
     private String comment;
+    public int id;
 
     public Review(String title, int date, String member, int note, String comment) {
         this.title = title;
