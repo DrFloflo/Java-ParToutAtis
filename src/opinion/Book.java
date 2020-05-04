@@ -5,7 +5,7 @@ public class Book {
     private String title;
     private String author;
     private int nbPages;
-    public String listeReview[];
+    public Review listeReview[];
 
     public Book(String kind, String title, String author, int nbPages){
         this.kind=kind;
