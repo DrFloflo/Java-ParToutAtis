@@ -18,8 +18,9 @@ public class SocialNetwork implements ISocialNetwork {
 	private int nbBook;
 	private int nbFilm;
 	public static int lastID = 0;
-	public static String listeBook[];
-	public static String listeFilm[];
+	public static Book listeBook[];
+	public static Film listeFilm[];
+	public static Member listeMember[];
 
 
 	@Override
