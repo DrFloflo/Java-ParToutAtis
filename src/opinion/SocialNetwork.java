@@ -46,14 +46,8 @@ public class SocialNetwork implements ISocialNetwork {
 		if(login==null || login.replaceAll(" ", "").length()==0) {}
 		if(password==null || password.replaceAll(" ", "").length()==0) { }
 		if(password!=null && password.replaceAll(" ", "").length()<4) { }
-		if(profile==null) { }
-		if(profile!=null) {
-			String profile2=profile.replaceAll(" ", "");
-			if(profile2.length()==0) {
-				}
-			}
+		if(profile==null) {}
 		this.nbMembers+=1;
-
 
 
 
