@@ -15,4 +15,16 @@ public class Book {
         this.author=author;
         this.nbPages=nbPages;
     }
+    public String getTitle() {
+        return this.title;
+    }
+    public String getAuthor() {
+        return this.author;
+    }
+    public String getKind() {
+        return this.kind;
+    }
+    public int getPages() {
+        return this.nbPages;
+    }
 }

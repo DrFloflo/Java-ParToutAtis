@@ -63,8 +63,7 @@ public class SocialNetwork implements ISocialNetwork {
 	}
 
 	@Override
-	public void addItemFilm(String login, String password, String title,
-			String kind, String director, String scriptwriter, int duration)
+	public void addItemFilm(String login, String password, String title, String kind, String director, String scriptwriter, int duration)
 			throws BadEntryException, NotMemberException, ItemFilmAlreadyExistsException {
 		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le login est null");}
 		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
@@ -75,9 +74,8 @@ public class SocialNetwork implements ISocialNetwork {
 		if(duration<1) { throw new BadEntryException("Erreur la durée est trop courte");}
 
 		for (Film eachFilm : listeFilm) {
-			System.out.println("Comparaison :"+eachFilm.getTitle() +" avec "+ title);
-			if (eachFilm.getTitle() == title) {
-				System.out.println("Titre déjà existant");
+			if (eachFilm.getTitle().toLowerCase().replaceAll(" ","").equals(title.toLowerCase().replaceAll(" ","")) &&
+					eachFilm.getDirector().toLowerCase().replaceAll(" ","").equals(director.toLowerCase().replaceAll(" ",""))) {
 				throw new ItemFilmAlreadyExistsException();
 			}
 		}
