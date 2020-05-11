@@ -38,7 +38,7 @@ public class SocialNetwork implements ISocialNetwork {
 	@Override
 	public int nbBooks() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.nbBook;
 	}
 
 	@Override
@@ -90,7 +90,23 @@ public class SocialNetwork implements ISocialNetwork {
 	public void addItemBook(String login, String password, String title,
 			String kind, String author, int nbPages) throws BadEntryException,
 			NotMemberException, ItemBookAlreadyExistsException {
-		// TODO Auto-generated method stub
+		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le login est null");}
+		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
+		if(title==null) { throw new BadEntryException("Erreur le titre est null");}
+		if(kind==null) { throw new BadEntryException("Erreur la variable genre est null");}
+		if(author==null) { throw new BadEntryException("Erreur la variable autheur est null");}
+		if(nbPages<1) { throw new BadEntryException("Erreur le nombre de page est trop court");}
+
+		for (Book eachBook : listeBook) {
+			if (eachBook.getTitle().toLowerCase().replaceAll(" ","").equals(title.toLowerCase().replaceAll(" ","")) &&
+					eachBook.getAuthor().toLowerCase().replaceAll(" ","").equals(author.toLowerCase().replaceAll(" ",""))) {
+				throw new ItemBookAlreadyExistsException();
+			}
+		}
+
+		Book newBook = new Book(kind, title, author, nbPages);
+		this.nbBook+=1;
+		listeBook.add(newBook);
 
 	}
 
