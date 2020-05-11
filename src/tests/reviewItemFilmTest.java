@@ -301,12 +301,16 @@ public class reviewItemFilmTest {
         nbTests++;
         nbErrors += reviewItemFilmBadEntryTest(sn, null, "aaaa",
                 "aaaa", 2.5f, "aaaa", "1.1","addFilm doit rejeter les logins null");
+        nbTests++;
         nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", null,
                 "aaaa", 2.5f, "aaaa", "1.2","addFilm doit rejeter les passwords null");
+        nbTests++;
         nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
                 null, 2.5f, "aaaa", "1.3","addFilm doit rejeter les variables title null");
+        nbTests++;
         nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaa",
                 "aaaa", -10, "aaaa", "1.4","addFilm doit rejeter les variable mark negative");
+        nbTests++;
         nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaa",
                 "aaaa", 5, null, "1.5","addFilm doit rejeter les variables comment null");
         // <=> test n°2
