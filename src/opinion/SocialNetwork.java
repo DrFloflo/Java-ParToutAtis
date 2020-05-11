@@ -118,7 +118,7 @@ public class SocialNetwork implements ISocialNetwork {
 		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le password est null");}
 		if(title==null) { throw new BadEntryException("Erreur le titre est null");}
 		if(comment==null) { throw new BadEntryException("Erreur le commentaire est null");}
-		if(mark<0 || mark > 20) { throw new BadEntryException("Erreur la note est invalide");}
+		if(mark<0 || mark > 10) { throw new BadEntryException("Erreur la note est invalide");}
 
 		Film filmTrouve = null;
 		for (Film eachFilm : listeFilm) {			//Verify if the film exists
@@ -149,7 +149,7 @@ public class SocialNetwork implements ISocialNetwork {
 		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le password est null");}
 		if(title==null) { throw new BadEntryException("Erreur le titre est null");}
 		if(comment==null) { throw new BadEntryException("Erreur le commentaire est null");}
-		if(mark<0 || mark > 20) { throw new BadEntryException("Erreur la note est invalide");}
+		if(mark<0 || mark > 10) { throw new BadEntryException("Erreur la note est invalide");}
 
 		Book bookTrouve = null;
 		for (Book eachBook : listeBook) {		//on verifie que le book vise existe vraiment
