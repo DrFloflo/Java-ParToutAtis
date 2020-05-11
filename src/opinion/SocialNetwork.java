@@ -65,8 +65,7 @@ public class SocialNetwork implements ISocialNetwork {
 	}
 
 	@Override
-	public void addItemFilm(String login, String password, String title,
-			String kind, String director, String scriptwriter, int duration)
+	public void addItemFilm(String login, String password, String title, String kind, String director, String scriptwriter, int duration)
 			throws BadEntryException, NotMemberException, ItemFilmAlreadyExistsException {
 		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le login est null");}
 		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
