@@ -52,10 +52,10 @@ public class SocialNetwork implements ISocialNetwork {
 
 
 
-		for (Member eachMember : listeMember) {
-			System.out.println(eachMember.getLogin() + login);
-			if (eachMember.getLogin() == login) {
-				System.out.println("error");
+		for (Member eachMember : listeMember) { //For member in listMemeber
+			//System.out.println(eachMember.getLogin());
+			//System.out.println(eachMember.getLogin() + "-" + login);
+			if (eachMember.getLogin().equals(login)) {
 				throw new MemberAlreadyExistsException();
 			}
 		}
