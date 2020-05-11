@@ -57,7 +57,7 @@ public class reviewItemFilmTest {
      * @return mean of the marks for this film
      */
     private static int reviewItemFilmBadEntryTest(ISocialNetwork sn, String login, String password,
-                                                  String title, Float mark, String comment, String testId,
+                                                  String title, float mark, String comment, String testId,
                                                   String errorMessage) {
 
        // int nbReviews = sn.nbReviews(); // Number of films when starting to
@@ -90,6 +90,7 @@ public class reviewItemFilmTest {
             e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error value
         }
+        return 0;
     }
 
     /**
@@ -132,13 +133,13 @@ public class reviewItemFilmTest {
      *
      * @return mean of the marks for this film
      */
-    private static int addNewItemFilmAlreadyExistsTest(ISocialNetwork sn, String login, String password,
-                                                       String title, Float mark, String comment, String testId,
+    private static int reviewItemFilmAlreadyExistsTest(ISocialNetwork sn, String login, String password,
+                                                       String title, float mark, String comment, String testId,
                                                        String errorMessage) {
         int nbFilms = sn.nbFilms(); // Number of films when starting to
         // process this method
         try {
-            sn.addItemFilm(login, password, title, kind, director, scenarist, duration); // Try to add this film
+            sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
             // Reaching this point means that no exception was thrown by
             // addFilm()
             System.out.println("Err " + testId + " : " + errorMessage); // display
@@ -146,20 +147,10 @@ public class reviewItemFilmTest {
             // error
             // message
             return 1; // and return the "error" value
-        } catch (ItemFilmAlreadyExistsException e) {// AlreadyExists exception was
-            // thrown by addFilm() :
-            // this is a good start!
-            // Let's now check if 'sn'
-            // was not impacted
+        } catch (BadEntryException e) {// AlreadyExists exception was
             if (sn.nbFilms() != nbFilms) {
                 System.out
-                        .println("Err "
-                                + testId
-                                + " : FilmAlreadyExists was thrown, but the number of Films was changed"); // Display
-                // a
-                // specific
-                // error
-                // message
+                        .println("Err "+ testId+ " : FilmAlreadyExists was thrown, but the number of Films was changed"); // Display
                 return 1;// and return the "error" value
             } else
                 return 0; // return success value : everything is OK, nothing to
@@ -214,22 +205,21 @@ public class reviewItemFilmTest {
      *
      * @return mean of the marks for this film
      */
-    private static int addNewItemFilmOKTest(ISocialNetwork sn, String login, String password,
-                                            String title, String kind, String director,
-                                            String scenarist, int duration, String testId) {
-        int nbFilms = sn.nbFilms(); // Number of films when starting to
+    private static int reviewItemFilmOKTest(ISocialNetwork sn, String login, String password,
+                                            String title, float mark, String comment, String testId) {
+       // int nbFilms = sn.nbFilms(); // Number of films when starting to
         // process this method
         try {
-            sn.addItemFilm(login, password, title, kind, director, scenarist, duration); // Try to add this film
+            sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
             // No exception was thrown. That's a good start !
-            if (sn.nbFilms() != nbFilms + 1) { // But the number of films
+            /*if (sn.nbFilms() != nbFilms + 1) { // But the number of films
                 // hasn't changed
                 // accordingly
                 System.out.println("Err " + testId + " : the number of films (" + nbFilms + ") was not incremented"); // Error message displayed
                 return 1; // return error code
             } else
                 return 0; // return success code : everything is OK, nothing to
-            // display
+            // display*/
         } catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
             System.out
@@ -239,6 +229,7 @@ public class reviewItemFilmTest {
             e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error code
         }
+        return 0;
     }
 
     /**
@@ -257,15 +248,15 @@ public class reviewItemFilmTest {
 
         ISocialNetwork sn = new SocialNetwork();
 
-        int nbBooks = sn.nbBooks(); // number of books in 'sn' (should be 0
+        //int nbBooks = sn.nbBooks(); // number of books in 'sn' (should be 0
         // here)
-        int nbMembers = sn.nbMembers(); // number of members in 'sn' (should be 0
+        //int nbMembers = sn.nbMembers(); // number of members in 'sn' (should be 0
         // here)
 
         int nbTests = 0; // total number of performed tests
         int nbErrors = 0; // total number of failed tests
 
-        System.out.println("Testing addFilm()");
+        System.out.println("Testing addReviewFilm()");
 
         // <=> test n°1
 
@@ -273,68 +264,40 @@ public class reviewItemFilmTest {
         // exception
 
         nbTests++;
-        nbErrors += addNewItemFilmBadEntryTest(sn, null, "aaaa",
-                "aaaa", "aaa", "aaaa", "aaaaa",
-                100000000, "1.1","addFilm doit rejeter les logins null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", null,
-                "aaaa", "aaa", "aaaa", "aaaaa",
-                100000000, "1.2","addFilm doit rejeter les passwords null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
-                null, "aaa", "aaaa", "aaaaa",
-                100000000, "1.3","addFilm doit rejeter les variables title null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
-                "aaaa", null, "aaaa", "aaaaa",
-                100000000, "1.4","addFilm doit rejeter les variable kind null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
-                "aaaa", "aaa", null, "aaaaa",
-                100000000, "1.5","addFilm doit rejeter les variables directors null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
-                "aaaa", "aaa", "aaaa", null,
-                100000000, "1.6","addFilm doit rejeter les variables scenarist null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
-                "aaaa", "aaa", "aaaa", "aaaaa",
-                -1000, "1.7","addFilm doit rejeter les variables durations négatives");
-
+        nbErrors += reviewItemFilmBadEntryTest(sn, null, "aaaa",
+                "aaaa", 2.5f, "aaaa", "1.1","addFilm doit rejeter les logins null");
+        nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", null,
+                "aaaa", 2.5f, "aaaa", "1.2","addFilm doit rejeter les passwords null");
+        nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
+                null, 2.5f, "aaaa", "1.3","addFilm doit rejeter les variables title null");
+        nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaa",
+                "aaaa", -10, "aaaa", "1.4","addFilm doit rejeter les variable mark negative");
         // <=> test n°2
 
         // populate 'sn' with 3 films
 
         nbTests++;
-        nbErrors += addNewItemFilmOKTest(sn, "Paul", "paul", "The big Lebowski",
-                " Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",
-                120,"2.1a");
+        nbErrors += reviewItemFilmOKTest(sn, "Paul", "aaaa",
+                "Bof", 2.5f, "Nul", "2.1a");
         nbTests++;
-        nbErrors += addNewItemFilmOKTest(sn, "Paul", "paul", "Gran Torino",
-                " Drame/Thriller", "Clint Eastwood", " Nick Schenk",
-                119,"2.2a");
+        nbErrors += reviewItemFilmOKTest(sn, "Taylor", "aaaa",
+                "Pas mal", 5f, "Jean crois pas mes yeux", "2.2a");
         nbTests++;
-        nbErrors += addNewItemFilmOKTest(sn, "Paul", "paul", "Gatsby le magnifique",
-                " Amour/Drame", "Baz Luhrmann", "Baz Luhrmann,Craig Pearce",
-                118,"2.3a");
+        nbErrors += reviewItemFilmOKTest(sn, "Smith", "aaaa",
+                "Incroyable", 7.5f, "Incroyable", "2.3a");
 
         // try to add already registered films
         nbTests++;
-        nbErrors += addNewItemFilmAlreadyExistsTest(sn, "Paul", "paul", "The big Lebowski",
-                " Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",
-                120,"2.1", "Le film est déjà enregistré");
+        nbErrors += reviewItemFilmAlreadyExistsTest(sn, "Smith", "aaaa",
+                "Incroyable", 7.5f, "Incroyable", "2.1","L'utilisateur à déjà posté cette review pour ce film");
         nbTests++;
-        nbErrors += addNewItemFilmAlreadyExistsTest(sn, "Paul", "paul", "Gran Torino",
-                " Drame/Thriller", "Clint Eastwood", " Nick Schenk",
-                122,"2.2", "Le film est déjà enregistré");
+        nbErrors += reviewItemFilmAlreadyExistsTest(sn, "Smith", "aaaa",
+                "Incroyable", 7.5f, "InCroYable", "2.2","L'utilisateur à déjà posté cette review pour ce film avec des majuscules différentes");
         nbTests++;
-        nbErrors += addNewItemFilmAlreadyExistsTest(sn, "Paul", "paul", "GaTsBy le MAGnifique",
-                " Amour/Drame", "Baz Luhrmann", "Baz Luhrmann,Craig Pearce",
-                118,"2.3", "Le film est déjà enregistré avec des majuscules différentes");
-        nbTests++;
-        nbErrors += addNewItemFilmAlreadyExistsTest(sn, "Paul", "paul", " Gatsby le magnifique ",
-                " Amour/Drame", "Baz Luhrmann", "Baz Luhrmann,Craig Pearce",
-                118,"2.4", "Le film est déjà enregistré mais sans espaces autour");
-        nbTests++;
-        nbErrors += addNewItemFilmAlreadyExistsTest(sn, "Paul", "paul", "Gatsby"+"le"+"magnifique",
-                " Amour/Drame", "Baz Luhrmann", "Baz Luhrmann,Craig Pearce",
-                118,"2.5", "A String concatenation building an already registered film was accepted as film for a new item");
+        nbErrors += reviewItemFilmAlreadyExistsTest(sn, "Smith", "aaaa",
+                "Incroyable", 7.5f, " Incroyable ", "2.3","L'utilisateur à déjà posté cette review pour ce film avec des espaces en moins");
         // check that 'sn' was not modified
-        if (nbMembers != sn.nbMembers()) {
+        /*if (nbMembers != sn.nbMembers()) {
             System.out
                     .println("Error : the number of members was unexepectedly changed by addFilm()");
             nbErrors++;
@@ -344,7 +307,7 @@ public class reviewItemFilmTest {
             System.out
                     .println("Error : the number of books was unexepectedly changed by addFilm()");
             nbErrors++;
-        }
+        }*/
 
         // Display final state of 'sn'
         System.out.println("Final state of the social network : " + sn);

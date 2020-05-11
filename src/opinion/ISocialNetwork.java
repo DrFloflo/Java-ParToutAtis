@@ -57,6 +57,7 @@ public interface ISocialNetwork {
 	 */
 	public int nbBooks();
 
+
 	/**
 	 * Add a new member to the <i>SocialNetwork</i>
 	 * 
