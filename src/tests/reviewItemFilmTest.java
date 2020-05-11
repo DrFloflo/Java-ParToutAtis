@@ -263,6 +263,8 @@ public class reviewItemFilmTest {
                 null, 2.5f, "aaaa", "1.3","addFilm doit rejeter les variables title null");
         nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaa",
                 "aaaa", -10, "aaaa", "1.4","addFilm doit rejeter les variable mark negative");
+        nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaa",
+                "aaaa", 5, null, "1.5","addFilm doit rejeter les variables comment null");
         // <=> test n°2
 
         // populate 'sn' with 3 films
