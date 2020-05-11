@@ -15,4 +15,7 @@ public class Member {
         this.pwd = pwd;
         this.mail = mail;
     }
+    public String getLogin() {
+        return this.login;
+    }
 }

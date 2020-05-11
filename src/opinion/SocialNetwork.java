@@ -51,6 +51,14 @@ public class SocialNetwork implements ISocialNetwork {
 		else if(profile.replaceAll(" ", "") == "") { }//throw new BadEntryException("Erreur le profile est null");}
 
 
+
+		for (Member eachMember : listeMember) {
+			System.out.println(eachMember.getLogin() + login);
+			if (eachMember.getLogin() == login) {
+				System.out.println("error");
+				throw new MemberAlreadyExistsException();
+			}
+		}
 		Member newMembre = new Member(profile, "03/05/20", login, password, "");
 		this.nbMembers+=1;
 		listeMember.add(newMembre);
