@@ -71,10 +71,18 @@ public class SocialNetwork implements ISocialNetwork {
 			String kind, String director, String scriptwriter, int duration)
 			throws BadEntryException, NotMemberException,
 			ItemFilmAlreadyExistsException {
-		/*if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le login est null");}
+		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le login est null");}
 		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
-		if(password!=null && password.replaceAll(" ", "").length()<4) { throw new BadEntryException("Erreur le password est compose de moins de 4 char");}
-		if(title==null || title.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le profile est null");}*/
+		if(title==null) { throw new BadEntryException("Erreur le titre est null");}
+		if(kind==null) { throw new BadEntryException("Erreur la variable genre est null");}
+		if(director==null) { throw new BadEntryException("Erreur la variable directeur est null");}
+		if(scriptwriter==null) { throw new BadEntryException("Erreur la variable scénariste est null");}
+		if(duration<1) { throw new BadEntryException("Erreur la durée est trop courte");}
+
+
+		Film newFilm = new Film(title, kind, director, scriptwriter, duration);
+		this.nbFilm+=1;
+		listeFilm.add(newFilm);
 
 
 		// TODO Auto-generated method stub

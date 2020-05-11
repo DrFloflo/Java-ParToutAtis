@@ -257,7 +257,7 @@ public class AddNewItemFilmTest {
                 100000000, "1.2","addFilm doit rejeter les passwords null");
         nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
                 null, "aaa", "aaaa", "aaaaa",
-                100000000, "1.3","addFilm doit rejeter les variables films null");
+                100000000, "1.3","addFilm doit rejeter les variables title null");
         nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
                 "aaaa", null, "aaaa", "aaaaa",
                 100000000, "1.4","addFilm doit rejeter les variable kind null");
