@@ -60,8 +60,6 @@ public class SocialNetwork implements ISocialNetwork {
 		Member newMembre = new Member(profile, "03/05/20", login, password, "");
 		this.nbMembers+=1;
 		listeMember.add(newMembre);
-
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -86,9 +84,6 @@ public class SocialNetwork implements ISocialNetwork {
 		this.nbFilm+=1;
 		listeFilm.add(newFilm);
 
-
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -103,7 +98,25 @@ public class SocialNetwork implements ISocialNetwork {
 	public float reviewItemFilm(String login, String password, String title,
 			float mark, String comment) throws BadEntryException,
 			NotMemberException, NotItemException {
-		// TODO Auto-generated method stub
+		if(login==null || login.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le login est null");}
+		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le password est null");}
+		if(title==null) { throw new BadEntryException("Erreur le titre est null");}
+		if(comment==null) { throw new BadEntryException("Erreur le commentaire est null");}
+		if(mark<0 || mark > 20) { throw new BadEntryException("Erreur la note est invalide");}
+
+		Film filmTrouve = null;
+		for (Film eachFilm : listeFilm) {
+			if (eachFilm.getTitle() == title) {
+				filmTrouve=eachFilm;
+			}
+		}
+		if (filmTrouve==null){
+			throw new NotItemException("Erreur le film n'éxiste pas");
+		}
+
+
+		Review newReview = new Review(title, 110520, login, mark, comment); //(String title, int date, String member, int note, String comment)
+		filmTrouve.listeReview.add(newReview);
 		return 0;
 	}
 

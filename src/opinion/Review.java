@@ -5,12 +5,12 @@ public class Review {
     private String title;
     private int date;
     public String member;
-    private int note;
+    private float note;
     private String comment;
     private int id;
     public static int lastID;
 
-    public Review(String title, int date, String member, int note, String comment) {
+    public Review(String title, int date, String member, float note, String comment) {
         lastID++;
         this.title = title;
         this.date = date;
