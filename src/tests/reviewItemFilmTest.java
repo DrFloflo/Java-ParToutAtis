@@ -211,19 +211,10 @@ public class reviewItemFilmTest {
         // process this method
         try {
             sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
-            // No exception was thrown. That's a good start !
-            /*if (sn.nbFilms() != nbFilms + 1) { // But the number of films
-                // hasn't changed
-                // accordingly
-                System.out.println("Err " + testId + " : the number of films (" + nbFilms + ") was not incremented"); // Error message displayed
-                return 1; // return error code
-            } else
-                return 0; // return success code : everything is OK, nothing to
-            // display*/
+            System.out.println("Err " + testId + " : unexpected exception "); // Error
         } catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
-            System.out
-                    .println("Err " + testId + " : unexpected exception " + e); // Error
+            System.out.println("Err " + testId + " : unexpected exception " + e); // Error
             // message
             // displayed
             e.printStackTrace(); // Display contextual info about what happened
