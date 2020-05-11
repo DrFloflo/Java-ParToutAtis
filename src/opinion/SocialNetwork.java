@@ -114,7 +114,7 @@ public class SocialNetwork implements ISocialNetwork {
 	public float reviewItemFilm(String login, String password, String title,
 			float mark, String comment) throws BadEntryException,
 			NotMemberException, NotItemException {
-		if(login.equals(null)) { throw new NotMemberException("Erreur le login est null");}
+		if(login == null) { throw new NotMemberException("Erreur le login est null");}
 		else if (login.replaceAll(" ", "").length() == 0) { throw new NotMemberException("Erreur le login est null");}
 		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le password est null");}
 		if(title==null) { throw new BadEntryException("Erreur le titre est null");}

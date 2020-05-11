@@ -83,6 +83,30 @@ public class reviewItemFilmTest {
                 // good indicator that 'sn' was not modified
                 return 0; // return success value : everything seems OK, nothing*/
             // to display
+        }catch (NotMemberException e) { // BadEntry exception was thrown by
+            // addFilm() : this is a good start!
+            // Let's now check if 'sn' was not
+            // impacted
+            /*if (sn.nbFilms() != nbFilms) { // The number of films has
+                System.out.println("Err "+ testId+ " : BadEntry was thrown but the number of films was changed"); // Display
+                return 1; // return "error" value
+            } else
+                // The number of reviews hasn't changed, which is considered a
+                // good indicator that 'sn' was not modified
+                return 0; // return success value : everything seems OK, nothing*/
+            // to display
+        }catch (NotItemException e) { // BadEntry exception was thrown by
+            // addFilm() : this is a good start!
+            // Let's now check if 'sn' was not
+            // impacted
+            /*if (sn.nbFilms() != nbFilms) { // The number of films has
+                System.out.println("Err "+ testId+ " : BadEntry was thrown but the number of films was changed"); // Display
+                return 1; // return "error" value
+            } else
+                // The number of reviews hasn't changed, which is considered a
+                // good indicator that 'sn' was not modified
+                return 0; // return success value : everything seems OK, nothing*/
+            // to display
         } catch (Exception e) { // An exception was thrown by addReview(), but
             // it was not the expected exception BadEntry
             System.out.println("Err " + testId + " : unexpected exception. "
@@ -155,6 +179,14 @@ public class reviewItemFilmTest {
             } else
                 return 0; // return success value : everything is OK, nothing to
             // display
+        }  catch (NotItemException e) {// AlreadyExists exception was
+            if (sn.nbFilms() != nbFilms) {
+                System.out
+                        .println("Err "+ testId+ " : FilmAlreadyExists was thrown, but the number of Films was changed"); // Display
+                return 1;// and return the "error" value
+            } else
+                return 0; // return success value : everything is OK, nothing to
+            // display
         } catch (Exception e) { // An exception was thrown by addFilm(), but
             // it was not the expected exception
             // AlreadyExists
@@ -212,7 +244,19 @@ public class reviewItemFilmTest {
         try {
             sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
             System.out.println("Err " + testId + " : unexpected exception "); // Error
-        } catch (Exception e) {// An exception was thrown by addFilm() : this
+        } catch (NotItemException e) { // BadEntry exception was thrown by
+            // addFilm() : this is a good start!
+            // Let's now check if 'sn' was not
+            // impacted
+            /*if (sn.nbFilms() != nbFilms) { // The number of films has
+                System.out.println("Err "+ testId+ " : BadEntry was thrown but the number of films was changed"); // Display
+                return 1; // return "error" value
+            } else
+                // The number of reviews hasn't changed, which is considered a
+                // good indicator that 'sn' was not modified
+                return 0; // return success value : everything seems OK, nothing*/
+            // to display
+        }catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
             System.out.println("Err " + testId + " : unexpected exception " + e); // Error
             // message
