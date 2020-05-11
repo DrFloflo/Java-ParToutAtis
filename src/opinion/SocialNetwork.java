@@ -52,7 +52,7 @@ public class SocialNetwork implements ISocialNetwork {
 
 
 
-		for (Member eachMember : listeMember) { //For member in listMemeber
+		for (Member eachMember : listeMember) { //For member in listMember
 			if (eachMember.getLogin().toLowerCase().replaceAll(" ", "").equals(login.toLowerCase().replaceAll(" ", ""))) {
 				throw new MemberAlreadyExistsException();
 			}
