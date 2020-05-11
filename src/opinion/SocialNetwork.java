@@ -105,7 +105,7 @@ public class SocialNetwork implements ISocialNetwork {
 		if(mark<0 || mark > 20) { throw new BadEntryException("Erreur la note est invalide");}
 
 		Film filmTrouve = null;
-		for (Film eachFilm : listeFilm) {
+		for (Film eachFilm : listeFilm) {			//Verify if the film exists
 			if (eachFilm.getTitle() == title) {
 				filmTrouve=eachFilm;
 			}
@@ -114,6 +114,11 @@ public class SocialNetwork implements ISocialNetwork {
 			throw new NotItemException("Erreur le film n'éxiste pas");
 		}
 
+		for (Review eachReview : filmTrouve.listeReview) {
+			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
+				throw new NotItemException("Erreur la review existe déja pour ce membre");
+			}
+		}
 
 		Review newReview = new Review(title, 110520, login, mark, comment); //(String title, int date, String member, int note, String comment)
 		filmTrouve.listeReview.add(newReview);
@@ -124,7 +129,30 @@ public class SocialNetwork implements ISocialNetwork {
 	public float reviewItemBook(String login, String password, String title,
 			float mark, String comment) throws BadEntryException,
 			NotMemberException, NotItemException {
-		// TODO Auto-generated method stub
+		if(login==null || login.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le login est null");}
+		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le password est null");}
+		if(title==null) { throw new BadEntryException("Erreur le titre est null");}
+		if(comment==null) { throw new BadEntryException("Erreur le commentaire est null");}
+		if(mark<0 || mark > 20) { throw new BadEntryException("Erreur la note est invalide");}
+
+		Book bookTrouve = null;
+		for (Book eachBook : listeBook) {		//on verifie que le book vise existe vraiment
+			if (eachBook.getTitle() == title) {
+				bookTrouve=eachBook;
+			}
+		}
+		if (bookTrouve==null){
+			throw new NotItemException("Erreur le book n'éxiste pas");
+		}
+		for (Review eachReview : bookTrouve.listeReview) {
+			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
+				throw new NotItemException("Erreur la review existe déja pour ce membre");
+			}
+		}
+
+
+		Review newReview = new Review(title, 110520, login, mark, comment); //(String title, int date, String member, int note, String comment)
+		bookTrouve.listeReview.add(newReview);
 		return 0;
 	}
 

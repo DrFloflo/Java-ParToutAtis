@@ -19,4 +19,14 @@ public class Review {
         this.comment = comment;
         this.id = lastID;
     }
+    public String getTitle() {
+        return this.title;
+    }
+    public int getDate() {
+        return this.date;
+    }
+    public String getMember() { return this.member; }
+    public float getNote() { return this.note; }
+    public String getComment() { return this.comment; }
+
 }
