@@ -17,4 +17,20 @@ public class Film {
         this.scenarist=scenarist;
         this.duration=duration;
     }
+    public String getTitle() {
+        return this.title;
+    }
+    public String getDirector() {
+        return this.director;
+    }
+    public String getScenarist() {
+        return this.scenarist;
+    }
+    public String getKind() {
+        return this.kind;
+    }
+    public int getDuration() {
+        return this.duration;
+    }
+
 }

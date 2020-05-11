@@ -199,9 +199,7 @@ public class AddNewItemFilmTest {
             if (sn.nbFilms() != nbFilms + 1) { // But the number of films
                 // hasn't changed
                 // accordingly
-                System.out.println("Err " + testId
-                        + " : the number of films (" + nbFilms
-                        + ") was not incremented"); // Error message displayed
+                System.out.println("Err " + testId + " : the number of films (" + nbFilms + ") was not incremented"); // Error message displayed
                 return 1; // return error code
             } else
                 return 0; // return success code : everything is OK, nothing to

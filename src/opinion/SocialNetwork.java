@@ -32,7 +32,7 @@ public class SocialNetwork implements ISocialNetwork {
 	@Override
 	public int nbFilms() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.nbFilm;
 	}
 
 	@Override
@@ -69,8 +69,7 @@ public class SocialNetwork implements ISocialNetwork {
 	@Override
 	public void addItemFilm(String login, String password, String title,
 			String kind, String director, String scriptwriter, int duration)
-			throws BadEntryException, NotMemberException,
-			ItemFilmAlreadyExistsException {
+			throws BadEntryException, NotMemberException, ItemFilmAlreadyExistsException {
 		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le login est null");}
 		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
 		if(title==null) { throw new BadEntryException("Erreur le titre est null");}
@@ -79,8 +78,15 @@ public class SocialNetwork implements ISocialNetwork {
 		if(scriptwriter==null) { throw new BadEntryException("Erreur la variable scénariste est null");}
 		if(duration<1) { throw new BadEntryException("Erreur la durée est trop courte");}
 
+		for (Film eachFilm : listeFilm) {
+			System.out.println("Comparaison :"+eachFilm.getTitle() +" avec "+ title);
+			if (eachFilm.getTitle() == title) {
+				System.out.println("Titre déjà existant");
+				throw new ItemFilmAlreadyExistsException();
+			}
+		}
 
-		Film newFilm = new Film(title, kind, director, scriptwriter, duration);
+		Film newFilm = new Film(director, kind, title, scriptwriter, duration);
 		this.nbFilm+=1;
 		listeFilm.add(newFilm);
 
