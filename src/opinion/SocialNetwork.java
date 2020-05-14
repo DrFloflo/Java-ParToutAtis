@@ -48,7 +48,7 @@ public class SocialNetwork implements ISocialNetwork {
 		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
 		if(password!=null && password.replaceAll(" ", "").length()<4) { throw new BadEntryException("Erreur le password est compose de moins de 4 char");}
 		if(profile==null) { throw new BadEntryException("Erreur le login est null");}
-		else if(profile.replaceAll(" ", "") == "") { }//throw new BadEntryException("Erreur le profile est null");}
+		else if(profile.replaceAll(" ", "").equals("")) { throw new BadEntryException("Erreur le profile est null");}
 
 
 

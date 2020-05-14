@@ -119,7 +119,29 @@ public class AddMemberTest {
 																		// error
 																		// message
 			return 1; // and return the "error" value
-		} catch (MemberAlreadyExistsException e) {// AlreadyExists exception was
+		} catch (BadEntryException e) { // BadEntry exception was thrown by
+			// addMember() : this is a good start!
+			// Let's now check if 'sn' was not
+			// impacted
+			if (sn.nbMembers() != nbMembers) { // The number of members has
+				// changed : this is an error
+				// case.
+				System.out
+						.println("Err "
+								+ testId
+								+ " : BadEntry was thrown but the number of members was changed"); // Display
+				// a
+				// specific
+				// error
+				// message
+				return 1; // return "error" value
+			} else
+				// The number of members hasn't changed, which is considered a
+				// good indicator that 'sn' was not modified
+				return 0; // return success value : everything seems OK, nothing
+			// to display
+		}
+		catch (MemberAlreadyExistsException e) {// AlreadyExists exception was
 													// thrown by addMember() :
 													// this is a good start!
 													// Let's now check if 'sn'
