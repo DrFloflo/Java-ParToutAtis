@@ -18,4 +18,16 @@ public class Member {
     public String getLogin() {
         return this.login;
     }
+    public String getName() {
+        return this.name;
+    }
+    public String getDate() {
+        return this.date;
+    }
+    public String getPwd() {
+        return this.pwd;
+    }
+    public String getMail() {
+        return this.mail;
+    }
 }
