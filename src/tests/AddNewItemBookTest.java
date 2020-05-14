@@ -219,6 +219,7 @@ public class AddNewItemBookTest {
 
         int nbBooks = sn.nbBooks(); // number of books in 'sn' (should be 0
         // here)
+        int nbFilms = sn.nbFilms();
         int nbMembers = sn.nbMembers(); // number of members in 'sn' (should be 0
         // here)
 
@@ -297,9 +298,9 @@ public class AddNewItemBookTest {
             nbErrors++;
         }
         nbTests++;
-        if (nbBooks != sn.nbBooks()) {
+        if (nbFilms != sn.nbFilms()) {
             System.out
-                    .println("Error : the number of books was unexepectedly changed by addBook()");
+                    .println("Error : the number of films was unexepectedly changed by addBook()");
             nbErrors++;
         }
 
