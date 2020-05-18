@@ -304,7 +304,14 @@ public class AddNewItemBookTest {
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", "aaaa",
                 -1000, "1.7","addBook doit rejeter les variables nbPages négatives");
-
+        nbTests++;
+        nbErrors += addNewItemBookBadEntryTest(sn, "Jean", "paul",
+                "aaaa", "aaa", "aaaa", 100,
+                "1.8","addBook doit rejeter les utilisateurs inconnus");
+        nbTests++;
+        nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "Mauvais mdp",
+                "aaaa", "aaa", "aaaa", 100,
+                "1.9","addBook doit rejeter les mauvais mdp");
         // <=> test n°2
 
         // populate 'sn' with 3 Books

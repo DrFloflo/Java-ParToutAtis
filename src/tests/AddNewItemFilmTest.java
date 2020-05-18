@@ -323,7 +323,14 @@ public class AddNewItemFilmTest {
         nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", "aaaa", "aaaaa",
                 -1000, "1.7","addFilm doit rejeter les variables durations négatives");
-
+        nbTests++;
+        nbErrors += addNewItemFilmBadEntryTest(sn, "Jean", "paul",
+                "aaaa", "aaa", "aaaa", "aaa",
+                120,"1.8" ,"addBook doit rejeter les utilisateurs inconnus");
+        nbTests++;
+        nbErrors += addNewItemFilmBadEntryTest(sn, "Jean", "paul",
+                "aaaa", "aaa", "aaaa", "aaa",
+                120,"1.9","addBook doit rejeter les mauvais mdp");
         // <=> test n°2
 
         // populate 'sn' with 3 films
