@@ -213,6 +213,54 @@ public class AddNewItemBookTest {
      *
      * @return a summary of the performed tests
      */
+
+    /**
+     * Check that this new member (login, pwd, profile) can be (and <i>is</i>)
+     * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
+     * : the new member was added.</br> If not OK, an error message is displayed
+     * and 1 is returned ; the new member was not correctly added.
+     *
+     * @param sn
+     *            - the <i>ISocialNetwork</i>
+     * @param login
+     *            - new member's login
+     * @param pwd
+     *            - new member's password
+     * @param profile
+     *            - new member's profile
+     * @param testId
+     *            - the test ID that will prefix any error message displayed by
+     *            this method
+     * @return 0 if the test is OK, 1 if not
+     */
+    private static int addMemberOKTest(ISocialNetwork sn, String login,
+                                       String pwd, String profile, String testId) {
+        int nbMembers = sn.nbMembers(); // Number of members when starting to
+        // process this method
+        try {
+            sn.addMember(login, pwd, profile); // Try to add this member
+            // No exception was thrown. That's a good start !
+            if (sn.nbMembers() != nbMembers + 1) { // But the number of members
+                // hasn't changed
+                // accordingly
+                System.out.println("Err " + testId
+                        + " : the number of members (" + nbMembers
+                        + ") was not incremented"); // Error message displayed
+                return 1; // return error code
+            } else
+                return 0; // return success code : everything is OK, nothing to
+            // display
+        } catch (Exception e) {// An exception was thrown by addMember() : this
+            // is an error case
+            System.out
+                    .println("Err " + testId + " : unexpected exception " + e); // Error
+            // message
+            // displayed
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error code
+        }
+    }
+
     public static TestReport test(){
 
         ISocialNetwork sn = new SocialNetwork();
@@ -232,23 +280,30 @@ public class AddNewItemBookTest {
 
         // check if incorrect parameters cause addBook() to throw BadEntry
         // exception
-
+        nbTests++;
+        nbErrors += addMemberOKTest(sn, "Paul", "paul", "nouveaux", "1.1a");
+        nbMembers++;
         nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, null, "paul",
                 "aaaa", "aaa", "aaaa", 100,
                 "1.1","addBook doit rejeter les logins null");
+        nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", null,
                 "aaaa", "aaa", "aaaa",
                 100000000, "1.2","addBook doit rejeter les passwords null");
+        nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 null, "aaa", "aaaa",
                 100000000, "1.3","addBook doit rejeter les variables title null");
+        nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 "aaaa", null, "aaaaa",
                 100000000, "1.4","addBook doit rejeter les variable kind null");
+        nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", null,
                 100000000, "1.5","addBook doit rejeter les variables author null");
+        nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", "aaaa",
                 -1000, "1.7","addBook doit rejeter les variables nbPages négatives");
