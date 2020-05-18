@@ -26,19 +26,19 @@ public class SocialNetworkTest {
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 			//
-			tr = AddNewItemBookTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
-			tr = AddNewItemFilmTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
 			tr = reviewItemBookTest.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 			//
 			tr = reviewItemFilmTest.test();
+			testSuiteReport.add(tr);
+			System.out.println("\n\n **********************************************************************************************\n");
+			//
+			tr = AddNewItemBookTest.test();
+			testSuiteReport.add(tr);
+			System.out.println("\n\n **********************************************************************************************\n");
+			//
+			tr = AddNewItemFilmTest.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 

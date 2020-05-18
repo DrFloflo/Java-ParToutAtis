@@ -1,5 +1,7 @@
 package opinion;
 
+import java.util.LinkedList;
+
 public class Review {
 
     private String title;
@@ -9,6 +11,7 @@ public class Review {
     private String comment;
     private int id;
     public static int lastID;
+    LinkedList<Review> listeReview = new LinkedList<Review>();
 
     public Review(String title, int date, String member, float note, String comment) {
         lastID++;

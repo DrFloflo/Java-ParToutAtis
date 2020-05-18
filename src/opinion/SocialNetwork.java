@@ -173,6 +173,37 @@ public class SocialNetwork implements ISocialNetwork {
 		return 0;
 	}
 
+	//@Override
+	public float reviewItemReview(String login, String password, String title, Review laReview,
+			float mark, String comment) throws BadEntryException,
+			NotMemberException, NotItemException {
+		if(login==null || login.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le login est null");}
+		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le password est null");}
+		if(laReview==null) { throw new BadEntryException("Erreur la review est null");}
+		if(comment==null) { throw new BadEntryException("Erreur le commentaire est null");}
+		if(mark<0 || mark > 10) { throw new BadEntryException("Erreur la note est invalide");}
+
+		Review reviewTrouve = laReview;
+		/*for (Review eachReview : listereview) {		//on verifie que le book vise existe vraiment
+			if (eachReview.getTitle() == title) {
+				reviewTrouve=eachReview;
+			}
+		}
+		if (reviewTrouve==null){
+			throw new NotItemException("Erreur le book n'éxiste pas");
+		}*/
+		for (Review eachReview : reviewTrouve.listeReview) {
+			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
+				throw new NotItemException("Erreur la review existe déja pour ce membre");
+			}
+		}
+
+
+		Review newReview = new Review(title, 110520, login, mark, comment); //(String title, int date, String member, int note, String comment)
+		reviewTrouve.listeReview.add(newReview);
+		return 0;
+	}
+
 	@Override
 	public LinkedList<String> consultItems(String title)
 			throws BadEntryException {
