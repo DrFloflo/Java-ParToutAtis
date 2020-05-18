@@ -200,20 +200,6 @@ public class AddNewItemBookTest {
             return 1; // return error code
         }
     }
-
-    /**
-     * <i>addBook()</i> main test :
-     * <ul>
-     * <li>check if Books can be added</li>
-     * <li>check if incorrect parameters cause addBook() to throw BadEntry
-     * exception</li>
-     * <li>check if adding already registered Books cause addBook() to throw
-     * AlreadyExists exception</li>
-     * </ul>
-     *
-     * @return a summary of the performed tests
-     */
-
     /**
      * Check that this new member (login, pwd, profile) can be (and <i>is</i>)
      * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
@@ -260,7 +246,18 @@ public class AddNewItemBookTest {
             return 1; // return error code
         }
     }
-
+    /**
+     * <i>addBook()</i> main test :
+     * <ul>
+     * <li>check if Books can be added</li>
+     * <li>check if incorrect parameters cause addBook() to throw BadEntry
+     * exception</li>
+     * <li>check if adding already registered Books cause addBook() to throw
+     * AlreadyExists exception</li>
+     * </ul>
+     *
+     * @return a summary of the performed tests
+     */
     public static TestReport test(){
 
         ISocialNetwork sn = new SocialNetwork();
@@ -281,7 +278,7 @@ public class AddNewItemBookTest {
         // check if incorrect parameters cause addBook() to throw BadEntry
         // exception
         nbTests++;
-        nbErrors += addMemberOKTest(sn, "Paul", "paul", "nouveaux", "1.1a");
+        nbErrors += addMemberOKTest(sn, "Paul", "paul", "Nouveau", "1.1a");
         nbMembers++;
         nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, null, "paul",

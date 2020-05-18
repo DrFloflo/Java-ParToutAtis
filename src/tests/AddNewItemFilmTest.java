@@ -216,6 +216,53 @@ public class AddNewItemFilmTest {
     }
 
     /**
+     * Check that this new member (login, pwd, profile) can be (and <i>is</i>)
+     * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
+     * : the new member was added.</br> If not OK, an error message is displayed
+     * and 1 is returned ; the new member was not correctly added.
+     *
+     * @param sn
+     *            - the <i>ISocialNetwork</i>
+     * @param login
+     *            - new member's login
+     * @param pwd
+     *            - new member's password
+     * @param profile
+     *            - new member's profile
+     * @param testId
+     *            - the test ID that will prefix any error message displayed by
+     *            this method
+     * @return 0 if the test is OK, 1 if not
+     */
+    private static int addMemberOKTest(ISocialNetwork sn, String login,
+                                       String pwd, String profile, String testId) {
+        int nbMembers = sn.nbMembers(); // Number of members when starting to
+        // process this method
+        try {
+            sn.addMember(login, pwd, profile); // Try to add this member
+            // No exception was thrown. That's a good start !
+            if (sn.nbMembers() != nbMembers + 1) { // But the number of members
+                // hasn't changed
+                // accordingly
+                System.out.println("Err " + testId
+                        + " : the number of members (" + nbMembers
+                        + ") was not incremented"); // Error message displayed
+                return 1; // return error code
+            } else
+                return 0; // return success code : everything is OK, nothing to
+            // display
+        } catch (Exception e) {// An exception was thrown by addMember() : this
+            // is an error case
+            System.out
+                    .println("Err " + testId + " : unexpected exception " + e); // Error
+            // message
+            // displayed
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error code
+        }
+    }
+
+    /**
      * <i>addFilm()</i> main test :
      * <ul>
      * <li>check if Films can be added</li>
@@ -245,27 +292,35 @@ public class AddNewItemFilmTest {
 
         // check if incorrect parameters cause addFilm() to throw BadEntry
         // exception
-
         nbTests++;
-        nbErrors += addNewItemFilmBadEntryTest(sn, null, "aaaa",
+        nbErrors += addMemberOKTest(sn, "Paul", "paul", "Nouveau", "1.1a");
+        nbMembers++;
+        nbTests++;
+        nbErrors += addNewItemFilmBadEntryTest(sn, null, "paul",
                 "aaaa", "aaa", "aaaa", "aaaaa",
                 100000000, "1.1","addFilm doit rejeter les logins null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", null,
+        nbTests++;
+        nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", null,
                 "aaaa", "aaa", "aaaa", "aaaaa",
                 100000000, "1.2","addFilm doit rejeter les passwords null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
+        nbTests++;
+        nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", "paul",
                 null, "aaa", "aaaa", "aaaaa",
                 100000000, "1.3","addFilm doit rejeter les variables title null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
+        nbTests++;
+        nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", "paul",
                 "aaaa", null, "aaaa", "aaaaa",
                 100000000, "1.4","addFilm doit rejeter les variable kind null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
+        nbTests++;
+        nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", null, "aaaaa",
                 100000000, "1.5","addFilm doit rejeter les variables directors null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
+        nbTests++;
+        nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", "aaaa", null,
                 100000000, "1.6","addFilm doit rejeter les variables scenarist null");
-        nbErrors += addNewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
+        nbTests++;
+        nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", "aaaa", "aaaaa",
                 -1000, "1.7","addFilm doit rejeter les variables durations négatives");
 
