@@ -234,22 +234,22 @@ public class AddNewItemBookTest {
         // exception
 
         nbTests++;
-        nbErrors += addNewItemBookBadEntryTest(sn, null, "aaaa",
+        nbErrors += addNewItemBookBadEntryTest(sn, null, "paul",
                 "aaaa", "aaa", "aaaa", 100,
                 "1.1","addBook doit rejeter les logins null");
-        nbErrors += addNewItemBookBadEntryTest(sn, "aaaa", null,
+        nbErrors += addNewItemBookBadEntryTest(sn, "Paul", null,
                 "aaaa", "aaa", "aaaa",
                 100000000, "1.2","addBook doit rejeter les passwords null");
-        nbErrors += addNewItemBookBadEntryTest(sn, "aaaa", "aaaa",
+        nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 null, "aaa", "aaaa",
                 100000000, "1.3","addBook doit rejeter les variables title null");
-        nbErrors += addNewItemBookBadEntryTest(sn, "aaaa", "aa",
+        nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 "aaaa", null, "aaaaa",
                 100000000, "1.4","addBook doit rejeter les variable kind null");
-        nbErrors += addNewItemBookBadEntryTest(sn, "aaaa", "aaaa",
+        nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", null,
                 100000000, "1.5","addBook doit rejeter les variables author null");
-        nbErrors += addNewItemBookBadEntryTest(sn, "aaaa", "aaaa",
+        nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", "aaaa",
                 -1000, "1.7","addBook doit rejeter les variables nbPages négatives");
 
