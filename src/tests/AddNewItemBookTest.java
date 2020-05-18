@@ -74,6 +74,24 @@ public class AddNewItemBookTest {
                 // good indicator that 'sn' was not modified
                 return 0; // return success value : everything seems OK, nothing
             // to display
+        }  catch (ItemBookAlreadyExistsException e) { // BadEntry exception was thrown by
+            // addBook() : this is a good start!
+            // Let's now check if 'sn' was not
+            // impacted
+            if (sn.nbBooks() != nbBooks) { // The number of Books has
+                // changed : this is an error
+                // case.
+                System.out.println("Err " + testId + " : BadEntry was thrown but the number of Books was changed"); // Display
+                // a
+                // specific
+                // error
+                // message
+                return 1; // return "error" value
+            } else
+                // The number of Books hasn't changed, which is considered a
+                // good indicator that 'sn' was not modified
+                return 0; // return success value : everything seems OK, nothing
+            // to display
         } catch (Exception e) { // An exception was thrown by addBook(), but
             // it was not the expected exception BadEntry
             System.out.println("Err " + testId + " : unexpected exception. "

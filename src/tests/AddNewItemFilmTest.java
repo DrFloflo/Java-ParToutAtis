@@ -82,6 +82,27 @@ public class AddNewItemFilmTest {
                 // good indicator that 'sn' was not modified
                 return 0; // return success value : everything seems OK, nothing
             // to display
+        } catch (ItemFilmAlreadyExistsException e) { // BadEntry exception was thrown by
+            // addFilm() : this is a good start!
+            // Let's now check if 'sn' was not
+            // impacted
+            if (sn.nbFilms() != nbFilms) { // The number of films has
+                // changed : this is an error
+                // case.
+                System.out
+                        .println("Err "
+                                + testId
+                                + " : BadEntry was thrown but the number of films was changed"); // Display
+                // a
+                // specific
+                // error
+                // message
+                return 1; // return "error" value
+            } else
+                // The number of films hasn't changed, which is considered a
+                // good indicator that 'sn' was not modified
+                return 0; // return success value : everything seems OK, nothing
+            // to display
         } catch (Exception e) { // An exception was thrown by addfilm(), but
             // it was not the expected exception BadEntry
             System.out.println("Err " + testId + " : unexpected exception. "
