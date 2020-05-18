@@ -73,6 +73,15 @@ public class SocialNetwork implements ISocialNetwork {
 		if(scriptwriter==null) { throw new BadEntryException("Erreur la variable scénariste est null");}
 		if(duration<1) { throw new BadEntryException("Erreur la durée est trop courte");}
 
+		//check if logins are corrects
+		Member user = null;
+		for (Member eachMember : listeMember) {
+			if (login.equals(eachMember.getLogin())) { user = eachMember; } //member found
+			break;
+		}
+		if (user==null) { throw new BadEntryException("Erreur le login est incorrect"); }
+		if (!user.getPwd().equals(password)) { throw new BadEntryException("Erreur le pwd est incorrect"); }
+
 		for (Film eachFilm : listeFilm) {
 			if (eachFilm.getTitle().toLowerCase().replaceAll(" ","").equals(title.toLowerCase().replaceAll(" ","")) &&
 					eachFilm.getDirector().toLowerCase().replaceAll(" ","").equals(director.toLowerCase().replaceAll(" ",""))) {
@@ -96,6 +105,15 @@ public class SocialNetwork implements ISocialNetwork {
 		if(kind==null) { throw new BadEntryException("Erreur la variable genre est null");}
 		if(author==null) { throw new BadEntryException("Erreur la variable autheur est null");}
 		if(nbPages<1) { throw new BadEntryException("Erreur le nombre de page est trop court");}
+
+		//check if logins are corrects
+		Member user = null;
+		for (Member eachMember : listeMember) {
+			if (login.equals(eachMember.getLogin())) { user = eachMember; } //member found
+			break;
+		}
+		if (user==null) { throw new BadEntryException("Erreur le login est incorrect"); }
+		if (!user.getPwd().equals(password)) { throw new BadEntryException("Erreur le pwd est incorrect"); }
 
 		for (Book eachBook : listeBook) {
 			if (eachBook.getTitle().toLowerCase().replaceAll(" ","").equals(title.toLowerCase().replaceAll(" ","")) &&

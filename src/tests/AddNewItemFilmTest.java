@@ -92,7 +92,7 @@ public class AddNewItemFilmTest {
                 System.out
                         .println("Err "
                                 + testId
-                                + " : BadEntry was thrown but the number of films was changed"); // Display
+                                + " : ItemFilmAlreadyExistsException was thrown but the number of films was changed"); // Display
                 // a
                 // specific
                 // error
