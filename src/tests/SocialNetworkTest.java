@@ -41,6 +41,10 @@ public class SocialNetworkTest {
 			tr = AddNewItemFilmTest.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
+			//
+			tr = reviewItemReviewTest.test();
+			testSuiteReport.add(tr);
+			System.out.println("\n\n **********************************************************************************************\n");
 
 			
 			
