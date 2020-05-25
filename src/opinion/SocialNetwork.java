@@ -38,6 +38,32 @@ public class SocialNetwork implements ISocialNetwork {
 		return this.nbBook;
 	}
 
+	public Film getFilm(String title) throws BadEntryException {
+		Film filmTrouve = null;
+		for (Film eachFilm : listeFilm) {			//Verify if the film exists
+			if (eachFilm.getTitle() == title) {
+				filmTrouve=eachFilm;
+			}
+		}
+		if (filmTrouve == null) {
+			throw new BadEntryException("Erreur le film n'existe pas");
+		}
+		else {
+			return filmTrouve;
+		}
+	}
+
+	//@Override
+	public int nbReview() {
+		int nbReview = 0;
+		for (Member eachMember : listeMember) {
+			for (Review eachReview : eachMember.listeReview) {
+				nbReview++;
+			}
+		}
+		return nbReview;
+	}
+
 	@Override
 	public void addMember(String login, String password, String profile)
 			throws BadEntryException, MemberAlreadyExistsException {
@@ -159,8 +185,8 @@ public class SocialNetwork implements ISocialNetwork {
 
 
 		for (Review eachReview : filmTrouve.listeReview) {			//Check if the review already exists
-			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
-				throw new NotItemException("Erreur la review existe déja pour ce membre");
+			if (eachReview.getMember() == login) {
+				throw new NotItemException("Erreur le membre a déja review cet objet");
 			}
 		}
 		//If everything is correct after the tests, add review
@@ -202,8 +228,8 @@ public class SocialNetwork implements ISocialNetwork {
 
 
 		for (Review eachReview : bookTrouve.listeReview) {
-			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
-				throw new NotItemException("Erreur la review existe déja pour ce membre");
+			if (eachReview.getMember() == login) {
+				throw new NotItemException("Erreur le membre a déja review cet objet");
 			}
 		}
 
@@ -226,8 +252,8 @@ public class SocialNetwork implements ISocialNetwork {
 
 		Review reviewTrouve = laReview;
 		for (Review eachReview : reviewTrouve.listeReview) {
-			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
-				throw new NotItemException("Erreur la review existe déja pour ce membre");
+			if (eachReview.getMember() == login) {
+				throw new NotItemException("Erreur le membre a déja review cet objet");
 			}
 		}
 

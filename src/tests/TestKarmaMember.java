@@ -321,6 +321,7 @@ public class TestKarmaMember {
         int nbTests = 0; // total number of performed tests
         int nbErrors = 0; // total number of failed tests
 
+
         nbErrors += addMemberOK(sn, "Paul", "paul", "", "1.1 Ajout membre");
         nbErrors += addMemberOK(sn, "Marc", "marc", "", "1.2 Ajout membre");
         nbErrors += addMemberOK(sn, "Flo", "flo", "", "1.3 Ajout membre");
@@ -330,8 +331,16 @@ public class TestKarmaMember {
                 119,"2.2 Ajout 2eme film");
         nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "3.1 Ajout d'une review Film");
 
-
-        System.out.println("Testing Karma");
+            System.out.println("Testing Karma");
+        }
+        catch (BadEntryException e){ //This shouldn't happen
+            System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
+            return null;
+        }
+        catch (MemberAlreadyExistsException e){ //This shouldn't happen
+            System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
+            return null;
+        }
 
         // <=> test n°1
 
