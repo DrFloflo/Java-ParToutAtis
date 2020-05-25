@@ -474,7 +474,13 @@ public class reviewItemReviewTest {
         nbTests++;
         nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", 7.5f, "Film d'une grande qualitée", "3.1 Ajout d'une review Film");
 
-        opinion.Film leFilm = sn.getFilm("The big Lebowski");
+        try {
+            opinion.Film leFilm = sn.getFilm("The big Lebowski");
+        }
+        catch (BadEntryException e){ //This shouldn't happen
+            System.out.println("Unexpected error");
+            return null;
+        }
         Review reviewTrouve = null;
         for (Review eachReviewInFilm : leFilm.getReview) {            //Verify if the film exists
             if (eachReviewInFilm .getLogin("paul") == "Pseudo utilisateur de la review que je commente") {

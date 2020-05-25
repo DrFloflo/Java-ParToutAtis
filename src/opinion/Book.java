@@ -27,4 +27,7 @@ public class Book {
     public int getPages() {
         return this.nbPages;
     }
+    public LinkedList<Review> getReview() {
+        return this.listeReview;
+    }
 }
