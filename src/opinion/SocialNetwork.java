@@ -153,19 +153,20 @@ public class SocialNetwork implements ISocialNetwork {
 				memberTrouve=eachMember;
 			}
 		}
-		if (memberTrouve==null){
+		if (memberTrouve==null){						// if not found, throw error
 			throw new NotItemException("Erreur les identifiants du membre sont incorrects");
 		}
 
 
-		for (Review eachReview : filmTrouve.listeReview) {
+		for (Review eachReview : filmTrouve.listeReview) {			//Check if the review already exists
 			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
 				throw new NotItemException("Erreur la review existe déja pour ce membre");
 			}
 		}
-
+		//If everything is correct after the tests, add review
 		Review newReview = new Review(title, 110520, login, mark, comment); //(String title, int date, String member, int note, String comment)
 		filmTrouve.listeReview.add(newReview);
+		memberTrouve.listeReview.add(newReview);
 		return 0;
 	}
 
@@ -209,6 +210,7 @@ public class SocialNetwork implements ISocialNetwork {
 
 		Review newReview = new Review(title, 110520, login, mark, comment); //(String title, int date, String member, int note, String comment)
 		bookTrouve.listeReview.add(newReview);
+		memberTrouve.listeReview.add(newReview);
 		return 0;
 	}
 
@@ -242,6 +244,7 @@ public class SocialNetwork implements ISocialNetwork {
 
 		Review newReview = new Review(title, 110520, login, mark, comment); //(String title, int date, String member, int note, String comment)
 		reviewTrouve.listeReview.add(newReview);
+		memberTrouve.listeReview.add(newReview);
 		return 0;
 	}
 
