@@ -32,5 +32,7 @@ public class Film {
     public int getDuration() {
         return this.duration;
     }
-
+    public LinkedList<Review> getReview() {
+        return this.listeReview;
+    }
 }
