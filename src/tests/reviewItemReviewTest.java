@@ -476,17 +476,18 @@ public class reviewItemReviewTest {
 
         try {
             opinion.Film leFilm = sn.getFilm("The big Lebowski");
+            Review reviewTrouve = null;
+            for (Review eachReviewInFilm : leFilm.getReview()) {            //Verify if the film exists
+                if (eachReviewInFilm .getMember().equals("paul")) {
+                    reviewTrouve=eachReviewInFilm ;
+                }
+            }
         }
         catch (BadEntryException e){ //This shouldn't happen
             System.out.println("Unexpected error");
             return null;
         }
-        Review reviewTrouve = null;
-        for (Review eachReviewInFilm : leFilm.getReview) {            //Verify if the film exists
-            if (eachReviewInFilm .getLogin("paul") == "Pseudo utilisateur de la review que je commente") {
-                reviewTrouve=eachReviewInFilm ;
-            }
-        }
+
 
         System.out.println("Testing reviewItemReview()");
 
