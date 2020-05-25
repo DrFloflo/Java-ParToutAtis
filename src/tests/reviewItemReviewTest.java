@@ -5,6 +5,7 @@ import exceptions.NotItemException;
 import exceptions.NotMemberException;
 import exceptions.NotTestReportException;
 import opinion.ISocialNetwork;
+import opinion.Review;
 import opinion.SocialNetwork;
 
 /**
@@ -56,14 +57,14 @@ public class reviewItemReviewTest {
      *
      * @return mean of the marks for this film
      */
-    private static int reviewItemFilmBadEntryTest(ISocialNetwork sn, String login, String password,
-                                                  String title, float mark, String comment, String testId,
+    private static int reviewItemReviewBadEntryTest(ISocialNetwork sn, String login, String password,
+                                                  String title, Review laReview,float mark, String comment, String testId,
                                                   String errorMessage) {
 
        // int nbReviews = sn.nbReviews(); // Number of films when starting to
         // run this method
         try {
-            sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
+            sn.reviewItemReview( login, password, title, laReview, mark, comment); // Try to add this film
             // Reaching this point means that no exception was thrown by
             // addReviews()
             System.out.println("Err " + testId + " : " + errorMessage); // display
@@ -157,13 +158,13 @@ public class reviewItemReviewTest {
      *
      * @return mean of the marks for this film
      */
-    private static int reviewItemFilmAlreadyExistsTest(ISocialNetwork sn, String login, String password,
-                                                       String title, float mark, String comment, String testId,
-                                                       String errorMessage) {
-        int nbFilms = sn.nbFilms(); // Number of films when starting to
+    private static int reviewItemReviewAlreadyExistsTest(ISocialNetwork sn, String login, String password,
+                                                         String title, Review laReview,float mark, String comment, String testId,
+                                                         String errorMessage) {
+        int nbReview = sn.nbReview(); // Number of films when starting to
         // process this method
         try {
-            sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
+            sn.reviewItemReview(login, password, title, laReview,mark, comment); // Try to add this film
             // Reaching this point means that no exception was thrown by
             // addFilm()
             System.out.println("Err " + testId + " : " + errorMessage); // display
@@ -172,7 +173,7 @@ public class reviewItemReviewTest {
             // message
             return 1; // and return the "error" value
         } catch (BadEntryException e) {// AlreadyExists exception was
-            if (sn.nbFilms() != nbFilms) {
+            if (sn.nbReview() != nbReview) {
                 System.out
                         .println("Err "+ testId+ " : FilmAlreadyExists was thrown, but the number of Films was changed"); // Display
                 return 1;// and return the "error" value
@@ -180,7 +181,7 @@ public class reviewItemReviewTest {
                 return 0; // return success value : everything is OK, nothing to
             // display
         }  catch (NotItemException e) {// AlreadyExists exception was
-            if (sn.nbFilms() != nbFilms) {
+            if (sn.nbReview() != nbReview) {
                 System.out
                         .println("Err "+ testId+ " : FilmAlreadyExists was thrown, but the number of Films was changed"); // Display
                 return 1;// and return the "error" value
@@ -237,9 +238,80 @@ public class reviewItemReviewTest {
      *
      * @return mean of the marks for this film
      */
-    private static int reviewItemFilmOKTest(ISocialNetwork sn, String login, String password,
-                                            String title, float mark, String comment, String testId) {
+    private static int reviewItemReviewOKTest(ISocialNetwork sn, String login, String password,
+                                              String title, Review laReview,float mark, String comment, String testId,
+                                              String errorMessage) {
        // int nbFilms = sn.nbFilms(); // Number of films when starting to
+        // process this method
+        try {
+            sn.reviewItemReview(login, password, title, laReview, mark, comment); // Try to add this film
+            System.out.println("Err " + testId + " : unexpected exception "); // Error
+        } catch (NotItemException e) { // BadEntry exception was thrown by
+            // addFilm() : this is a good start!
+            // Let's now check if 'sn' was not
+            // impacted
+            /*if (sn.nbFilms() != nbFilms) { // The number of films has
+                System.out.println("Err "+ testId+ " : BadEntry was thrown but the number of films was changed"); // Display
+                return 1; // return "error" value
+            } else
+                // The number of reviews hasn't changed, which is considered a
+                // good indicator that 'sn' was not modified
+                return 0; // return success value : everything seems OK, nothing*/
+            // to display
+        }catch (Exception e) {// An exception was thrown by addFilm() : this
+            // is an error case
+            System.out.println("Err " + testId + " : unexpected exception " + e); // Error
+            // message
+            // displayed
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error code
+        }
+        return 0;
+    }
+
+    /**
+     * Add in the <i>SocialNetwork</i> a new review for a film on behalf of a
+     * specific member.</br> If this member has already given a review for this
+     * same film before, the new review replaces the previous one.
+     *
+     * @param login
+     *            login of the member adding the review
+     * @param password
+     *            password of the member adding the review
+     * @param title
+     *            the reviewed film's title
+     * @param mark
+     *            the mark given by the member for this film
+     * @param comment
+     *            the comment given by the member for this film
+     *
+     * @throws BadEntryException
+     *             <ul>
+     *             <li>if login is not instantiated or contains less than one
+     *             non-space character</li>
+     *             <li>if password is not instantiated or contains less than
+     *             four characters (not taking into account leading or trailing
+     *             blanks)</li>
+     *             <li>if title is not instantiated or contains less than one
+     *             non-space character</li>
+     *             <li>if mark is not greater or equals to 0.0 and lesser or
+     *             equals to 5.0.</li>
+     *             <li>if comment is not instantiated</li>
+     *             </ul>
+     * <br>
+     * @throws NotMemberException
+     *             if login does not match with the login of a registered member
+     *             in <i>SocialNetwork</i> or if password does not correspond to
+     *             his registered password.
+     * @throws NotItemException
+     *             if title is not registered as a film's title in the
+     *             <i>SocialNetwork</i>
+     *
+     * @return mean of the marks for this film
+     */
+    private static int reviewItemFilmOK(ISocialNetwork sn, String login, String password,
+                                        String title, float mark, String comment, String testId) {
+        // int nbFilms = sn.nbFilms(); // Number of films when starting to
         // process this method
         try {
             sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
@@ -268,6 +340,107 @@ public class reviewItemReviewTest {
     }
 
     /**
+     * Check that this new film (login, password, title, kind, director, scenarist, duration) can be (and <i>is</i>)
+     * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
+     * : the new film was added.</br> If not OK, an error message is displayed
+     * and 1 is returned ; the new film was not correctly added.
+     *
+     * @param sn
+     *            - the <i>ISocialNetwork</i>
+     * @param login
+     *            - Member's login
+     * @param password
+     *            - Member's password
+     * @param title
+     *            - Titre du film
+     * @param kind
+     *            - Genre du Film
+     * @param director
+     *            - Directeur du film
+     * @param scenarist
+     *            - Scénariste du film
+     * @param duration
+     *            - Durée du film
+     * @param testId
+     *            - the test ID that will prefix any error message displayed by
+     *            this method
+     * @return 0 if the test is OK, 1 if not
+     */
+    private static int addNewItemFilmOK(ISocialNetwork sn, String login, String password,
+                                        String title, String kind, String director,
+                                        String scenarist, int duration, String testId) {
+        int nbFilms = sn.nbFilms(); // Number of films when starting to
+        // process this method
+        try {
+            sn.addItemFilm(login, password, title, kind, director, scenarist, duration); // Try to add this film
+            // No exception was thrown. That's a good start !
+            if (sn.nbFilms() != nbFilms + 1) { // But the number of films
+                // hasn't changed
+                // accordingly
+                System.out.println("Err " + testId + " : the number of films (" + nbFilms + ") was not incremented"); // Error message displayed
+                return 1; // return error code
+            } else
+                return 0; // return success code : everything is OK, nothing to
+            // display
+        } catch (Exception e) {// An exception was thrown by addFilm() : this
+            // is an error case
+            System.out
+                    .println("Err " + testId + " : unexpected exception " + e); // Error
+            // message
+            // displayed
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error code
+        }
+    }
+
+    /**
+     * Check that this new member (login, pwd, profile) can be (and <i>is</i>)
+     * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
+     * : the new member was added.</br> If not OK, an error message is displayed
+     * and 1 is returned ; the new member was not correctly added.
+     *
+     * @param sn
+     *            - the <i>ISocialNetwork</i>
+     * @param login
+     *            - new member's login
+     * @param pwd
+     *            - new member's password
+     * @param profile
+     *            - new member's profile
+     * @param testId
+     *            - the test ID that will prefix any error message displayed by
+     *            this method
+     * @return 0 if the test is OK, 1 if not
+     */
+    private static int addMemberOK(ISocialNetwork sn, String login,
+                                   String pwd, String profile, String testId) {
+        int nbMembers = sn.nbMembers(); // Number of members when starting to
+        // process this method
+        try {
+            sn.addMember(login, pwd, profile); // Try to add this member
+            // No exception was thrown. That's a good start !
+            if (sn.nbMembers() != nbMembers + 1) { // But the number of members
+                // hasn't changed
+                // accordingly
+                System.out.println("Err " + testId
+                        + " : the number of members (" + nbMembers
+                        + ") was not incremented"); // Error message displayed
+                return 1; // return error code
+            } else
+                return 0; // return success code : everything is OK, nothing to
+            // display
+        } catch (Exception e) {// An exception was thrown by addMember() : this
+            // is an error case
+            System.out
+                    .println("Err " + testId + " : unexpected exception " + e); // Error
+            // message
+            // displayed
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error code
+        }
+    }/
+
+    /**
      * <i>addFilm()</i> main test :
      * <ul>
      * <li>check if Films can be added</li>
@@ -283,36 +456,43 @@ public class reviewItemReviewTest {
 
         ISocialNetwork sn = new SocialNetwork();
 
-        //int nbBooks = sn.nbBooks(); // number of books in 'sn' (should be 0
+        int nbReview = sn.nbReview(); // number of books in 'sn' (should be 0
         // here)
-        //int nbMembers = sn.nbMembers(); // number of members in 'sn' (should be 0
-        // here)
-
+        Review review;
         int nbTests = 0; // total number of performed tests
         int nbErrors = 0; // total number of failed tests
 
-        System.out.println("Testing addReviewFilm()");
+        nbTests++;
+        nbErrors += addMemberOK(sn, "Paul", "paul", "", "1.1 Ajout membre");
+        nbTests++;
+        nbErrors += addMemberOK(sn, "Marc", "marc", "", "1.2 Ajout membre");
+
+        nbTests++;
+        nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", "Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",
+                120,"2.1 Ajout 1er film");
+
+        nbTests++;
+        nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", 7.5f, "Film d'une grande qualitée", "3.1 Ajout d'une review Film");
+
+        opinion.Film leFilm = sn.getFilm("The big Lebowski");
+        Review reviewTrouve = null;
+        for (Review eachReviewInFilm : leFilm.getReview) {            //Verify if the film exists
+            if (eachReviewInFilm .getLogin("paul") == "Pseudo utilisateur de la review que je commente") {
+                reviewTrouve=eachReviewInFilm ;
+            }
+        }
+
+        System.out.println("Testing reviewItemReview()");
 
         // <=> test n°1
 
-        // check if incorrect parameters cause addFilm() to throw BadEntry
+        // check if incorrect parameters cause reviewItemReview() to throw BadEntry
         // exception
 
         nbTests++;
-        nbErrors += reviewItemFilmBadEntryTest(sn, null, "aaaa",
-                "aaaa", 2.5f, "aaaa", "1.1","addFilm doit rejeter les logins null");
-        nbTests++;
-        nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", null,
-                "aaaa", 2.5f, "aaaa", "1.2","addFilm doit rejeter les passwords null");
-        nbTests++;
-        nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
-                null, 2.5f, "aaaa", "1.3","addFilm doit rejeter les variables title null");
-        nbTests++;
-        nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaa",
-                "aaaa", -10, "aaaa", "1.4","addFilm doit rejeter les variable mark negative");
-        nbTests++;
-        nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaa",
-                "aaaa", 5, null, "1.5","addFilm doit rejeter les variables comment null");
+        nbErrors += reviewItemReviewBadEntryTest(sn, null, "marc",
+                "The big Lebowski", reviewTrouve,2.5f, "aaaa", "1.1","addFilm doit rejeter les logins null");
+
         // <=> test n°2
 
         // populate 'sn' with 3 films

@@ -269,6 +269,50 @@ public interface ISocialNetwork {
 			NotMemberException, NotItemException;
 
 	/**
+	 * Add in the <i>SocialNetwork</i> a new review for a film on behalf of a
+	 * specific member.</br> If this member has already given a review for this
+	 * same film before, the new review replaces the previous one.
+	 *
+	 * @param login
+	 *            login of the member adding the review
+	 * @param password
+	 *            password of the member adding the review
+	 * @param title
+	 *            the reviewed film's title
+	 * @param mark
+	 *            the mark given by the member for this film
+	 * @param comment
+	 *            the comment given by the member for this film
+	 *
+	 * @throws BadEntryException
+	 *             <ul>
+	 *             <li>if login is not instantiated or contains less than one
+	 *             non-space character</li>
+	 *             <li>if password is not instantiated or contains less than
+	 *             four characters (not taking into account leading or trailing
+	 *             blanks)</li>
+	 *             <li>if title is not instantiated or contains less than one
+	 *             non-space character</li>
+	 *             <li>if mark is not greater or equals to 0.0 and lesser or
+	 *             equals to 5.0.</li>
+	 *             <li>if comment is not instantiated</li>
+	 *             </ul>
+	 * <br>
+	 * @throws NotMemberException
+	 *             if login does not match with the login of a registered member
+	 *             in <i>SocialNetwork</i> or if password does not correspond to
+	 *             his registered password.
+	 * @throws NotItemException
+	 *             if title is not registered as a film's title in the
+	 *             <i>SocialNetwork</i>
+	 *
+	 * @return mean of the marks for this film
+	 */
+	public float reviewItemReview(String login, String password, String title, Review laReview,
+								  float mark, String comment) throws BadEntryException,
+			NotMemberException, NotItemException;
+
+	/**
 	 * Search for items in the <i>SocialNetwork</i>.
 	 * 
 	 * @param title
@@ -295,3 +339,4 @@ public interface ISocialNetwork {
 	public String toString();
 
 }
+
