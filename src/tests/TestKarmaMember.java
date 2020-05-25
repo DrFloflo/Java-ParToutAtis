@@ -154,9 +154,19 @@ public class TestKarmaMember {
         int nbTests = 0; // total number of performed tests
         int nbErrors = 0; // total number of failed tests
 
-        sn.addMember("Paul", "Paul", "");
+        try {
+            sn.addMember("Paul", "Paul", "");
 
-        System.out.println("Testing Karma");
+            System.out.println("Testing Karma");
+        }
+        catch (BadEntryException e){ //This shouldn't happen
+            System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
+            return null;
+        }
+        catch (MemberAlreadyExistsException e){ //This shouldn't happen
+            System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
+            return null;
+        }
 
         // <=> test n°1
 

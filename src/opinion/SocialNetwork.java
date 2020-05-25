@@ -159,8 +159,8 @@ public class SocialNetwork implements ISocialNetwork {
 
 
 		for (Review eachReview : filmTrouve.listeReview) {			//Check if the review already exists
-			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
-				throw new NotItemException("Erreur la review existe déja pour ce membre");
+			if (eachReview.getMember() == login) {
+				throw new NotItemException("Erreur le membre a déja review cet objet");
 			}
 		}
 		//If everything is correct after the tests, add review
@@ -202,8 +202,8 @@ public class SocialNetwork implements ISocialNetwork {
 
 
 		for (Review eachReview : bookTrouve.listeReview) {
-			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
-				throw new NotItemException("Erreur la review existe déja pour ce membre");
+			if (eachReview.getMember() == login) {
+				throw new NotItemException("Erreur le membre a déja review cet objet");
 			}
 		}
 
@@ -226,8 +226,8 @@ public class SocialNetwork implements ISocialNetwork {
 
 		Review reviewTrouve = laReview;
 		for (Review eachReview : reviewTrouve.listeReview) {
-			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
-				throw new NotItemException("Erreur la review existe déja pour ce membre");
+			if (eachReview.getMember() == login) {
+				throw new NotItemException("Erreur le membre a déja review cet objet");
 			}
 		}
 
