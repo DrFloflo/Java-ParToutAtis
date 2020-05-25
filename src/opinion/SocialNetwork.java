@@ -38,6 +38,21 @@ public class SocialNetwork implements ISocialNetwork {
 		return this.nbBook;
 	}
 
+	public Film getFilm(String title) throws BadEntryException {
+		Film filmTrouve = null;
+		for (Film eachFilm : listeFilm) {			//Verify if the film exists
+			if (eachFilm.getTitle() == title) {
+				filmTrouve=eachFilm;
+			}
+		}
+		if (filmTrouve == null) {
+			throw new BadEntryException("Erreur le film n'existe pas");
+		}
+		else {
+			return filmTrouve;
+		}
+	}
+
 	//@Override
 	public int nbReview() {
 		int nbReview = 0;
