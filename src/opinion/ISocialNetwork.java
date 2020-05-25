@@ -65,7 +65,7 @@ public interface ISocialNetwork {
 	 *
 	 */
 
-	public Film getFilm(String title);
+	public Film getFilm(String title) throws BadEntryException;
 
 	/**
 	 * Get the Film in the <i>SocialNetwork</i>.
