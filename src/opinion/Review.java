@@ -7,7 +7,7 @@ public class Review {
     private String title;
     private int date;
     public String member;
-    private float note;
+    private float note;     //de 0 a 10
     private String comment;
     private int id;
     public static int lastID;

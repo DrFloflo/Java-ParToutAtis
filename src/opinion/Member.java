@@ -18,6 +18,21 @@ public class Member {
         this.pwd = pwd;
         this.mail = mail;
     }
+
+    public int getKarma() {
+        int mykarma = 0;
+        float total = 0f;
+        int nbReview = 0;
+        for (Review eachReview : this.listeReview) { //For each review the member wrote
+            for (Review eachReviewReview : eachReview.listeReview) { //For each review this review
+                nbReview++;
+                total = total + eachReviewReview.getNote();
+            }
+        }
+        mykarma = (int) (total/nbReview);
+        return mykarma;
+    }
+
     public String getLogin() {
         return this.login;
     }
