@@ -55,6 +55,16 @@ public interface ISocialNetwork {
 	 * 
 	 * @return number of books
 	 */
+
+	public int nbReview();
+
+	/**
+	 * Get the number of review registered in the <i>SocialNetwork</i>.listFilm
+	 *
+	 * @return number of review
+	 *
+	 */
+
 	public int nbBooks();
 
 
