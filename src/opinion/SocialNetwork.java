@@ -25,19 +25,16 @@ public class SocialNetwork implements ISocialNetwork {
 
 	@Override
 	public int nbMembers() {
-		// TODO Auto-generated method stub
 		return this.nbMembers;
 	}
 
 	@Override
 	public int nbFilms() {
-		// TODO Auto-generated method stub
 		return this.nbFilm;
 	}
 
 	@Override
 	public int nbBooks() {
-		// TODO Auto-generated method stub
 		return this.nbBook;
 	}
 
@@ -149,6 +146,18 @@ public class SocialNetwork implements ISocialNetwork {
 			throw new NotItemException("Erreur le film n'éxiste pas");
 		}
 
+
+		Member memberTrouve = null;
+		for (Member eachMember : listeMember) {			//Verify if the member credential are correct
+			if (eachMember.getLogin() == login && eachMember.getPwd() == password) {
+				memberTrouve=eachMember;
+			}
+		}
+		if (memberTrouve==null){
+			throw new NotItemException("Erreur les identifiants du membre sont incorrects");
+		}
+
+
 		for (Review eachReview : filmTrouve.listeReview) {
 			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
 				throw new NotItemException("Erreur la review existe déja pour ce membre");
@@ -179,6 +188,18 @@ public class SocialNetwork implements ISocialNetwork {
 		if (bookTrouve==null){
 			throw new NotItemException("Erreur le book n'éxiste pas");
 		}
+
+		Member memberTrouve = null;
+		for (Member eachMember : listeMember) {			//Verify if the member credential are correct
+			if (eachMember.getLogin() == login && eachMember.getPwd() == password) {
+				memberTrouve=eachMember;
+			}
+		}
+		if (memberTrouve==null){
+			throw new NotItemException("Erreur les identifiants du membre sont incorrects");
+		}
+
+
 		for (Review eachReview : bookTrouve.listeReview) {
 			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
 				throw new NotItemException("Erreur la review existe déja pour ce membre");
@@ -202,18 +223,20 @@ public class SocialNetwork implements ISocialNetwork {
 		if(mark<0 || mark > 10) { throw new BadEntryException("Erreur la note est invalide");}
 
 		Review reviewTrouve = laReview;
-		/*for (Review eachReview : listereview) {		//on verifie que le book vise existe vraiment
-			if (eachReview.getTitle() == title) {
-				reviewTrouve=eachReview;
-			}
-		}
-		if (reviewTrouve==null){
-			throw new NotItemException("Erreur le book n'éxiste pas");
-		}*/
 		for (Review eachReview : reviewTrouve.listeReview) {
 			if (eachReview.getComment() == comment && eachReview.getMember() == login) {
 				throw new NotItemException("Erreur la review existe déja pour ce membre");
 			}
+		}
+
+		Member memberTrouve = null;
+		for (Member eachMember : listeMember) {			//Verify if the member credential are correct
+			if (eachMember.getLogin() == login && eachMember.getPwd() == password) {
+				memberTrouve=eachMember;
+			}
+		}
+		if (memberTrouve==null){
+			throw new NotItemException("Erreur les identifiants du membre sont incorrects");
 		}
 
 

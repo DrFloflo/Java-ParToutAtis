@@ -1,5 +1,7 @@
 package opinion;
 
+import java.util.LinkedList;
+
 public class Member {
 
     private String name;
@@ -7,6 +9,7 @@ public class Member {
     private String login;
     private String pwd;
     private String mail;
+    LinkedList<Review> listeReview = new LinkedList<Review>();
 
     public Member(String name, String date, String login, String pwd, String mail) {
         this.name = name;
