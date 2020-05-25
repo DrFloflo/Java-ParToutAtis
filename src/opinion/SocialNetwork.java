@@ -38,6 +38,17 @@ public class SocialNetwork implements ISocialNetwork {
 		return this.nbBook;
 	}
 
+	//@Override
+	public int nbReview() {
+		int nbReview = 0;
+		for (Member eachMember : listeMember) {
+			for (Review eachReview : eachMember.listeReview) {
+				nbReview++;
+			}
+		}
+		return nbReview;
+	}
+
 	@Override
 	public void addMember(String login, String password, String profile)
 			throws BadEntryException, MemberAlreadyExistsException {
