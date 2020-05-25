@@ -65,6 +65,15 @@ public interface ISocialNetwork {
 	 *
 	 */
 
+	public Film getFilm();
+
+	/**
+	 * Get the Film in the <i>SocialNetwork</i>.
+	 *
+	 * @return Film
+	 *blabla
+	 */
+
 	public int nbBooks();
 
 
