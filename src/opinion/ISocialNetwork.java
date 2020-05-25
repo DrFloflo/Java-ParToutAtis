@@ -65,7 +65,7 @@ public interface ISocialNetwork {
 	 *
 	 */
 
-	public Film getFilm();
+	public Film getFilm(String title);
 
 	/**
 	 * Get the Film in the <i>SocialNetwork</i>.

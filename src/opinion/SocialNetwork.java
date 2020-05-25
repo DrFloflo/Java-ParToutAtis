@@ -37,11 +37,11 @@ public class SocialNetwork implements ISocialNetwork {
 	public int nbBooks() {
 		return this.nbBook;
 	}
-
+	@Override
 	public Film getFilm(String title) throws BadEntryException {
 		Film filmTrouve = null;
 		for (Film eachFilm : listeFilm) {			//Verify if the film exists
-			if (eachFilm.getTitle() == title) {
+			if (eachFilm.getTitle().equals(title)) {
 				filmTrouve=eachFilm;
 			}
 		}
