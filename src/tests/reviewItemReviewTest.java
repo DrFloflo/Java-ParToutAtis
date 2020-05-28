@@ -438,7 +438,7 @@ public class reviewItemReviewTest {
             e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error code
         }
-    }/
+    }
 
     /**
      * <i>addFilm()</i> main test :
@@ -474,8 +474,15 @@ public class reviewItemReviewTest {
         nbTests++;
         nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", 7.5f, "Film d'une grande qualitée", "3.1 Ajout d'une review Film");
 
+
+        Review reviewTrouve = null;
         try {
             opinion.Film leFilm = sn.getFilm("The big Lebowski");
+            for (Review eachReviewInFilm : leFilm.getReview()) {            //Verify if the film exists
+                if (eachReviewInFilm .getMember().equals("paul")) {
+                    reviewTrouve=eachReviewInFilm ;
+                }
+            }
         }
         catch (BadEntryException e){ //This shouldn't happen
             System.out.println("Unexpected error");
@@ -504,7 +511,7 @@ public class reviewItemReviewTest {
         // populate 'sn' with 3 films
 
         nbTests++;
-        nbErrors += reviewItemFilmOKTest(sn, "Paul", "aaaa",
+        nbErrors += reviewItemFilmTest(sn, "Paul", "aaaa",
                 "Bof", 2.5f, "Nul", "2.1a");
         nbTests++;
         nbErrors += reviewItemFilmOKTest(sn, "Taylor", "aaaa",
