@@ -18,9 +18,9 @@ import opinion.SocialNetwork;
 public class reviewItemReviewTest {
 
     /**
-     * Add in the <i>SocialNetwork</i> a new review for a film on behalf of a
-     * specific member.</br> If this member has already given a review for this
-     * same film before, the new review replaces the previous one.
+     * Add in the <i>SocialNetwork</i> a new review for a review.
+     * If this member has already given a review for this
+     * same review before, the new review is refused.
      *
      * @param login
      *            login of the member adding the review

@@ -19,7 +19,7 @@ import exceptions.NotTestReportException;
 public class AddNewItemBookTest {
 
     /**
-     * Check that this new Book (login, password, title, kind, director, scenarist, nbPages) can be (and <i>is</i>)
+     * Check that this new Book (login, password, title, kind, author, nbPages) can be (and <i>is</i>)
      * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
      * : the new Book was added.</br> If not OK, an error message is displayed
      * and 1 is returned ; the new Book was not correctly added.
@@ -31,13 +31,13 @@ public class AddNewItemBookTest {
      * @param password
      *            - Member's password
      * @param title
-     *            - Titre du livre
+     *            - title of the book
      * @param kind
-     *            - Genre du livre
+     *            - kind of the book
      * @param author
-     *            - Auteur du livre
+     *            - author of the book
      * @param nbPages
-     *            - Nombre de pages
+     *            - The book's number of pages
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
@@ -102,7 +102,7 @@ public class AddNewItemBookTest {
     }
 
     /**
-     * Check that this new Book (login, password, title, kind, director, scenarist, nbPages) can be (and <i>is</i>)
+     * Check that this new Book (login, password, title, kind, author, nbPages) can be (and <i>is</i>)
      * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
      * : the new Book was added.</br> If not OK, an error message is displayed
      * and 1 is returned ; the new Book was not correctly added.
@@ -114,13 +114,13 @@ public class AddNewItemBookTest {
      * @param password
      *            - Member's password
      * @param title
-     *            - Titre du livre
+     *            - title of the book
      * @param kind
-     *            - Genre du livre
+     *            - kind of the book
      * @param author
-     *            - Auteur du livre
+     *            - author of the book
      * @param nbPages
-     *            - Nombre de pages
+     *            - The book's number of pages
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
@@ -181,13 +181,13 @@ public class AddNewItemBookTest {
      * @param password
      *            - Member's password
      * @param title
-     *            - Titre du livre
+     *            - title of the book
      * @param kind
-     *            - Genre du livre
+     *            - kind of the book
      * @param author
-     *            - Auteur du livre
+     *            - author of the book
      * @param nbPages
-     *            - Nombre de pages
+     *            - The book's number of pages
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
