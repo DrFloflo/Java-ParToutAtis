@@ -3,6 +3,20 @@ package opinion;
 import java.util.LinkedList;
 
 public class Book {
+    /**
+     *
+     * @param kind
+     *            - kind of the book
+     * @param title
+     *            - title of the book
+     * @param author
+     *            - author of the book
+     * @param nbPages
+     *            - The book's number of pages
+     * @param listeReview
+     *            - The book's list of reviews
+     */
+
     private String kind;
     private String title;
     private String author;
@@ -15,19 +29,43 @@ public class Book {
         this.author=author;
         this.nbPages=nbPages;
     }
+    /**
+     *
+     * @return the title of the book
+     */
     public String getTitle() {
         return this.title;
     }
-    public String getAuthor() {
+    /**
+     *
+     * @return the author of the book
+     */
+    public String getAuthor()
+    {
         return this.author;
     }
-    public String getKind() {
+    /**
+     *
+     * @return the kind of the book
+     */
+    public String getKind()
+    {
         return this.kind;
     }
-    public int getPages() {
+    /**
+     *
+     * @return the pages number of the book
+     */
+    public int getPages()
+    {
         return this.nbPages;
     }
-    public LinkedList<Review> getReview() {
+    /**
+     *
+     * @return the book's reviews
+     */
+    public LinkedList<Review> getReview()
+    {
         return this.listeReview;
     }
 }

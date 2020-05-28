@@ -478,7 +478,6 @@ public class reviewItemReviewTest {
         Review reviewTrouve = null;
         try {
             opinion.Film leFilm = sn.getFilm("The big Lebowski");
-
             for (Review eachReviewInFilm : leFilm.getReview()) {            //Verify if the film exists
                 if (eachReviewInFilm .getMember().equals("paul")) {
                     reviewTrouve=eachReviewInFilm ;
@@ -489,7 +488,12 @@ public class reviewItemReviewTest {
             System.out.println("Unexpected error");
             return null;
         }
-
+        Review reviewTrouve = null;
+        for (Review eachReviewInFilm : leFilm.getReview) {            //Verify if the film exists
+            if (eachReviewInFilm.getMember().equals("Paul")) {
+                reviewTrouve=eachReviewInFilm ;
+            }
+        }
 
         System.out.println("Testing reviewItemReview()");
 

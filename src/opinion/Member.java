@@ -3,7 +3,27 @@ package opinion;
 import java.util.LinkedList;
 
 public class Member {
-
+    /**
+     *
+     * @param login
+     *            - the member's login
+     * @param pwd
+     *            - the member's password
+     * @param name
+     *            - the member's name
+     * @param date
+     *            - the member's date of birth
+     * @param mail
+     *            - the member's mail
+     * @param listeReview
+     *            - the member's reviews
+     * @param mykarma
+     *            - the actual karma of the member
+     * @param nbReview
+     *            - the number of reviews posted by the member
+     * @param total
+     *            - temporal variable use for calculate the karma
+     * */
     private String name;
     private String date;
     private String login;
@@ -18,7 +38,11 @@ public class Member {
         this.pwd = pwd;
         this.mail = mail;
     }
-
+    /**
+     * Member's karma is the mean of all reviews of each opinion of the member.
+     *
+     * @return the karam of the member
+     */
     public int getKarma() {
         int mykarma = 0;
         float total = 0f;
@@ -32,20 +56,44 @@ public class Member {
         mykarma = (int) (total/nbReview);
         return mykarma;
     }
-
-    public String getLogin() {
+    /**
+     *
+     * @return the login of the member
+     */
+    public String getLogin()
+    {
         return this.login;
     }
-    public String getName() {
+    /**
+     *
+     * @return the name of the member
+     */
+    public String getName()
+    {
         return this.name;
     }
-    public String getDate() {
+    /**
+     *
+     * @return the member's date of birth
+     */
+    public String getDate()
+    {
         return this.date;
     }
-    public String getPwd() {
+    /**
+     *
+     * @return the password of the member
+     */
+    public String getPwd()
+    {
         return this.pwd;
     }
-    public String getMail() {
+    /**
+     *
+     * @return the mail of the member
+     */
+    public String getMail()
+    {
         return this.mail;
     }
 }
