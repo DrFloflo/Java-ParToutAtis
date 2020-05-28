@@ -31,15 +31,15 @@ public class AddNewItemFilmTest {
      * @param password
      *            - Member's password
      * @param title
-     *            - Titre du film
+     *            - title of the film
      * @param kind
-     *            - Genre du Film
+     *            - kind of the film
      * @param director
-     *            - Directeur du film
+     *            - director of the film
      * @param scenarist
-     *            - Scénariste du film
+     *            - scenarist of the film
      * @param duration
-     *            - Durée du film
+     *            - duration of the film (in minutes)
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
@@ -125,15 +125,15 @@ public class AddNewItemFilmTest {
      * @param password
      *            - Member's password
      * @param title
-     *            - Titre du film
+     *            - title of the film
      * @param kind
-     *            - Genre du Film
+     *            - kind of the film
      * @param director
-     *            - Directeur du film
+     *            - director of the film
      * @param scenarist
-     *            - Scénariste du film
+     *            - scenarist of the film
      * @param duration
-     *            - Durée du film
+     *            - duration of the film (in minutes)
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
@@ -195,15 +195,15 @@ public class AddNewItemFilmTest {
      * @param password
      *            - Member's password
      * @param title
-     *            - Titre du film
+     *            - title of the film
      * @param kind
-     *            - Genre du Film
+     *            - kind of the film
      * @param director
-     *            - Directeur du film
+     *            - director of the film
      * @param scenarist
-     *            - Scénariste du film
+     *            - scenarist of the film
      * @param duration
-     *            - Durée du film
+     *            - duration of the film (in minutes)
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
