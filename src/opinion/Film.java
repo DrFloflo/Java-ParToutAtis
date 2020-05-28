@@ -3,6 +3,21 @@ package opinion;
 import java.util.LinkedList;
 
 public class Film {
+    /**
+     *
+     * @param kind
+     *            - kind of the film
+     * @param title
+     *            - title of the film
+     * @param scenarist
+     *            - scenarist of the film
+     * @param duration
+     *            - The film's number of minutes
+     * @param director
+     *            - The director of the film
+     * @param listeReview
+     *            - The film's list of reviews
+     */
     private String director;
     private String kind;
     private String title;
@@ -17,22 +32,51 @@ public class Film {
         this.scenarist=scenarist;
         this.duration=duration;
     }
+    /**
+     *
+     * @return the title of the film
+     */
     public String getTitle() {
         return this.title;
     }
-    public String getDirector() {
+    /**
+     *
+     * @return the director of the film
+     */
+    public String getDirector()
+    {
         return this.director;
     }
-    public String getScenarist() {
+    /**
+     *
+     * @return the scenarist of the film
+     */
+    public String getScenarist()
+    {
         return this.scenarist;
     }
-    public String getKind() {
+    /**
+     *
+     * @return the kind of the film
+     */
+    public String getKind()
+    {
         return this.kind;
     }
-    public int getDuration() {
+    /**
+     *
+     * @return the duration (in minutes) of the film
+     */
+    public int getDuration()
+    {
         return this.duration;
     }
-    public LinkedList<Review> getReview() {
+    /**
+     *
+     * @return the film's reviews
+     */
+    public LinkedList<Review> getReview()
+    {
         return this.listeReview;
     }
 }
