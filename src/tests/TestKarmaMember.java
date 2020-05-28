@@ -309,38 +309,39 @@ public class TestKarmaMember {
      *
      * @return a summary of the performed tests
      */
-    public static TestReport test(){
+    public static TestReport test() {
 
-        ISocialNetwork sn = new SocialNetwork();
+        try {
+            ISocialNetwork sn = new SocialNetwork();
 
-        int nbBooks = sn.nbBooks(); // number of books in 'sn' (should be 0
-        // here)
-        int nbFilms = sn.nbFilms(); // number of films in 'sn' (should be 0
-        // here)
+            int nbBooks = sn.nbBooks(); // number of books in 'sn' (should be 0
+            // here)
+            int nbFilms = sn.nbFilms(); // number of films in 'sn' (should be 0
+            // here)
 
-        int nbTests = 0; // total number of performed tests
-        int nbErrors = 0; // total number of failed tests
+            int nbTests = 0; // total number of performed tests
+            int nbErrors = 0; // total number of failed tests
 
 
-        nbErrors += addMemberOK(sn, "Paul", "paul", "", "1.1 Ajout membre");
-        nbErrors += addMemberOK(sn, "Marc", "marc", "", "1.2 Ajout membre");
-        nbErrors += addMemberOK(sn, "Flo", "flo", "", "1.3 Ajout membre");
-        nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", "Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",
-                120,"2.1 Ajout 1er film");
-        nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "Gran Torino", "Drame/Thriller", "Clint Eastwood", "Nick Schenk",
-                119,"2.2 Ajout 2eme film");
-        nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "3.1 Ajout d'une review Film");
+            nbErrors += addMemberOK(sn, "Paul", "paul", "", "1.1 Ajout membre");
+            nbErrors += addMemberOK(sn, "Marc", "marc", "", "1.2 Ajout membre");
+            nbErrors += addMemberOK(sn, "Flo", "flo", "", "1.3 Ajout membre");
+            nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", "Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",
+                    120, "2.1 Ajout 1er film");
+            nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "Gran Torino", "Drame/Thriller", "Clint Eastwood", "Nick Schenk",
+                    119, "2.2 Ajout 2eme film");
+            nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "3.1 Ajout d'une review Film");
 
             System.out.println("Testing Karma");
-        }
-        catch (BadEntryException e){ //This shouldn't happen
+        } catch (Exception e) { //This shouldn't happen
             System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
             return null;
         }
-        catch (MemberAlreadyExistsException e){ //This shouldn't happen
-            System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
-            return null;
-        }
+//        catch (MemberAlreadyExistsException e) { //This shouldn't happen
+//            System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
+//            return null;
+//        }
+
 
         // <=> test n°1
 
