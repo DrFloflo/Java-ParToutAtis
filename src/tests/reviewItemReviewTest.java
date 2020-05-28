@@ -440,6 +440,77 @@ public class reviewItemReviewTest {
         }
     }
 
+
+    private static int reviewItemFilmOKTest(ISocialNetwork sn, String login, String password,
+                                            String title, float mark, String comment, String testId) {
+        // int nbFilms = sn.nbFilms(); // Number of films when starting to
+        // process this method
+        try {
+            sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
+            System.out.println("Err " + testId + " : unexpected exception "); // Error
+        } catch (NotItemException e) { // BadEntry exception was thrown by
+            // addFilm() : this is a good start!
+            // Let's now check if 'sn' was not
+            // impacted
+            /*if (sn.nbFilms() != nbFilms) { // The number of films has
+                System.out.println("Err "+ testId+ " : BadEntry was thrown but the number of films was changed"); // Display
+                return 1; // return "error" value
+            } else
+                // The number of reviews hasn't changed, which is considered a
+                // good indicator that 'sn' was not modified
+                return 0; // return success value : everything seems OK, nothing*/
+            // to display
+        }catch (Exception e) {// An exception was thrown by addFilm() : this
+            // is an error case
+            System.out.println("Err " + testId + " : unexpected exception " + e); // Error
+            // message
+            // displayed
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error code
+        }
+        return 0;
+    }
+
+    private static int reviewItemFilmAlreadyExistsTest(ISocialNetwork sn, String login, String password,
+                                                       String title, float mark, String comment, String testId,
+                                                       String errorMessage) {
+        int nbFilms = sn.nbFilms(); // Number of films when starting to
+        // process this method
+        try {
+            sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
+            // Reaching this point means that no exception was thrown by
+            // addFilm()
+            System.out.println("Err " + testId + " : " + errorMessage); // display
+            // the
+            // error
+            // message
+            return 1; // and return the "error" value
+        } catch (BadEntryException e) {// AlreadyExists exception was
+            if (sn.nbFilms() != nbFilms) {
+                System.out
+                        .println("Err "+ testId+ " : FilmAlreadyExists was thrown, but the number of Films was changed"); // Display
+                return 1;// and return the "error" value
+            } else
+                return 0; // return success value : everything is OK, nothing to
+            // display
+        }  catch (NotItemException e) {// AlreadyExists exception was
+            if (sn.nbFilms() != nbFilms) {
+                System.out
+                        .println("Err "+ testId+ " : FilmAlreadyExists was thrown, but the number of Films was changed"); // Display
+                return 1;// and return the "error" value
+            } else
+                return 0; // return success value : everything is OK, nothing to
+            // display
+        } catch (Exception e) { // An exception was thrown by addFilm(), but
+            // it was not the expected exception
+            // AlreadyExists
+            System.out.println("Err " + testId + " : unexpected exception. "
+                    + e); // Display a specific error message
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error value
+        }
+    }
+
     /**
      * <i>addFilm()</i> main test :
      * <ul>
@@ -478,7 +549,7 @@ public class reviewItemReviewTest {
         Review reviewTrouve = null;
         try {
             opinion.Film leFilm = sn.getFilm("The big Lebowski");
-            for (Review eachReviewInFilm : leFilm.getReview()) {            //Verify if the film exists
+            for (Review eachReviewInFilm : leFilm.getReview()) {            //find review in The big Lebowski written by paul
                 if (eachReviewInFilm .getMember().equals("paul")) {
                     reviewTrouve=eachReviewInFilm ;
                 }
@@ -487,12 +558,6 @@ public class reviewItemReviewTest {
         catch (BadEntryException e){ //This shouldn't happen
             System.out.println("Unexpected error");
             return null;
-        }
-        Review reviewTrouve = null;
-        for (Review eachReviewInFilm : leFilm.getReview) {            //Verify if the film exists
-            if (eachReviewInFilm.getMember().equals("Paul")) {
-                reviewTrouve=eachReviewInFilm ;
-            }
         }
 
         System.out.println("Testing reviewItemReview()");
@@ -511,7 +576,7 @@ public class reviewItemReviewTest {
         // populate 'sn' with 3 films
 
         nbTests++;
-        nbErrors += reviewItemFilmTest(sn, "Paul", "aaaa",
+        nbErrors += reviewItemFilmOKTest(sn, "Paul", "aaaa",
                 "Bof", 2.5f, "Nul", "2.1a");
         nbTests++;
         nbErrors += reviewItemFilmOKTest(sn, "Taylor", "aaaa",
