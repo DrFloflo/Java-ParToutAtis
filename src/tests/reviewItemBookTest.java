@@ -17,10 +17,12 @@ import opinion.SocialNetwork;
 public class reviewItemBookTest {
 
     /**
-     * Add in the <i>SocialNetwork</i> a new review for a book on behalf of a
-     * specific member.</br> If this member has already given a review for this
-     * same book before, the new review replaces the previous one.
+     * Add in the <i>SocialNetwork</i> a new review for a book.
+     * If this member has already given a review for this
+     * same book before, the new review is refused.
      *
+     * @param sn
+     *            - the <i>ISocialNetwork</i>
      * @param login
      *            login of the member adding the review
      * @param password
@@ -31,7 +33,12 @@ public class reviewItemBookTest {
      *            the mark given by the member for this book
      * @param comment
      *            the comment given by the member for this book
-     *
+     * @param testId
+     *            - the test ID that will prefix any error message displayed by
+     *            this method
+     * @param errorMessage
+     *            - the error message that will be displayed if no exception is
+     *            thrown when adding this member
      * @throws BadEntryException
      *             <ul>
      *             <li>if login is not instantiated or contains less than one
@@ -54,7 +61,7 @@ public class reviewItemBookTest {
      *             if title is not registered as a book's title in the
      *             <i>SocialNetwork</i>
      *
-     * @return mean of the marks for this book
+     * @return 0 if the test is OK, 1 if not
      */
     private static int reviewItemBookBadEntryTest(ISocialNetwork sn, String login, String password,
                                                   String title, float mark, String comment, String testId,
@@ -118,10 +125,12 @@ public class reviewItemBookTest {
     }
 
     /**
-     * Add in the <i>SocialNetwork</i> a new review for a book on behalf of a
-     * specific member.</br> If this member has already given a review for this
-     * same book before, the new review replaces the previous one.
+     * Add in the <i>SocialNetwork</i> a new review for a book.
+     * If this member has already given a review for this
+     * same book before, the new review is refused.
      *
+     * @param sn
+     *            - the <i>ISocialNetwork</i>
      * @param login
      *            login of the member adding the review
      * @param password
@@ -132,6 +141,12 @@ public class reviewItemBookTest {
      *            the mark given by the member for this book
      * @param comment
      *            the comment given by the member for this book
+     * @param testId
+     *            - the test ID that will prefix any error message displayed by
+     *            this method
+     * @param errorMessage
+     *            - the error message that will be displayed if no exception is
+     *            thrown when adding this member
      *
      * @throws BadEntryException
      *             <ul>
@@ -198,10 +213,12 @@ public class reviewItemBookTest {
     }
 
     /**
-     * Add in the <i>SocialNetwork</i> a new review for a book on behalf of a
-     * specific member.</br> If this member has already given a review for this
-     * same book before, the new review replaces the previous one.
+     * Add in the <i>SocialNetwork</i> a new review for a book.
+     * If this member has already given a review for this
+     * same book before, the new review is refused.
      *
+     * @param sn
+     *            - the <i>ISocialNetwork</i>
      * @param login
      *            login of the member adding the review
      * @param password
@@ -212,6 +229,9 @@ public class reviewItemBookTest {
      *            the mark given by the member for this book
      * @param comment
      *            the comment given by the member for this book
+     * @param testId
+     *            - the test ID that will prefix any error message displayed by
+     *            this method
      *
      * @throws BadEntryException
      *             <ul>
@@ -268,12 +288,12 @@ public class reviewItemBookTest {
     }
 
     /**
-     * <i>addBook()</i> main test :
+     * <i>addReviewItemBook()</i> main test :
      * <ul>
-     * <li>check if Books can be added</li>
-     * <li>check if incorrect parameters cause addBook() to throw BadEntry
+     * <li>check if reviews can be added</li>
+     * <li>check if incorrect parameters cause addReviewItemBook() to throw BadEntry
      * exception</li>
-     * <li>check if adding already registered Books cause addBook() to throw
+     * <li>check if adding already registered reviews cause addReviewItemBook to throw
      * AlreadyExists exception</li>
      * </ul>
      *
