@@ -212,6 +212,34 @@ public class reviewItemBookTest {
         }
     }
 
+    private static int addMemberOK(ISocialNetwork sn, String login,
+                                   String pwd, String profile, String testId) {
+        int nbMembers = sn.nbMembers(); // Number of members when starting to
+        // process this method
+        try {
+            sn.addMember(login, pwd, profile); // Try to add this member
+            // No exception was thrown. That's a good start !
+            if (sn.nbMembers() != nbMembers + 1) { // But the number of members
+                // hasn't changed
+                // accordingly
+                System.out.println("Err " + testId
+                        + " : the number of members (" + nbMembers
+                        + ") was not incremented"); // Error message displayed
+                return 1; // return error code
+            } else
+                return 0; // return success code : everything is OK, nothing to
+            // display
+        } catch (Exception e) {// An exception was thrown by addMember() : this
+            // is an error case
+            System.out
+                    .println("Err " + testId + " : unexpected exception " + e); // Error
+            // message
+            // displayed
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error code
+        }
+    }
+
     /**
      * Add in the <i>SocialNetwork</i> a new review for a book.
      * If this member has already given a review for this
@@ -311,6 +339,10 @@ public class reviewItemBookTest {
         int nbTests = 0; // total number of performed tests
         int nbErrors = 0; // total number of failed tests
 
+        nbErrors += addMemberOK(sn, "Paul", "aaaa", "", "1.1b Ajout membre");
+        nbErrors += addMemberOK(sn, "Taylor", "aaaa", "", "1.2b Ajout membre");
+        nbErrors += addMemberOK(sn, "Smith", "aaaa", "", "1.3b Ajout membre");
+
         System.out.println("Testing addReviewBook()");
 
         // <=> test n°1
@@ -322,16 +354,16 @@ public class reviewItemBookTest {
         nbErrors += reviewItemBookBadEntryTest(sn, null, "aaaa",
                 "aaaa", 2.5f, "aaaa", "1.1","addBook doit rejeter les logins null");
         nbTests++;
-        nbErrors += reviewItemBookBadEntryTest(sn, "aaaa", null,
+        nbErrors += reviewItemBookBadEntryTest(sn, "Taylor", null,
                 "aaaa", 2.5f, "aaaa", "1.2","addBook doit rejeter les passwords null");
         nbTests++;
-        nbErrors += reviewItemBookBadEntryTest(sn, "aaaa", "aaaa",
+        nbErrors += reviewItemBookBadEntryTest(sn, "Taylor", "aaaa",
                 null, 2.5f, "aaaa", "1.3","addBook doit rejeter les variables title null");
         nbTests++;
-        nbErrors += reviewItemBookBadEntryTest(sn, "aaaa", "aaa",
+        nbErrors += reviewItemBookBadEntryTest(sn, "Taylor", "aaa",
                 "aaaa", -10, "aaaa", "1.4","addBook doit rejeter les variable mark negative");
         nbTests++;
-        nbErrors += reviewItemBookBadEntryTest(sn, "aaaa", "aaa",
+        nbErrors += reviewItemBookBadEntryTest(sn, "Taylor", "aaa",
                 "aaaa", 5, null, "1.5","addBook doit rejeter les variables comment null");
         // <=> test n°2
 

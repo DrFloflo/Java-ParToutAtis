@@ -125,6 +125,34 @@ public class reviewItemFilmTest {
         return 0;
     }
 
+    private static int addMemberOK(ISocialNetwork sn, String login,
+                                   String pwd, String profile, String testId) {
+        int nbMembers = sn.nbMembers(); // Number of members when starting to
+        // process this method
+        try {
+            sn.addMember(login, pwd, profile); // Try to add this member
+            // No exception was thrown. That's a good start !
+            if (sn.nbMembers() != nbMembers + 1) { // But the number of members
+                // hasn't changed
+                // accordingly
+                System.out.println("Err " + testId
+                        + " : the number of members (" + nbMembers
+                        + ") was not incremented"); // Error message displayed
+                return 1; // return error code
+            } else
+                return 0; // return success code : everything is OK, nothing to
+            // display
+        } catch (Exception e) {// An exception was thrown by addMember() : this
+            // is an error case
+            System.out
+                    .println("Err " + testId + " : unexpected exception " + e); // Error
+            // message
+            // displayed
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error code
+        }
+    }
+
     /**
      * Add in the <i>SocialNetwork</i> a new review for a film.
      * If this member has already given a review for this
@@ -309,6 +337,10 @@ public class reviewItemFilmTest {
 
         int nbTests = 0; // total number of performed tests
         int nbErrors = 0; // total number of failed tests
+
+        nbErrors += addMemberOK(sn, "Paul", "aaaa", "", "1.1b Ajout membre");
+        nbErrors += addMemberOK(sn, "Taylor", "aaaa", "", "1.2b Ajout membre");
+        nbErrors += addMemberOK(sn, "Smith", "aaaa", "", "1.3b Ajout membre");
 
         System.out.println("Testing addReviewFilm()");
 
