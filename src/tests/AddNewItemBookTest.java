@@ -8,6 +8,7 @@ import opinion.SocialNetwork;
 import exceptions.BadEntryException;
 import exceptions.ItemBookAlreadyExistsException;
 import exceptions.NotTestReportException;
+import exceptions.*;
 
 /**
  * Tests for the SocialNetwork.<i>addBook()</i> method.

@@ -7,6 +7,7 @@ import opinion.SocialNetwork;
 import exceptions.BadEntryException;
 import exceptions.MemberAlreadyExistsException;
 import exceptions.NotTestReportException;
+import exceptions.*;
 
 /**
  * Tests for the SocialNetwork.<i>addMember()</i> method.

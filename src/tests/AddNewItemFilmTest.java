@@ -8,6 +8,7 @@ import opinion.SocialNetwork;
 import exceptions.BadEntryException;
 import exceptions.ItemFilmAlreadyExistsException;
 import exceptions.NotTestReportException;
+import exceptions.*;
 
 /**
  * Tests for the SocialNetwork.<i>addFilm()</i> method.
