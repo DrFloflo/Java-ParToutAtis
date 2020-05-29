@@ -511,6 +511,50 @@ public class reviewItemReviewTest {
         }
     }
 
+    private static int addMemberBadEntryTest(ISocialNetwork sn, String login,
+                                             String pwd, String profile, String testId, String errorMessage) {
+
+        int nbMembers = sn.nbMembers(); // Number of members when starting to
+        // run this method
+        try {
+            sn.addMember(login, pwd, profile); // Try to add this member
+            // Reaching this point means that no exception was thrown by
+            // addMember()
+            System.out.println("Err " + testId + " : " + errorMessage); // display
+            // the
+            // error
+            // message
+            return 1; // and return the "error" value
+        } catch (BadEntryException e) { // BadEntry exception was thrown by
+            // addMember() : this is a good start!
+            // Let's now check if 'sn' was not
+            // impacted
+            if (sn.nbMembers() != nbMembers) { // The number of members has
+                // changed : this is an error
+                // case.
+                System.out
+                        .println("Err "
+                                + testId
+                                + " : BadEntry was thrown but the number of members was changed"); // Display
+                // a
+                // specific
+                // error
+                // message
+                return 1; // return "error" value
+            } else
+                // The number of members hasn't changed, which is considered a
+                // good indicator that 'sn' was not modified
+                return 0; // return success value : everything seems OK, nothing
+            // to display
+        } catch (Exception e) { // An exception was thrown by addMember(), but
+            // it was not the expected exception BadEntry
+            System.out.println("Err " + testId + " : unexpected exception. "
+                    + e); // Display a specific error message
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error value
+        }
+    }
+
     /**
      * <i>addFilm()</i> main test :
      * <ul>

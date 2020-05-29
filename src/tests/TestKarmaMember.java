@@ -115,14 +115,16 @@ public class TestKarmaMember {
             } else
                 return 0; // return success code : everything is OK, nothing to
             // display
-        } catch (Exception e) {// An exception was thrown by addMember() : this
-            // is an error case
+        } catch (BadEntryException e) {
             System.out
-                    .println("Err " + testId + " : unexpected exception " + e); // Error
-            // message
-            // displayed
-            e.printStackTrace(); // Display contextual info about what happened
-            return 1; // return error code
+                    .println("Err " + testId + " : BadEntryException exception " + e);
+            e.printStackTrace();
+            return 1;
+        } catch (Exception e) {
+            System.out
+                    .println("Err " + testId + " : unexpected exception " + e);
+            e.printStackTrace();
+            return 1;
         }
     }
 
@@ -297,6 +299,141 @@ public class TestKarmaMember {
         }
     }
 
+    private static int addMemberBadEntryTest(ISocialNetwork sn, String login,
+                                             String pwd, String profile, String testId, String errorMessage) {
+
+        int nbMembers = sn.nbMembers(); // Number of members when starting to
+        // run this method
+        try {
+            sn.addMember(login, pwd, profile); // Try to add this member
+            // Reaching this point means that no exception was thrown by
+            // addMember()
+            System.out.println("Err " + testId + " : " + errorMessage); // display
+            // the
+            // error
+            // message
+            return 1; // and return the "error" value
+        } catch (BadEntryException e) { // BadEntry exception was thrown by
+            // addMember() : this is a good start!
+            // Let's now check if 'sn' was not
+            // impacted
+            if (sn.nbMembers() != nbMembers) { // The number of members has
+                // changed : this is an error
+                // case.
+                System.out
+                        .println("Err "
+                                + testId
+                                + " : BadEntry was thrown but the number of members was changed"); // Display
+                // a
+                // specific
+                // error
+                // message
+                return 1; // return "error" value
+            } else
+                // The number of members hasn't changed, which is considered a
+                // good indicator that 'sn' was not modified
+                return 0; // return success value : everything seems OK, nothing
+            // to display
+        } catch (Exception e) { // An exception was thrown by addMember(), but
+            // it was not the expected exception BadEntry
+            System.out.println("Err " + testId + " : unexpected exception. "
+                    + e); // Display a specific error message
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error value
+        }
+    }
+    private static int addMemberOKTest(ISocialNetwork sn, String login,
+                                       String pwd, String profile, String testId) {
+        int nbMembers = sn.nbMembers(); // Number of members when starting to
+        // process this method
+        try {
+            sn.addMember(login, pwd, profile); // Try to add this member
+            // No exception was thrown. That's a good start !
+            if (sn.nbMembers() != nbMembers + 1) { // But the number of members
+                // hasn't changed
+                // accordingly
+                System.out.println("Err " + testId
+                        + " : the number of members (" + nbMembers
+                        + ") was not incremented"); // Error message displayed
+                return 1; // return error code
+            } else
+                return 0; // return success code : everything is OK, nothing to
+            // display
+        } catch (Exception e) {// An exception was thrown by addMember() : this
+            // is an error case
+            System.out
+                    .println("Err " + testId + " : unexpected exception " + e); // Error
+            // message
+            // displayed
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error code
+        }
+    }
+
+    private static int addMemberAlreadyExistsTest(ISocialNetwork sn,
+                                                  String login, String pwd, String profile, String testId,
+                                                  String errorMessage) {
+        int nbMembers = sn.nbMembers(); // Number of members when starting to
+        // process this method
+        try {
+            sn.addMember(login, pwd, profile); // Try to add this member
+            // Reaching this point means that no exception was thrown by
+            // addMember()
+            System.out.println("Err " + testId + " : " + errorMessage); // display
+            // the
+            // error
+            // message
+            return 1; // and return the "error" value
+        } catch (BadEntryException e) { // BadEntry exception was thrown by
+            // addMember() : this is a good start!
+            // Let's now check if 'sn' was not
+            // impacted
+            if (sn.nbMembers() != nbMembers) { // The number of members has
+                // changed : this is an error
+                // case.
+                System.out
+                        .println("Err "
+                                + testId
+                                + " : BadEntry was thrown but the number of members was changed"); // Display
+                // a
+                // specific
+                // error
+                // message
+                return 1; // return "error" value
+            } else
+                // The number of members hasn't changed, which is considered a
+                // good indicator that 'sn' was not modified
+                return 0; // return success value : everything seems OK, nothing
+            // to display
+        }
+        catch (MemberAlreadyExistsException e) {// AlreadyExists exception was
+            // thrown by addMember() :
+            // this is a good start!
+            // Let's now check if 'sn'
+            // was not impacted
+            if (sn.nbMembers() != nbMembers) {
+                System.out
+                        .println("Err "
+                                + testId
+                                + " : MemberAlreadyExists was thrown, but the number of members was changed"); // Display
+                // a
+                // specific
+                // error
+                // message
+                return 1;// and return the "error" value
+            } else
+                return 0; // return success value : everything is OK, nothing to
+            // display
+        } catch (Exception e) { // An exception was thrown by addMember(), but
+            // it was not the expected exception
+            // AlreadyExists
+            System.out.println("Err " + testId + " : unexpected exception. "
+                    + e); // Display a specific error message
+            e.printStackTrace(); // Display contextual info about what happened
+            return 1; // return error value
+        }
+    }
+
     /**
      * <i>addMember()</i> main test :
      * <ul>
@@ -311,16 +448,18 @@ public class TestKarmaMember {
      */
     public static TestReport test() {
 
+
+        int nbTests = 0; // total number of performed tests
+        int nbErrors = 0; // total number of failed tests
+        ISocialNetwork sn = new SocialNetwork();
+
+        int nbBooks = sn.nbBooks(); // number of books in 'sn' (should be 0
+        // here)
+        int nbFilms = sn.nbFilms(); // number of films in 'sn' (should be 0
+        // here)
+
         try {
-            ISocialNetwork sn = new SocialNetwork();
 
-            int nbBooks = sn.nbBooks(); // number of books in 'sn' (should be 0
-            // here)
-            int nbFilms = sn.nbFilms(); // number of films in 'sn' (should be 0
-            // here)
-
-            int nbTests = 0; // total number of performed tests
-            int nbErrors = 0; // total number of failed tests
 
 
             nbErrors += addMemberOK(sn, "Paul", "paul", "", "1.1 Ajout membre");
@@ -422,6 +561,14 @@ public class TestKarmaMember {
                 "",
                 "2.6",
                 "A String concatenation building an already registered login was accepted as login for a new member");
+
+        nbTests++;
+        nbErrors += KarmaOKTest (   //(ISocialNetwork sn, String login,String pwd, String profile, String testId)
+                sn,
+                "An" + "toi" + "ne",
+                "abcdefghij",
+                "",
+                "2.6");
 
         nbTests++;
         // check that 'sn' was not modified
