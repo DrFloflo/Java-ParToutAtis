@@ -388,7 +388,7 @@ public class reviewItemReviewTest {
                     .println("Err " + testId + " : unexpected exception " + e); // Error
             // message
             // displayed
-            e.printStackTrace(); // Display contextual info about what happened
+            //e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error code
         }
     }
@@ -435,7 +435,7 @@ public class reviewItemReviewTest {
                     .println("Err " + testId + " : unexpected exception " + e); // Error
             // message
             // displayed
-            e.printStackTrace(); // Display contextual info about what happened
+            //e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error code
         }
     }

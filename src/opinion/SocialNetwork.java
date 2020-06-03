@@ -102,8 +102,8 @@ public class SocialNetwork implements ISocialNetwork {
 			if (login.equals(eachMember.getLogin())) { user = eachMember; } //member found
 			break;
 		}
-		if (user==null) { throw new BadEntryException("Erreur le login est incorrect"); }
-		if (!user.getPwd().equals(password)) { throw new BadEntryException("Erreur le pwd est incorrect"); }
+		if (user==null) { throw new NotMemberException("Erreur le login est incorrect"); }
+		if (!user.getPwd().equals(password)) { throw new NotMemberException("Erreur le pwd est incorrect"); }
 
 		for (Film eachFilm : listeFilm) {
 			if (eachFilm.getTitle().toLowerCase().replaceAll(" ","").equals(title.toLowerCase().replaceAll(" ","")) &&

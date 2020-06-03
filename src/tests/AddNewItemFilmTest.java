@@ -83,7 +83,12 @@ public class AddNewItemFilmTest {
                 // good indicator that 'sn' was not modified
                 return 0; // return success value : everything seems OK, nothing
             // to display
-        } catch (ItemFilmAlreadyExistsException e) { // BadEntry exception was thrown by
+        } catch (NotMemberException e) {
+            System.out.println("Err "+ testId+ " : NotMemberException was thrown but the number of films was changed"); // Display
+            return 1;
+        }
+
+        catch (ItemFilmAlreadyExistsException e) { // BadEntry exception was thrown by
             // addFilm() : this is a good start!
             // Let's now check if 'sn' was not
             // impacted
