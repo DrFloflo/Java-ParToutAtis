@@ -516,6 +516,8 @@ public class reviewItemReviewTest {
      */
     public static TestReport test(){
 
+
+
         ISocialNetwork sn = new SocialNetwork();
 
         int nbReview = sn.nbReview(); // number of books in 'sn' (should be 0
@@ -537,24 +539,25 @@ public class reviewItemReviewTest {
         nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", 7.5f, "Film d'une grande qualitée", "3.1 Add review film");
 
 
+
         Review reviewTrouve = null;
         try {
             opinion.Film leFilm = sn.getFilm("The big Lebowski");
-            System.out.println("ok");
+
             for (Review eachReviewInFilm : leFilm.getReview()) {            //find review in The big Lebowski written by paul
                 if (eachReviewInFilm .getMember().equals("paul")) {
                     reviewTrouve=eachReviewInFilm ;
                 }
             }
         }
+
         catch (BadEntryException e) {// AlreadyExists exception was
-            return null;
+            reviewTrouve =  null;
         }
         catch (Exception e){ //This shouldn't happen
             System.out.println("BadEntryException error: "+e);
-            return null;
+            reviewTrouve = null;
         }
-
         System.out.println("Testing reviewItemReview()");
 
         // <=> test n°1
@@ -567,7 +570,6 @@ public class reviewItemReviewTest {
                 "The big Lebowski", reviewTrouve,2.5f, "aaaa", "1.1","addFilm need the reject null login");
 
         // <=> test n°2
-
         // populate 'sn' with 3 films
 
         nbTests++;
@@ -590,18 +592,7 @@ public class reviewItemReviewTest {
         nbTests++;
         nbErrors += reviewItemFilmAlreadyExistsTest(sn, "Smith", "aaaa",
                 "Incroyable", 7.5f, " Incroyable ", "2.3","The member has already post a review for this book with less space");
-        // check that 'sn' was not modified
-        /*if (nbMembers != sn.nbMembers()) {
-            System.out
-                    .println("Error : the number of members was unexepectedly changed by addFilm()");
-            nbErrors++;
-        }
-        nbTests++;
-        if (nbBooks != sn.nbBooks()) {
-            System.out
-                    .println("Error : the number of books was unexepectedly changed by addFilm()");
-            nbErrors++;
-        }*/
+
 
         // Display final state of 'sn'
         System.out.println("Final state of the social network : " + sn);
