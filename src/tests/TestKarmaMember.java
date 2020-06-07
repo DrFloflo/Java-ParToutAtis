@@ -231,8 +231,9 @@ public class TestKarmaMember {
         // process this method
         try {
             sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
-            System.out.println("Err " + testId + " : unexpected exception "); // Error
+
         } catch (NotItemException e) { // BadEntry exception was thrown by
+            System.out.println("Err " + testId + " : NotItemException exception "); // Error
             // addFilm() : this is a good start!
             // Let's now check if 'sn' was not
             // impacted
