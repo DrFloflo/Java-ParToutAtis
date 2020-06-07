@@ -411,8 +411,12 @@ public class TestKarmaMember {
         nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "Gran Torino", "Drame/Thriller", "Clint Eastwood", "Nick Schenk",119, "2.2 Add a film");
         nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "2.3 Add a film review");
 
-        nbErrors += reviewItemReviewOKTest(sn,"Marc","marc","Idem",sn.getReview("Gran Torino","Paul"),8f, "Tout à fait d'accord","2.4","Add a review of a review");
-
+        try {
+            nbErrors += reviewItemReviewOKTest(sn, "Marc", "marc", "Idem", sn.getReview("Gran Torino", "Paul"), 8f, "Tout à fait d'accord", "2.4", "Add a review of a review");
+        }
+        catch (BadEntryException e) {
+            System.out.println("error in getReview");
+        }
         nbErrors += KarmaOKTest(sn,"Paul","3.1");
 
 
