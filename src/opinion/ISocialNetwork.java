@@ -75,7 +75,7 @@ public interface ISocialNetwork {
 	 */
 
 	public Member getMember(String title) throws BadEntryException;
-
+	public Review getReview(String title, String login) throws BadEntryException;
 	/**
 	 * Find the Member in the <i>SocialNetwork</i>.
 	 *

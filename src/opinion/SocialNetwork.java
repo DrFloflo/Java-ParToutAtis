@@ -53,6 +53,21 @@ public class SocialNetwork implements ISocialNetwork {
 		}
 	}
 	@Override
+	public Review getReview(String title, String login){
+		Review reviewTrouve = null;
+		try {
+			Film leFilm = getFilm(title);
+			for (Review eachReviewInFilm : leFilm.getReview()) {            //find review in The big Lebowski written by paul
+				if (eachReviewInFilm .getMember().equals(login)) {
+					reviewTrouve=eachReviewInFilm ;
+				}
+			}
+		} catch (BadEntryException e) {
+			e.printStackTrace();
+		}
+		return reviewTrouve;
+	}
+	@Override
 	public Member getMember(String login) throws BadEntryException {
 		Member MemberTrouve = null;
 		for (Member eachMember : listeMember) {			//Verify if the member exists
