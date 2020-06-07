@@ -302,35 +302,35 @@ public class AddNewItemBookTest {
         nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, null, "paul",
                 "aaaa", "aaa", "aaaa", 100,
-                "1.1","addBook doit rejeter les logins null");
+                "1.1","addBook need the reject null login");
         nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", null,
                 "aaaa", "aaa", "aaaa",
-                100000000, "1.2","addBook doit rejeter les passwords null");
+                100000000, "1.2","addBook need to reject null password");
         nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 null, "aaa", "aaaa",
-                100000000, "1.3","addBook doit rejeter les variables title null");
+                100000000, "1.3","addBook need to reject null title");
         nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 "aaaa", null, "aaaaa",
-                100000000, "1.4","addBook doit rejeter les variable kind null");
+                100000000, "1.4","addBook need to reject null kind");
         nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", null,
-                100000000, "1.5","addBook doit rejeter les variables author null");
+                100000000, "1.5","addBook need to reject null author");
         nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", "aaaa",
-                -1000, "1.7","addBook doit rejeter les variables nbPages négatives");
+                -1000, "1.7","addBook need to reject negative pages");
         nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Jean", "paul",
                 "aaaa", "aaa", "aaaa", 100,
-                "1.8","addBook doit rejeter les utilisateurs inconnus");
+                "1.8","addBook need to reject unknow login");
         nbTests++;
         nbErrors += addNewItemBookBadEntryTest(sn, "Paul", "Mauvais mdp",
                 "aaaa", "aaa", "aaaa", 100,
-                "1.9","addBook doit rejeter les mauvais mdp");
+                "1.9","addBook need to reject wrong password");
         // <=> test n°2
 
         // populate 'sn' with 3 Books
@@ -352,19 +352,19 @@ public class AddNewItemBookTest {
         nbTests++;
         nbErrors += addNewItemBookAlreadyExistsTest(sn, "Paul", "paul",
                 "Je voulais juste vivre", "Biographie, Autobiographie", "Yeonmi Park, Maryanne Vollers",
-                301,"2.1", "Le livre est déjà enregistré");
+                301,"2.1", "The book is already register");
         nbTests++;
         nbErrors += addNewItemBookAlreadyExistsTest(sn, "Paul", "paul",
                 "Chants de la Terre lointaine", "Roman/Science-fiction", "Arthur C. Clark",
-                311,"2.2", "Le livre est déjà enregistré");
+                311,"2.2", "The book is already register");
         nbTests++;
         nbErrors += addNewItemBookAlreadyExistsTest(sn, "Paul", "paul",
                 " L'Art De La Guerre", "Traité, Non-fiction", "Sun Tzu",
-                338,"2.3", "Le Book est déjà enregistré avec des majuscules différentes");
+                338,"2.3", "The book is already register with different upper case");
         nbTests++;
         nbErrors += addNewItemBookAlreadyExistsTest(sn, "Paul", "paul",
                 " L'Art De La Guerre ", "Traité, Non-fiction", "Sun Tzu",
-                338,"2.4", "Le Book est déjà enregistré mais sans espaces autour");
+                338,"2.4", "The book is already register but without space arround");
         nbTests++;
         nbErrors += addNewItemBookAlreadyExistsTest(sn, "Paul", "paul",
                 "L'art"+"de"+"la"+"guerre", "Traité, Non-fiction", "Sun Tzu",
