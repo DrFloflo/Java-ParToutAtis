@@ -15,7 +15,7 @@ import opinion.SocialNetwork;
  * @version V2.0 - April 2018
  */
 
-public class reviewItemReviewTest {
+public class reviewItemOpinionTest {
 
     /**
      * Add in the <i>SocialNetwork</i> a new review for a review.
