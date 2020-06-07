@@ -325,39 +325,39 @@ public class AddNewItemFilmTest {
         nbTests++;
         nbErrors += addNewItemFilmBadEntryTest(sn, null, "paul",
                 "aaaa", "aaa", "aaaa", "aaaaa",
-                100000000, "1.1","addFilm doit rejeter les logins null");
+                100000000, "1.1","addFilm need the reject null login");
         nbTests++;
         nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", null,
                 "aaaa", "aaa", "aaaa", "aaaaa",
-                100000000, "1.2","addFilm doit rejeter les passwords null");
+                100000000, "1.2","addFilm need the reject null password");
         nbTests++;
         nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", "paul",
                 null, "aaa", "aaaa", "aaaaa",
-                100000000, "1.3","addFilm doit rejeter les variables title null");
+                100000000, "1.3","addFilm need the reject null title");
         nbTests++;
         nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", "paul",
                 "aaaa", null, "aaaa", "aaaaa",
-                100000000, "1.4","addFilm doit rejeter les variable kind null");
+                100000000, "1.4","addFilm need the reject null kind");
         nbTests++;
         nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", null, "aaaaa",
-                100000000, "1.5","addFilm doit rejeter les variables directors null");
+                100000000, "1.5","addFilm need the reject null director");
         nbTests++;
         nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", "aaaa", null,
-                100000000, "1.6","addFilm doit rejeter les variables scenarist null");
+                100000000, "1.6","addFilm need the reject null scenarist");
         nbTests++;
         nbErrors += addNewItemFilmBadEntryTest(sn, "Paul", "paul",
                 "aaaa", "aaa", "aaaa", "aaaaa",
-                -1000, "1.7","addFilm doit rejeter les variables durations négatives");
+                -1000, "1.7","addFilm need the reject negative duration");
         nbTests++;
         nbErrors += addNewItemFilmBadEntryTest(sn, "Jean", "paul",
                 "aaaa", "aaa", "aaaa", "aaa",
-                120,"1.8" ,"addFilm doit rejeter les utilisateurs inconnus");
+                120,"1.8" ,"addFilm need the reject unknow login");
         nbTests++;
-        nbErrors += addNewItemFilmBadEntryTest(sn, "Jean", "mauvais mdp",
+        nbErrors += addNewItemFilmBadEntryTest(sn, "Jean", "Wrong password",
                 "aaaa", "aaa", "aaaa", "aaa",
-                120,"1.9","addFilm doit rejeter les mauvais mdp");
+                120,"1.9","addFilm need the reject wrong password");
         // <=> test n°2
 
         // populate 'sn' with 3 films
