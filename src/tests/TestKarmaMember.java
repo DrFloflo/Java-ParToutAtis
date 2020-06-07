@@ -461,7 +461,6 @@ public class TestKarmaMember {
         // here)
 
         try {
-
             nbErrors += addMemberOK(sn, "Paul", "paul", "Nouveau", "1.1 Ajout membre");
             nbErrors += addMemberOK(sn, "Marc", "marc", "Nouveau", "1.2 Ajout membre");
             nbErrors += addMemberOK(sn, "Flo", "flo", "Nouveau", "1.3 Ajout membre");
@@ -491,23 +490,13 @@ public class TestKarmaMember {
         nbErrors += addMemberBadEntryTest(sn, null, "paul", "Nouveau", "1.1",
                 "addKarma() doesn't reject null logins");
         nbTests++;
-        nbErrors += addMemberBadEntryTest(
-                sn,
-                " ",
-                "qsdfgh",
-                "",
-                "1.2",
+        nbErrors += addMemberBadEntryTest(sn," ","qsdfgh","","1.2",
                 "addKarma() doesn't reject logins that don't contain at least one character other than space");
         nbTests++;
         nbErrors += addMemberBadEntryTest(sn, "Paul", null, "Nouveau", "1.3",
                 "addKarma() doesn't reject null passwords");
         nbTests++;
-        nbErrors += addMemberBadEntryTest(
-                sn,
-                "B",
-                "   qwd ",
-                "Nouveau",
-                "1.4",
+        nbErrors += addMemberBadEntryTest(sn,"B","   qwd ","Nouveau","1.4",
                 "addKarma() doesn't reject passwords that don't contain at least 4 characters (not taking into account leading or trailing blanks)");
         nbTests++;
         nbErrors += addMemberBadEntryTest(sn, "Paul", "paul", null, "1.5",

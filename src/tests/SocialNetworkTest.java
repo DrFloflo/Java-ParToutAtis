@@ -45,6 +45,10 @@ public class SocialNetworkTest {
 			tr = reviewItemReviewTest.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
+			//
+			tr = TestKarmaMember.test();
+			testSuiteReport.add(tr);
+			System.out.println("\n\n **********************************************************************************************\n");
 
 			
 			
