@@ -1,7 +1,6 @@
 package tests;
 
 
-
 /** 
  * This class launches a test suite for the SocialNetwork
  * @author B. Prou, GO
@@ -42,11 +41,11 @@ public class SocialNetworkTest {
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 			//
-			tr = reviewItemOpinionTest.test();
+			tr = tests2.reviewItemOpinionTest.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 			//
-			tr = TestKarmaMember.test();
+			tr = tests2.TestKarmaMember.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 
