@@ -578,16 +578,16 @@ public class reviewItemReviewTest {
         int nbErrors = 0; // total number of failed tests
 
         nbTests++;
-        nbErrors += addMemberOK(sn, "Paul", "paul", "", "1.1 Ajout membre");
+        nbErrors += addMemberOK(sn, "Paul", "paul", "", "1.1 Add member");
         nbTests++;
-        nbErrors += addMemberOK(sn, "Marc", "marc", "", "1.2 Ajout membre");
+        nbErrors += addMemberOK(sn, "Marc", "marc", "", "1.2 Add Member");
 
         nbTests++;
         nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", "Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",
-                120,"2.1 Ajout 1er film");
+                120,"2.1 Add a film");
 
         nbTests++;
-        nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", 7.5f, "Film d'une grande qualitée", "3.1 Ajout d'une review Film");
+        nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", 7.5f, "Film d'une grande qualitée", "3.1 Add review film");
 
 
         Review reviewTrouve = null;
@@ -613,7 +613,7 @@ public class reviewItemReviewTest {
 
         nbTests++;
         nbErrors += reviewItemReviewBadEntryTest(sn, null, "marc",
-                "The big Lebowski", reviewTrouve,2.5f, "aaaa", "1.1","addFilm doit rejeter les logins null");
+                "The big Lebowski", reviewTrouve,2.5f, "aaaa", "1.1","addFilm need the reject null login");
 
         // <=> test n°2
 
@@ -632,13 +632,13 @@ public class reviewItemReviewTest {
         // try to add already registered films
         nbTests++;
         nbErrors += reviewItemFilmAlreadyExistsTest(sn, "Smith", "aaaa",
-                "Incroyable", 7.5f, "Incroyable", "2.1","L'utilisateur à déjà posté cette review pour ce film");
+                "Incroyable", 7.5f, "Incroyable", "2.1","The member has already post a review for this book");
         nbTests++;
         nbErrors += reviewItemFilmAlreadyExistsTest(sn, "Smith", "aaaa",
-                "Incroyable", 7.5f, "InCroYable", "2.2","L'utilisateur à déjà posté cette review pour ce film avec des majuscules différentes");
+                "Incroyable", 7.5f, "InCroYable", "2.2","The member has already post a review for this book with different upper case");
         nbTests++;
         nbErrors += reviewItemFilmAlreadyExistsTest(sn, "Smith", "aaaa",
-                "Incroyable", 7.5f, " Incroyable ", "2.3","L'utilisateur à déjà posté cette review pour ce film avec des espaces en moins");
+                "Incroyable", 7.5f, " Incroyable ", "2.3","The member has already post a review for this book with less space");
         // check that 'sn' was not modified
         /*if (nbMembers != sn.nbMembers()) {
             System.out

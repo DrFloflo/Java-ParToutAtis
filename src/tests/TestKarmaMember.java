@@ -466,10 +466,10 @@ public class TestKarmaMember {
             nbErrors += addMemberOK(sn, "Marc", "marc", "Nouveau", "1.2 Ajout membre");
             nbErrors += addMemberOK(sn, "Flo", "flo", "Nouveau", "1.3 Ajout membre");
             nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", "Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",
-                    120, "2.1 Ajout 1er film");
+                    120, "2.1 Add a film");
             nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "Gran Torino", "Drame/Thriller", "Clint Eastwood", "Nick Schenk",
-                    119, "2.2 Ajout 2eme film");
-            nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "3.1 Ajout d'une review Film");
+                    119, "2.2 Add a film");
+            nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "3.1 Add a film review");
 
             System.out.println("Testing Karma");
         } catch (Exception e) { //This shouldn't happen
@@ -489,7 +489,7 @@ public class TestKarmaMember {
 
         nbTests++;
         nbErrors += addMemberBadEntryTest(sn, null, "paul", "Nouveau", "1.1",
-                "addMember() doesn't reject null logins");
+                "addKarma() doesn't reject null logins");
         nbTests++;
         nbErrors += addMemberBadEntryTest(
                 sn,
@@ -497,10 +497,10 @@ public class TestKarmaMember {
                 "qsdfgh",
                 "",
                 "1.2",
-                "addMember() doesn't reject logins that don't contain at least one character other than space");
+                "addKarma() doesn't reject logins that don't contain at least one character other than space");
         nbTests++;
         nbErrors += addMemberBadEntryTest(sn, "Paul", null, "Nouveau", "1.3",
-                "addMember() doesn't reject null passwords");
+                "addKarma() doesn't reject null passwords");
         nbTests++;
         nbErrors += addMemberBadEntryTest(
                 sn,
@@ -508,10 +508,10 @@ public class TestKarmaMember {
                 "   qwd ",
                 "Nouveau",
                 "1.4",
-                "addMember() doesn't reject passwords that don't contain at least 4 characters (not taking into account leading or trailing blanks)");
+                "addKarma() doesn't reject passwords that don't contain at least 4 characters (not taking into account leading or trailing blanks)");
         nbTests++;
         nbErrors += addMemberBadEntryTest(sn, "Paul", "paul", null, "1.5",
-                "addMember() doesn't reject null profiles");
+                "addKarma() doesn't reject null profiles");
 
         // <=> test n°2
 
