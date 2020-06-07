@@ -359,18 +359,33 @@ public class TestKarmaMember {
     }
 
     private static int reviewItemReviewOKTest(ISocialNetwork sn, String login, String password,
-                                              String title, Review laReview, float mark, String comment, String testId,
+                                              String title, Review laReview,float mark, String comment, String testId,
                                               String errorMessage) {
-        // int nbFilms = sn.nbFilms(); // Number of films when starting to
-        // process this method
+        int nbReview = sn.nbReview(); // Number of review
         try {
             sn.reviewItemReview(login, password, title, laReview, mark, comment); // Try to add this film
             System.out.println("Err " + testId + " : unexpected exception "); // Error
         } catch (NotItemException e) {
-            return 1;
+            if (sn.nbReview() != nbReview) {
+                System.out.println("Err "+ testId+ " : NotItemException was thrown, but the number of REview was changed"); // Display
+                return 1;// and return the "error" value
+            } else
+                return 0; // return success value : everything is OK, nothing to
+        }catch (BadEntryException e) {
+            if (sn.nbReview() != nbReview) {
+                System.out.println("Err "+ testId+ " : BadEntryException was thrown, but the number of Review was changed"); // Display
+                return 1;// and return the "error" value
+            } else
+                return 0; // return success value : everything is OK, nothing to
+        }catch (NotMemberException e) {
+            if (sn.nbReview() != nbReview) {
+                System.out.println("Err "+ testId+ " : NotMemberException was thrown, but the number of Review was changed"); // Display
+                return 1;// and return the "error" value
+            } else
+                return 0; // return success value : everything is OK, nothing to
         }catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
-            System.out.println("Err " + testId + " : unexpected exception " + e); // Error
+            System.out.println("Err " + testId + " : ar ! unexpected exception " + e); // Error
             // message
             // displayed
             e.printStackTrace(); // Display contextual info about what happened
@@ -416,6 +431,9 @@ public class TestKarmaMember {
         }
         catch (BadEntryException e) {
             System.out.println("error in getReview");
+        }
+        catch (Exception e) {
+            System.out.println("ARRRRRRRRR ! someting went WRRRRRONG !!!");
         }
         nbErrors += KarmaOKTest(sn,"Paul","3.1");
 
