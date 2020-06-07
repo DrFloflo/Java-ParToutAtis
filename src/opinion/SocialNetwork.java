@@ -52,10 +52,10 @@ public class SocialNetwork implements ISocialNetwork {
 			return filmTrouve;
 		}
 	}
-	//@Override
+	@Override
 	public Member getMember(String login) throws BadEntryException {
 		Member MemberTrouve = null;
-		for (Member eachMember : listeMember) {			//Verify if the film exists
+		for (Member eachMember : listeMember) {			//Verify if the member exists
 			if (eachMember.getLogin().equals(login)) {
 				MemberTrouve = eachMember;
 			}

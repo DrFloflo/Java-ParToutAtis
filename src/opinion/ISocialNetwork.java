@@ -74,6 +74,14 @@ public interface ISocialNetwork {
 	 *blabla
 	 */
 
+	public Member getMember(String title) throws BadEntryException;
+
+	/**
+	 * Find the Member in the <i>SocialNetwork</i>.
+	 *
+	 * @return Member
+	 */
+
 	public int nbBooks();
 
 
