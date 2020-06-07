@@ -1,4 +1,4 @@
-package tests;
+package tests2;
 
 import exceptions.*;
 import opinion.ISocialNetwork;
@@ -268,7 +268,7 @@ public class TestKarmaMember {
      *
      * @return a summary of the performed tests
      */
-    public static TestReport test() {
+    public static tests.TestReport test() {
 
 
         int nbTests = 0; // total number of performed tests
@@ -321,7 +321,7 @@ public class TestKarmaMember {
 
         // Print a summary of the tests and return test results
         try{
-            TestReport tr = new TestReport(nbTests, nbErrors);
+            tests.TestReport tr = new tests.TestReport(nbTests, nbErrors);
             System.out.println("TestKarmaMember : " + tr);
             return tr;
         }
