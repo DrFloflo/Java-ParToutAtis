@@ -382,13 +382,14 @@ public class reviewItemReviewTest {
             } else
                 return 0; // return success code : everything is OK, nothing to
             // display
-        } catch (Exception e) {// An exception was thrown by addFilm() : this
+        } catch (NotMemberException e) {// An exception was thrown by addFilm()
+            //System.out.println("Err " + testId + " : unexpected exception " + e); // Error
+            return 1; // return error code
+        }
+        catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
             System.out
-                    .println("Err " + testId + " : unexpected exception " + e); // Error
-            // message
-            // displayed
-            //e.printStackTrace(); // Display contextual info about what happened
+                    .println("Err " + testId + " : unexpected exception " + e);
             return 1; // return error code
         }
     }
@@ -429,7 +430,13 @@ public class reviewItemReviewTest {
             } else
                 return 0; // return success code : everything is OK, nothing to
             // display
-        } catch (Exception e) {// An exception was thrown by addMember() : this
+        }
+        catch (BadEntryException e){
+            //System.out.println("Err " + testId + " : BadEntryException exception " + e); // Error
+            return 1; // return error code
+        }
+
+        catch (Exception e) {// An exception was thrown by addMember() : this
             // is an error case
             System.out
                     .println("Err " + testId + " : unexpected exception " + e); // Error
@@ -599,8 +606,8 @@ public class reviewItemReviewTest {
                 }
             }
         }
-        catch (BadEntryException e){ //This shouldn't happen
-            System.out.println("Unexpected error");
+        catch (Exception e){ //This shouldn't happen
+            System.out.println("BadEntryException error: "+e);
             return null;
         }
 
