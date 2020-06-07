@@ -71,7 +71,7 @@ public class TestKarmaMember {
             // to display
         } catch (Exception e) { // An exception was thrown by addMember(), but
             // it was not the expected exception BadEntry
-            System.out.println("Err " + testId + " : unexpected exception. "
+            System.out.println("Err " + testId + " : oops ! unexpected exception. "
                     + e); // Display a specific error message
             e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error value
@@ -121,7 +121,7 @@ public class TestKarmaMember {
             return 1;
         } catch (Exception e) {
             System.out
-                    .println("Err " + testId + " : unexpected exception " + e);
+                    .println("Err " + testId + " : ouch ! unexpected exception " + e);
             e.printStackTrace();
             return 1;
         }
@@ -173,7 +173,7 @@ public class TestKarmaMember {
         } catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
             System.out
-                    .println("Err " + testId + " : unexpected exception " + e); // Error
+                    .println("Err " + testId + " : atchoom ! unexpected exception " + e); // Error
             // message
             // displayed
             e.printStackTrace(); // Display contextual info about what happened
@@ -243,7 +243,7 @@ public class TestKarmaMember {
             // to display
         }catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
-            System.out.println("Err " + testId + " : unexpected exception " + e); // Error
+            System.out.println("Err " + testId + " : berk ! unexpected exception " + e); // Error
             // message
             // displayed
             e.printStackTrace(); // Display contextual info about what happened
@@ -278,7 +278,7 @@ public class TestKarmaMember {
         } catch (Exception e) {// An exception was thrown by addMember() : this
             // is an error case
             System.out
-                    .println("Err " + testId + " : unexpected exception " + e); // Error
+                    .println("Err " + testId + " : glglelgezgl ! unexpected exception " + e); // Error
             // message
             // displayed
             e.printStackTrace(); // Display contextual info about what happened
@@ -324,7 +324,7 @@ public class TestKarmaMember {
             // to display
         } catch (Exception e) { // An exception was thrown by addMember(), but
             // it was not the expected exception BadEntry
-            System.out.println("Err " + testId + " : unexpected exception. "
+            System.out.println("Err " + testId + " : arg ! unexpected exception. "
                     + e); // Display a specific error message
             e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error value
@@ -350,7 +350,7 @@ public class TestKarmaMember {
         } catch (Exception e) {// An exception was thrown by addMember() : this
             // is an error case
             System.out
-                    .println("Err " + testId + " : unexpected exception " + e); // Error
+                    .println("Err " + testId + " : damn ! unexpected exception " + e); // Error
             // message
             // displayed
             e.printStackTrace(); // Display contextual info about what happened
@@ -364,7 +364,6 @@ public class TestKarmaMember {
         int nbReview = sn.nbReview(); // Number of review
         try {
             sn.reviewItemReview(login, password, title, laReview, mark, comment); // Try to add this film
-            System.out.println("Err " + testId + " : unexpected exception "); // Error
         } catch (NotItemException e) {
             if (sn.nbReview() != nbReview) {
                 System.out.println("Err "+ testId+ " : NotItemException was thrown, but the number of REview was changed"); // Display
