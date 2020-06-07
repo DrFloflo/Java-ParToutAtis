@@ -454,11 +454,11 @@ public class TestKarmaMember {
         // Print a summary of the tests and return test results
         try{
             TestReport tr = new TestReport(nbTests, nbErrors);
-            System.out.println("AddMemberTest : " + tr);
+            System.out.println("TestKarmaMember : " + tr);
             return tr;
         }
         catch (NotTestReportException e){ //This shouldn't happen
-            System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
+            System.out.println("Unexpected error in TestKarmaMember test code - Can't return valuable test results");
             return null;
         }
     }
