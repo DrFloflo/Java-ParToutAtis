@@ -403,21 +403,18 @@ public class TestKarmaMember {
         int nbFilms = sn.nbFilms(); // number of films in 'sn' (should be 0
         // here)
 
-        try {
-            nbErrors += addMemberOK(sn, "Paul", "paul", "Nouveau", "1.1 Ajout membre");
-            nbErrors += addMemberOK(sn, "Marc", "marc", "Nouveau", "1.2 Ajout membre");
-            nbErrors += addMemberOK(sn, "Flo", "floo", "Nouveau", "1.3 Ajout membre");
-            nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", "Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",120, "2.1 Add a film");
-            nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "Gran Torino", "Drame/Thriller", "Clint Eastwood", "Nick Schenk",119, "2.2 Add a film");
-            nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "2.3 Add a film review");
 
+        nbErrors += addMemberOK(sn, "Paul", "paul", "Nouveau", "1.1 Ajout membre");
+        nbErrors += addMemberOK(sn, "Marc", "marc", "Nouveau", "1.2 Ajout membre");
+        nbErrors += addMemberOK(sn, "Flo", "floo", "Nouveau", "1.3 Ajout membre");
+        nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", "Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",120, "2.1 Add a film");
+        nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "Gran Torino", "Drame/Thriller", "Clint Eastwood", "Nick Schenk",119, "2.2 Add a film");
+        nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "2.3 Add a film review");
 
+        nbErrors += reviewItemReviewOKTest(sn,"Marc","marc","Idem",sn.getReview("Gran Torino","Paul"),8f, "Tout à fait d'accord","2.4","Add a review of a review");
 
-            nbErrors += KarmaOKTest(sn,"Paul","3.1");
-        } catch (Exception e) { //This shouldn't happen
-            System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
-            return null;
-        }
+        nbErrors += KarmaOKTest(sn,"Paul","3.1");
+
 
         // try to add already registered members
 
