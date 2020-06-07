@@ -52,6 +52,21 @@ public class SocialNetwork implements ISocialNetwork {
 			return filmTrouve;
 		}
 	}
+	//@Override
+	public Member getMember(String login) throws BadEntryException {
+		Member MemberTrouve = null;
+		for (Member eachMember : listeMember) {			//Verify if the film exists
+			if (eachMember.getLogin().equals(login)) {
+				MemberTrouve = eachMember;
+			}
+		}
+		if (MemberTrouve == null) {
+			throw new BadEntryException("Error the film doesn't exist");
+		}
+		else {
+			return MemberTrouve;
+		}
+	}
 
 	//@Override
 	public int nbReview() {
