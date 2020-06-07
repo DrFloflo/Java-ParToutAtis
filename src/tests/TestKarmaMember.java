@@ -16,69 +16,6 @@ import opinion.SocialNetwork;
 public class TestKarmaMember {
 
     /**
-     * Check that trying to add this new member (login, pwd, profile) raises a
-     * BadEntry exception and does not change content of the
-     * <i>ISocialNetwork</i>. If OK, the method just returns 0. If not OK,
-     * displays an error message and returns 1.
-     *
-     * @param sn
-     *            - the <i>ISocialNetwork</i>
-     * @param login
-     *            - new member's login
-     * @param testId
-     *            - the test ID that will prefix any error message displayed by
-     *            this method
-     * @param errorMessage
-     *            - the error message that will be displayed if no exception is
-     *            thrown when adding this member
-     * @return 0 if the test is OK, 1 if not
-     */
-    private static int KarmaBadEntryTest(ISocialNetwork sn, String login, String testId, String errorMessage) {
-
-        int nbMembers = sn.nbMembers(); // Number of members when starting to
-        // run this method
-        try {
-            Member membre;
-            membre = sn.getMember(login);
-            System.out.println(membre.getKarma());
-            // Reaching this point means that no exception was thrown by
-            // addMember()
-            System.out.println("Err " + testId + " : " + errorMessage); // display
-            // the
-            // error
-            // message
-            return 1; // and return the "error" value
-        } catch (BadEntryException e) { // BadEntry exception was thrown by
-            // addMember() : this is a good start!
-            // Let's now check if 'sn' was not
-            // impacted
-            if (sn.nbMembers() != nbMembers) { // The number of members has
-                // changed : this is an error
-                // case.
-                System.out
-                        .println("Err "
-                                + testId
-                                + " : BadEntry was thrown but the number of members was changed"); // Display
-                // a
-                // specific
-                // error
-                // message
-                return 1; // return "error" value
-            } else
-                // The number of members hasn't changed, which is considered a
-                // good indicator that 'sn' was not modified
-                return 0; // return success value : everything seems OK, nothing
-            // to display
-        } catch (Exception e) { // An exception was thrown by addMember(), but
-            // it was not the expected exception BadEntry
-            System.out.println("Err " + testId + " : oops ! unexpected exception. "
-                    + e); // Display a specific error message
-            e.printStackTrace(); // Display contextual info about what happened
-            return 1; // return error value
-        }
-    }
-
-    /**
      * Check that this new member (login, pwd, profile) can be (and <i>is</i>)
      * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
      * : the new member was added.</br> If not OK, an error message is displayed
@@ -273,89 +210,17 @@ public class TestKarmaMember {
         try {
             Member membre;
             membre = sn.getMember(login);
-            System.out.println(membre.getKarma());
+            System.out.println("Karma du membre : "+membre.getKarma());
             // No exception was thrown. That's a good start !
         } catch (Exception e) {// An exception was thrown by addMember() : this
             // is an error case
-            System.out
-                    .println("Err " + testId + " : glglelgezgl ! unexpected exception " + e); // Error
+            System.out.println("Err " + testId + " : glglelgezgl ! unexpected exception " + e); // Error
             // message
             // displayed
             e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error code
         }
         return 0;
-    }
-
-    private static int addMemberBadEntryTest(ISocialNetwork sn, String login,
-                                             String pwd, String profile, String testId, String errorMessage) {
-
-        int nbMembers = sn.nbMembers(); // Number of members when starting to
-        // run this method
-        try {
-            sn.addMember(login, pwd, profile); // Try to add this member
-            // Reaching this point means that no exception was thrown by
-            // addMember()
-            System.out.println("Err " + testId + " : " + errorMessage); // display
-            // the
-            // error
-            // message
-            return 1; // and return the "error" value
-        } catch (BadEntryException e) { // BadEntry exception was thrown by
-            // addMember() : this is a good start!
-            // Let's now check if 'sn' was not
-            // impacted
-            if (sn.nbMembers() != nbMembers) { // The number of members has
-                // changed : this is an error
-                // case.
-                System.out
-                        .println("Err "
-                                + testId
-                                + " : BadEntry was thrown but the number of members was changed"); // Display
-                // a
-                // specific
-                // error
-                // message
-                return 1; // return "error" value
-            } else
-                // The number of members hasn't changed, which is considered a
-                // good indicator that 'sn' was not modified
-                return 0; // return success value : everything seems OK, nothing
-            // to display
-        } catch (Exception e) { // An exception was thrown by addMember(), but
-            // it was not the expected exception BadEntry
-            System.out.println("Err " + testId + " : arg ! unexpected exception. "
-                    + e); // Display a specific error message
-            e.printStackTrace(); // Display contextual info about what happened
-            return 1; // return error value
-        }
-    }
-    private static int addMemberOKTest(ISocialNetwork sn, String login,
-                                       String pwd, String profile, String testId) {
-        int nbMembers = sn.nbMembers(); // Number of members when starting to
-        // process this method
-        try {
-            sn.addMember(login, pwd, profile); // Try to add this member
-            // No exception was thrown. That's a good start !
-            if (sn.nbMembers() != nbMembers + 1) { // But the number of members
-                // hasn't changed
-                // accordingly
-                System.out.println("Err " + testId
-                        + " : the number of members (" + nbMembers
-                        + ") was not incremented"); // Error message displayed
-                return 1; // return error code
-            } else
-                return 0; // return success code : everything is OK, nothing to
-            // display
-        } catch (Exception e) {// An exception was thrown by addMember() : this
-            // is an error case
-            System.out
-                    .println("Err " + testId + " : damn ! unexpected exception " + e); // Error
-            // message
-            // displayed
-            e.printStackTrace(); // Display contextual info about what happened
-            return 1; // return error code
-        }
     }
 
     private static int reviewItemReviewOKTest(ISocialNetwork sn, String login, String password,
