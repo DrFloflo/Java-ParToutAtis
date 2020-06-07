@@ -536,7 +536,7 @@ public class reviewItemOpinionTest {
      *
      * @return a summary of the performed tests
      */
-    public static TestReport test(){
+    public static tests.TestReport test(){
 
 
 
@@ -633,7 +633,7 @@ public class reviewItemOpinionTest {
 
         // Print a summary of the tests and return test results
         try{
-            TestReport tr = new TestReport(nbTests, nbErrors);
+            tests.TestReport tr = new tests.TestReport(nbTests, nbErrors);
             System.out.println("AddFilmTest : " + tr);
             return tr;
         }
