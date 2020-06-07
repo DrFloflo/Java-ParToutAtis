@@ -353,11 +353,11 @@ public class AddNewItemFilmTest {
         nbTests++;
         nbErrors += addNewItemFilmBadEntryTest(sn, "Jean", "paul",
                 "aaaa", "aaa", "aaaa", "aaa",
-                120,"1.8" ,"addBook doit rejeter les utilisateurs inconnus");
+                120,"1.8" ,"addFilm doit rejeter les utilisateurs inconnus");
         nbTests++;
-        nbErrors += addNewItemFilmBadEntryTest(sn, "Jean", "mauvais mdr",
+        nbErrors += addNewItemFilmBadEntryTest(sn, "Jean", "mauvais mdp",
                 "aaaa", "aaa", "aaaa", "aaa",
-                120,"1.9","addBook doit rejeter les mauvais mdp");
+                120,"1.9","addFilm doit rejeter les mauvais mdp");
         // <=> test n°2
 
         // populate 'sn' with 3 films

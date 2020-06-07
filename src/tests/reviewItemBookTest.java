@@ -339,9 +339,9 @@ public class reviewItemBookTest {
         int nbTests = 0; // total number of performed tests
         int nbErrors = 0; // total number of failed tests
 
-        nbErrors += addMemberOK(sn, "Paul", "aaaa", "", "1.1b Ajout membre");
-        nbErrors += addMemberOK(sn, "Taylor", "aaaa", "", "1.2b Ajout membre");
-        nbErrors += addMemberOK(sn, "Smith", "aaaa", "", "1.3b Ajout membre");
+        nbErrors += addMemberOK(sn, "Paul", "aaaa", "Lecteur", "1.1b Ajout membre");
+        nbErrors += addMemberOK(sn, "Taylor", "aaaa", "Lecteur", "1.2b Ajout membre");
+        nbErrors += addMemberOK(sn, "Smith", "aaaa", "Lecteur", "1.3b Ajout membre");
 
         System.out.println("Testing addReviewBook()");
 
