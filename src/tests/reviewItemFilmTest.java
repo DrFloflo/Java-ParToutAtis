@@ -338,9 +338,9 @@ public class reviewItemFilmTest {
         int nbTests = 0; // total number of performed tests
         int nbErrors = 0; // total number of failed tests
 
-        nbErrors += addMemberOK(sn, "Paul", "aaaa", "Nouveau", "1.1b Ajout membre");
-        nbErrors += addMemberOK(sn, "Taylor", "aaaa", "Nouveau", "1.2b Ajout membre");
-        nbErrors += addMemberOK(sn, "Smith", "aaaa", "Nouveau", "1.3b Ajout membre");
+        nbErrors += addMemberOK(sn, "Paul", "aaaa", "Nouveau", "1.1b Add member");
+        nbErrors += addMemberOK(sn, "Taylor", "aaaa", "Nouveau", "1.2b Add member");
+        nbErrors += addMemberOK(sn, "Smith", "aaaa", "Nouveau", "1.3b Add member");
 
         System.out.println("Testing addReviewFilm()");
 
@@ -351,19 +351,19 @@ public class reviewItemFilmTest {
 
         nbTests++;
         nbErrors += reviewItemFilmBadEntryTest(sn, null, "aaaa",
-                "aaaa", 2.5f, "aaaa", "1.1","addFilm doit rejeter les logins null");
+                "aaaa", 2.5f, "aaaa", "1.1","addFilm need the reject null login");
         nbTests++;
         nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", null,
-                "aaaa", 2.5f, "aaaa", "1.2","addFilm doit rejeter les passwords null");
+                "aaaa", 2.5f, "aaaa", "1.2","addFilm need the reject null password");
         nbTests++;
         nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaaa",
-                null, 2.5f, "aaaa", "1.3","addFilm doit rejeter les variables title null");
+                null, 2.5f, "aaaa", "1.3","addFilm need the reject null title");
         nbTests++;
         nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaa",
-                "aaaa", -10, "aaaa", "1.4","addFilm doit rejeter les variable mark negative");
+                "aaaa", -10, "aaaa", "1.4","addFilm need the reject negative mark");
         nbTests++;
         nbErrors += reviewItemFilmBadEntryTest(sn, "aaaa", "aaa",
-                "aaaa", 5, null, "1.5","addFilm doit rejeter les variables comment null");
+                "aaaa", 5, null, "1.5","addFilm need the reject null comment");
         // <=> test n°2
 
         // populate 'sn' with 3 films
@@ -381,13 +381,13 @@ public class reviewItemFilmTest {
         // try to add already registered films
         nbTests++;
         nbErrors += reviewItemFilmAlreadyExistsTest(sn, "Smith", "aaaa",
-                "Incroyable", 7.5f, "Incroyable", "2.1","L'utilisateur à déjà posté cette review pour ce film");
+                "Incroyable", 7.5f, "Incroyable", "2.1","The member has already post a review for this book");
         nbTests++;
         nbErrors += reviewItemFilmAlreadyExistsTest(sn, "Smith", "aaaa",
-                "Incroyable", 7.5f, "InCroYable", "2.2","L'utilisateur à déjà posté cette review pour ce film avec des majuscules différentes");
+                "Incroyable", 7.5f, "InCroYable", "2.2","The member has already post a review for this book with different upper case");
         nbTests++;
         nbErrors += reviewItemFilmAlreadyExistsTest(sn, "Smith", "aaaa",
-                "Incroyable", 7.5f, " Incroyable ", "2.3","L'utilisateur à déjà posté cette review pour ce film avec des espaces en moins");
+                "Incroyable", 7.5f, " Incroyable ", "2.3","The member has already post a review for this book with less space");
         // check that 'sn' was not modified
         /*if (nbMembers != sn.nbMembers()) {
             System.out

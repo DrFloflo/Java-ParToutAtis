@@ -339,9 +339,9 @@ public class reviewItemBookTest {
         int nbTests = 0; // total number of performed tests
         int nbErrors = 0; // total number of failed tests
 
-        nbErrors += addMemberOK(sn, "Paul", "aaaa", "Lecteur", "1.1b Ajout membre");
-        nbErrors += addMemberOK(sn, "Taylor", "aaaa", "Lecteur", "1.2b Ajout membre");
-        nbErrors += addMemberOK(sn, "Smith", "aaaa", "Lecteur", "1.3b Ajout membre");
+        nbErrors += addMemberOK(sn, "Paul", "aaaa", "Lecteur", "1.1b Add Member");
+        nbErrors += addMemberOK(sn, "Taylor", "aaaa", "Lecteur", "1.2b Add Member");
+        nbErrors += addMemberOK(sn, "Smith", "aaaa", "Lecteur", "1.3b Add Member");
 
         System.out.println("Testing addReviewBook()");
 
@@ -352,19 +352,19 @@ public class reviewItemBookTest {
 
         nbTests++;
         nbErrors += reviewItemBookBadEntryTest(sn, null, "aaaa",
-                "aaaa", 2.5f, "aaaa", "1.1","addBook doit rejeter les logins null");
+                "aaaa", 2.5f, "aaaa", "1.1","addBook need the reject null login");
         nbTests++;
         nbErrors += reviewItemBookBadEntryTest(sn, "Taylor", null,
-                "aaaa", 2.5f, "aaaa", "1.2","addBook doit rejeter les passwords null");
+                "aaaa", 2.5f, "aaaa", "1.2","addBook need the reject null password");
         nbTests++;
         nbErrors += reviewItemBookBadEntryTest(sn, "Taylor", "aaaa",
-                null, 2.5f, "aaaa", "1.3","addBook doit rejeter les variables title null");
+                null, 2.5f, "aaaa", "1.3","addBook need the reject null title");
         nbTests++;
         nbErrors += reviewItemBookBadEntryTest(sn, "Taylor", "aaa",
-                "aaaa", -10, "aaaa", "1.4","addBook doit rejeter les variable mark negative");
+                "aaaa", -10, "aaaa", "1.4","addBook need the reject negative mark");
         nbTests++;
         nbErrors += reviewItemBookBadEntryTest(sn, "Taylor", "aaa",
-                "aaaa", 5, null, "1.5","addBook doit rejeter les variables comment null");
+                "aaaa", 5, null, "1.5","addBook need the reject null comment");
         // <=> test n°2
 
         // populate 'sn' with 3 books
@@ -382,13 +382,13 @@ public class reviewItemBookTest {
         // try to add already registered books
         nbTests++;
         nbErrors += reviewItemBookAlreadyExistsTest(sn, "Smith", "aaaa",
-                "Incroyable", 7.5f, "Incroyable", "2.1","L'utilisateur à déjà posté cette review pour ce book");
+                "Incroyable", 7.5f, "Incroyable", "2.1","The member has already post a review for this book");
         nbTests++;
         nbErrors += reviewItemBookAlreadyExistsTest(sn, "Smith", "aaaa",
-                "Incroyable", 7.5f, "InCroYable", "2.2","L'utilisateur à déjà posté cette review pour ce book avec des majuscules différentes");
+                "Incroyable", 7.5f, "InCroYable", "2.2","The member has already post a review for this book with different upper case");
         nbTests++;
         nbErrors += reviewItemBookAlreadyExistsTest(sn, "Smith", "aaaa",
-                "Incroyable", 7.5f, " Incroyable ", "2.3","L'utilisateur à déjà posté cette review pour ce book avec des espaces en moins");
+                "Incroyable", 7.5f, " Incroyable ", "2.3","The member has already post a review for this book with less space");
         // check that 'sn' was not modified
         /*if (nbMembers != sn.nbMembers()) {
             System.out
