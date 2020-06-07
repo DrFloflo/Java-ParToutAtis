@@ -61,7 +61,7 @@ public class reviewItemReviewTest {
                                                   String title, Review laReview,float mark, String comment, String testId,
                                                   String errorMessage) {
 
-       // int nbReviews = sn.nbReviews(); // Number of films when starting to
+       int nbReviews = sn.nbReview(); // Number of films when starting to
         // run this method
         try {
             sn.reviewItemReview( login, password, title, laReview, mark, comment); // Try to add this film
@@ -72,12 +72,31 @@ public class reviewItemReviewTest {
             // error
             // message
             return 1; // and return the "error" value
-        } catch (BadEntryException e) { // BadEntry exception was thrown by
-            return 1;
-        }catch (NotMemberException e) { // BadEntry exception was thrown by
+        } catch (BadEntryException e) { // BadEntry exception was thrown
 
-        }catch (NotItemException e) { // BadEntry exception was thrown by
-            return 1;
+            if (sn.nbReview() != nbReviews) {
+                System.out.println("Err "+ testId+ " : BadEntryException was thrown, but the number of Films was changed"); // Display
+                return 1;// and return the "error" value
+            } else {
+                return 0; // return success value : everything is OK, nothing to say
+            }
+
+        }catch (NotMemberException e) { // BadEntry exception was thrown
+
+            if (sn.nbReview() != nbReviews) {
+                System.out.println("Err "+ testId+ " : NotMemberException was thrown, but the number of Films was changed"); // Display
+                return 1;// and return the "error" value
+            } else {
+                return 0; // return success value : everything is OK, nothing to say
+            }
+
+        }catch (NotItemException e) { // BadEntry exception was thrown
+            if (sn.nbReview() != nbReviews) {
+                System.out.println("Err "+ testId+ " : NotItemException was thrown, but the number of Films was changed"); // Display
+                return 1;// and return the "error" value
+            } else {
+                return 0; // return success value : everything is OK, nothing to say
+            }
         } catch (Exception e) { // An exception was thrown by addReview(), but
             // it was not the expected exception BadEntry
             System.out.println("Err " + testId + " : unexpected exception. "
@@ -85,7 +104,7 @@ public class reviewItemReviewTest {
             e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error value
         }
-        return 0;
+        //return 0;
     }
 
     /**
@@ -145,7 +164,7 @@ public class reviewItemReviewTest {
         } catch (BadEntryException e) {// AlreadyExists exception was
             if (sn.nbReview() != nbReview) {
                 System.out
-                        .println("Err "+ testId+ " : FilmAlreadyExists was thrown, but the number of Films was changed"); // Display
+                        .println("Err "+ testId+ " : BadEntryException was thrown, but the number of Films was changed"); // Display
                 return 1;// and return the "error" value
             } else
                 return 0; // return success value : everything is OK, nothing to
@@ -153,7 +172,7 @@ public class reviewItemReviewTest {
         }  catch (NotItemException e) {// AlreadyExists exception was
             if (sn.nbReview() != nbReview) {
                 System.out
-                        .println("Err "+ testId+ " : FilmAlreadyExists was thrown, but the number of Films was changed"); // Display
+                        .println("Err "+ testId+ " : NotItemException was thrown, but the number of Films was changed"); // Display
                 return 1;// and return the "error" value
             } else
                 return 0; // return success value : everything is OK, nothing to
@@ -211,13 +230,17 @@ public class reviewItemReviewTest {
     private static int reviewItemReviewOKTest(ISocialNetwork sn, String login, String password,
                                               String title, Review laReview,float mark, String comment, String testId,
                                               String errorMessage) {
-       // int nbFilms = sn.nbFilms(); // Number of films when starting to
+        int nbReview = sn.nbReview(); // Number of review
         // process this method
         try {
             sn.reviewItemReview(login, password, title, laReview, mark, comment); // Try to add this film
             System.out.println("Err " + testId + " : unexpected exception "); // Error
         } catch (NotItemException e) {
-            return 1;
+            if (sn.nbReview() != nbReview) {
+                System.out.println("Err "+ testId+ " : NotItemException was thrown, but the number of Films was changed"); // Display
+                return 1;// and return the "error" value
+            } else
+                return 0; // return success value : everything is OK, nothing to
         }catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
             System.out.println("Err " + testId + " : unexpected exception " + e); // Error
@@ -271,13 +294,17 @@ public class reviewItemReviewTest {
      */
     private static int reviewItemFilmOK(ISocialNetwork sn, String login, String password,
                                         String title, float mark, String comment, String testId) {
-        // int nbFilms = sn.nbFilms(); // Number of films when starting to
+        int nbReview = sn.nbReview(); // Number of review
         // process this method
         try {
             sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
-            System.out.println("Err " + testId + " : unexpected exception "); // Error
+            //System.out.println("Err " + testId + " : unexpected exception "); // Error
         } catch (NotItemException e) {
-            return 1;
+            if (sn.nbReview() != nbReview) {
+                System.out.println("Err "+ testId+ " : NotItemException was thrown, but the number of Films was changed"); // Display
+                return 1;// and return the "error" value
+            } else
+                return 0; // return success value : everything is OK, nothing to say
         }catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
             System.out.println("Err " + testId + " : unexpected exception " + e); // Error
@@ -333,8 +360,11 @@ public class reviewItemReviewTest {
                 return 0; // return success code : everything is OK, nothing to
             // display
         } catch (NotMemberException e) {// An exception was thrown by addFilm()
-            //System.out.println("Err " + testId + " : unexpected exception " + e); // Error
-            return 1; // return error code
+            if (sn.nbFilms() != nbFilms) { // But the number of films has changes
+                System.out.println("Err " + testId + " : the number of films (" + nbFilms + ") was incremented after NotMemberException"); // Error message displayed
+                return 1; // return error code
+            } else
+                return 0; // return success code : everything is OK, nothing to
         }
         catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
@@ -371,19 +401,20 @@ public class reviewItemReviewTest {
             sn.addMember(login, pwd, profile); // Try to add this member
             // No exception was thrown. That's a good start !
             if (sn.nbMembers() != nbMembers + 1) { // But the number of members
-                // hasn't changed
-                // accordingly
-                System.out.println("Err " + testId
-                        + " : the number of members (" + nbMembers
-                        + ") was not incremented"); // Error message displayed
+                System.out.println("Err " + testId+ " : the number of members (" + nbMembers+ ") was not incremented"); // Error message displayed
                 return 1; // return error code
-            } else
+            } else {
                 return 0; // return success code : everything is OK, nothing to
-            // display
+            }
         }
         catch (BadEntryException e){
             //System.out.println("Err " + testId + " : BadEntryException exception " + e); // Error
-            return 1; // return error code
+            if (sn.nbMembers() == nbMembers + 1) { // But the number of members
+                System.out.println("Err " + testId+ " : the number of members (" + nbMembers+ ") was incremented after BadEntryException"); // Error message displayed
+                return 1; // return error code
+            } else {
+                return 0; // return success code : everything is OK, nothing to
+            }
         }
 
         catch (Exception e) {// An exception was thrown by addMember() : this
@@ -392,7 +423,7 @@ public class reviewItemReviewTest {
                     .println("Err " + testId + " : unexpected exception " + e); // Error
             // message
             // displayed
-            //e.printStackTrace(); // Display contextual info about what happened
+            e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error code
         }
     }
@@ -400,13 +431,17 @@ public class reviewItemReviewTest {
 
     private static int reviewItemFilmOKTest(ISocialNetwork sn, String login, String password,
                                             String title, float mark, String comment, String testId) {
-        // int nbFilms = sn.nbFilms(); // Number of films when starting to
+        int nbReview = sn.nbReview(); // Number of review when starting to test
         // process this method
         try {
             sn.reviewItemFilm(login, password, title, mark, comment); // Try to add this film
             System.out.println("Err " + testId + " : unexpected exception "); // Error
         } catch (NotItemException e) {
-            return 1;
+            if (sn.nbReview() != nbReview) {
+                System.out.println("Err "+ testId+ " : NotItemException was thrown, but the number of Films was changed"); // Display
+                return 1;// and return the "error" value
+            } else
+                return 0; // return success value : everything is OK, nothing to
         }catch (Exception e) {// An exception was thrown by addFilm() : this
             // is an error case
             System.out.println("Err " + testId + " : unexpected exception " + e); // Error
@@ -468,25 +503,11 @@ public class reviewItemReviewTest {
             // Reaching this point means that no exception was thrown by
             // addMember()
             System.out.println("Err " + testId + " : " + errorMessage); // display
-            // the
-            // error
-            // message
-            return 1; // and return the "error" value
-        } catch (BadEntryException e) { // BadEntry exception was thrown by
-            // addMember() : this is a good start!
+        } catch (BadEntryException e) { // BadEntry exception was thrown by addMember() : this is a good start!
             // Let's now check if 'sn' was not
             // impacted
-            if (sn.nbMembers() != nbMembers) { // The number of members has
-                // changed : this is an error
-                // case.
-                System.out
-                        .println("Err "
-                                + testId
-                                + " : BadEntry was thrown but the number of members was changed"); // Display
-                // a
-                // specific
-                // error
-                // message
+            if (sn.nbMembers() != nbMembers) { // The number of members has changed : this is an error case.
+                System.out.println("Err "+ testId+ " : BadEntry was thrown but the number of members was changed"); // Display
                 return 1; // return "error" value
             } else
                 // The number of members hasn't changed, which is considered a
@@ -500,6 +521,7 @@ public class reviewItemReviewTest {
             e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error value
         }
+        return 0;
     }
 
     /**
