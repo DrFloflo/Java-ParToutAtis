@@ -590,6 +590,18 @@ public class reviewItemOpinionTest {
         nbTests++;
         nbErrors += reviewItemReviewBadEntryTest(sn, null, "marc",
                 "The big Lebowski", reviewTrouve,2.5f, "aaaa", "1.1","addFilm need the reject null login");
+        nbTests++;
+        nbErrors += reviewItemReviewBadEntryTest(sn, "Marc", null,
+                "The big Lebowski", reviewTrouve,2.5f, "aaaa", "1.2","addFilm need the reject null password");
+        nbTests++;
+        nbErrors += reviewItemReviewBadEntryTest(sn, "Marc", "marc",
+                null, reviewTrouve,2.5f, "aaaa", "1.3","addFilm need the reject null title");
+        nbTests++;
+        nbErrors += reviewItemReviewBadEntryTest(sn, "Marc", "marc",
+                "The big Lebowski", reviewTrouve,2.5f, null, "1.4","addFilm need the reject null comment");
+        nbTests++;
+        nbErrors += reviewItemReviewBadEntryTest(sn, "Marc", "marc",
+                "The big Lebowski", reviewTrouve,-10f, "aaaa", "1.5","addFilm need the reject negative mark");
 
         // <=> test n°2
         // populate 'sn' with 3 films
