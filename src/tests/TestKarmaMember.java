@@ -435,8 +435,8 @@ public class TestKarmaMember {
         try {
 
             nbErrors += reviewItemReviewOKTest(sn, "Marc", "marc", "Idem", sn.getReview("Gran Torino", "Paul"), 9f, "Tout à fait d'accord", "2.4", "Add a review of a review");
+            nbTests++;
             nbErrors += reviewItemReviewOKTest(sn, "Flo", "floo", "Pareil", sn.getReview("Gran Torino", "Paul"), 7.5f, "I agree", "2.5", "Add a review of a review");
-=======
             nbTests++;
 
         }
