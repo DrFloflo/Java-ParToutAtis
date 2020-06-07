@@ -42,7 +42,7 @@ public class SocialNetworkTest {
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 			//
-			tr = reviewItemReviewTest.test();
+			tr = reviewItemOpinionTest.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 			//
