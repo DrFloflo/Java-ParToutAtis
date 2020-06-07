@@ -46,7 +46,7 @@ public class SocialNetwork implements ISocialNetwork {
 			}
 		}
 		if (filmTrouve == null) {
-			throw new BadEntryException("Erreur le film n'existe pas");
+			throw new BadEntryException("Error the film doesn't exist");
 		}
 		else {
 			return filmTrouve;
@@ -67,11 +67,11 @@ public class SocialNetwork implements ISocialNetwork {
 	@Override
 	public void addMember(String login, String password, String profile)
 			throws BadEntryException, MemberAlreadyExistsException {
-		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le login est null");}
-		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
-		if(password!=null && password.replaceAll(" ", "").length()<4) { throw new BadEntryException("Erreur le password est compose de moins de 4 char");}
-		if(profile==null) { throw new BadEntryException("Erreur le login est null");}
-		else if(profile.replaceAll(" ", "").equals("")) { throw new BadEntryException("Erreur le profile est null");}
+		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Error login null");}
+		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Error password null");}
+		if(password!=null && password.replaceAll(" ", "").length()<4) { throw new BadEntryException("Error the password is under 4 characters");}
+		if(profile==null) { throw new BadEntryException("Error login null");}
+		else if(profile.replaceAll(" ", "").equals("")) { throw new BadEntryException("Error profil null");}
 
 
 
@@ -88,13 +88,13 @@ public class SocialNetwork implements ISocialNetwork {
 	@Override
 	public void addItemFilm(String login, String password, String title, String kind, String director, String scriptwriter, int duration)
 			throws BadEntryException, NotMemberException, ItemFilmAlreadyExistsException {
-		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le login est null");}
-		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
-		if(title==null) { throw new BadEntryException("Erreur le titre est null");}
-		if(kind==null) { throw new BadEntryException("Erreur la variable genre est null");}
-		if(director==null) { throw new BadEntryException("Erreur la variable directeur est null");}
-		if(scriptwriter==null) { throw new BadEntryException("Erreur la variable scénariste est null");}
-		if(duration<1) { throw new BadEntryException("Erreur la durée est trop courte");}
+		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Error login null");}
+		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Error password null");}
+		if(title==null) { throw new BadEntryException("Errori title null");}
+		if(kind==null) { throw new BadEntryException("Error Kind is null");}
+		if(director==null) { throw new BadEntryException("Error the director is null");}
+		if(scriptwriter==null) { throw new BadEntryException("Error the scenarist is null");}
+		if(duration<1) { throw new BadEntryException("Error the duration is too short");}
 
 		//check if logins are corrects
 		Member user = null;
@@ -102,8 +102,8 @@ public class SocialNetwork implements ISocialNetwork {
 			if (login.equals(eachMember.getLogin())) { user = eachMember; } //member found
 			break;
 		}
-		if (user==null) { throw new NotMemberException("Erreur le login est incorrect"); }
-		if (!user.getPwd().equals(password)) { throw new NotMemberException("Erreur le pwd est incorrect"); }
+		if (user==null) { throw new NotMemberException("Error, incorrect login"); }
+		if (!user.getPwd().equals(password)) { throw new NotMemberException("Error incorrect password"); }
 
 		for (Film eachFilm : listeFilm) {
 			if (eachFilm.getTitle().toLowerCase().replaceAll(" ","").equals(title.toLowerCase().replaceAll(" ","")) &&
@@ -122,12 +122,12 @@ public class SocialNetwork implements ISocialNetwork {
 	public void addItemBook(String login, String password, String title,
 			String kind, String author, int nbPages) throws BadEntryException,
 			NotMemberException, ItemBookAlreadyExistsException {
-		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le login est null");}
+		if(login==null || login.replaceAll(" ", "").length()==0) { throw new BadEntryException("Error login null");}
 		if(password==null || password.replaceAll(" ", "").length()==0) { throw new BadEntryException("Erreur le password est null");}
-		if(title==null) { throw new BadEntryException("Erreur le titre est null");}
-		if(kind==null) { throw new BadEntryException("Erreur la variable genre est null");}
-		if(author==null) { throw new BadEntryException("Erreur la variable autheur est null");}
-		if(nbPages<1) { throw new BadEntryException("Erreur le nombre de page est trop court");}
+		if(title==null) { throw new BadEntryException("Error title null");}
+		if(kind==null) { throw new BadEntryException("Error the kind null");}
+		if(author==null) { throw new BadEntryException("Error author null");}
+		if(nbPages<1) { throw new BadEntryException("Error the number of page is too short");}
 
 		//check if logins are corrects
 		Member user = null;
@@ -135,8 +135,8 @@ public class SocialNetwork implements ISocialNetwork {
 			if (login.equals(eachMember.getLogin())) { user = eachMember; } //member found
 			break;
 		}
-		if (user==null) { throw new BadEntryException("Erreur le login est incorrect"); }
-		if (!user.getPwd().equals(password)) { throw new BadEntryException("Erreur le pwd est incorrect"); }
+		if (user==null) { throw new BadEntryException("Error, incorrect login"); }
+		if (!user.getPwd().equals(password)) { throw new BadEntryException("Error, incorrect password"); }
 
 		for (Book eachBook : listeBook) {
 			if (eachBook.getTitle().toLowerCase().replaceAll(" ","").equals(title.toLowerCase().replaceAll(" ","")) &&
@@ -155,12 +155,12 @@ public class SocialNetwork implements ISocialNetwork {
 	public float reviewItemFilm(String login, String password, String title,
 			float mark, String comment) throws BadEntryException,
 			NotMemberException, NotItemException {
-		if(login == null) { throw new NotMemberException("Erreur le login est null");}
-		else if (login.replaceAll(" ", "").length() == 0) { throw new NotMemberException("Erreur le login est null");}
-		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le password est null");}
-		if(title==null) { throw new BadEntryException("Erreur le titre est null");}
-		if(comment==null) { throw new BadEntryException("Erreur le commentaire est null");}
-		if(mark<0 || mark > 10) { throw new BadEntryException("Erreur la note est invalide");}
+		if(login == null) { throw new NotMemberException("Error login null");}
+		else if (login.replaceAll(" ", "").length() == 0) { throw new NotMemberException("Error login null");}
+		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Error password null");}
+		if(title==null) { throw new BadEntryException("Error title null");}
+		if(comment==null) { throw new BadEntryException("Error comment null");}
+		if(mark<0 || mark > 10) { throw new BadEntryException("Error the mark is invalid");}
 
 		Film filmTrouve = null;
 		for (Film eachFilm : listeFilm) {			//Verify if the film exists
@@ -169,7 +169,7 @@ public class SocialNetwork implements ISocialNetwork {
 			}
 		}
 		if (filmTrouve==null){
-			throw new NotItemException("Erreur le film n'éxiste pas");
+			throw new NotItemException("Error the film doesn't exist");
 		}
 
 
@@ -180,13 +180,13 @@ public class SocialNetwork implements ISocialNetwork {
 			}
 		}
 		if (memberTrouve==null){						// if not found, throw error
-			throw new NotItemException("Erreur les identifiants du membre sont incorrects");
+			throw new NotItemException("Error, incorrect identification");
 		}
 
 
 		for (Review eachReview : filmTrouve.listeReview) {			//Check if the review already exists
 			if (eachReview.getMember() == login) {
-				throw new NotItemException("Erreur le membre a déja review cet objet");
+				throw new NotItemException("Error, the member has already a review on this object");
 			}
 		}
 		//If everything is correct after the tests, add review
@@ -200,20 +200,20 @@ public class SocialNetwork implements ISocialNetwork {
 	public float reviewItemBook(String login, String password, String title,
 			float mark, String comment) throws BadEntryException,
 			NotMemberException, NotItemException {
-		if(login==null || login.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le login est null");}
-		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le password est null");}
-		if(title==null) { throw new BadEntryException("Erreur le titre est null");}
-		if(comment==null) { throw new BadEntryException("Erreur le commentaire est null");}
-		if(mark<0 || mark > 10) { throw new BadEntryException("Erreur la note est invalide");}
+		if(login==null || login.replaceAll(" ", "").length()==0) { throw new NotMemberException("Error login null");}
+		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Error password null");}
+		if(title==null) { throw new BadEntryException("Error title null");}
+		if(comment==null) { throw new BadEntryException("Error comment null");}
+		if(mark<0 || mark > 10) { throw new BadEntryException("Error the mark is invalid");}
 
 		Book bookTrouve = null;
-		for (Book eachBook : listeBook) {		//on verifie que le book vise existe vraiment
+		for (Book eachBook : listeBook) {		//Check if the book really exist
 			if (eachBook.getTitle() == title) {
 				bookTrouve=eachBook;
 			}
 		}
 		if (bookTrouve==null){
-			throw new NotItemException("Erreur le book n'éxiste pas");
+			throw new NotItemException("Error the book doesn't exist");
 		}
 
 		Member memberTrouve = null;
@@ -223,13 +223,13 @@ public class SocialNetwork implements ISocialNetwork {
 			}
 		}
 		if (memberTrouve==null){
-			throw new NotItemException("Erreur les identifiants du membre sont incorrects");
+			throw new NotItemException("Error, incorrect identification");
 		}
 
 
 		for (Review eachReview : bookTrouve.listeReview) {
 			if (eachReview.getMember() == login) {
-				throw new NotItemException("Erreur le membre a déja review cet objet");
+				throw new NotItemException("Error, the member has already a review on this object");
 			}
 		}
 
@@ -244,16 +244,16 @@ public class SocialNetwork implements ISocialNetwork {
 	public float reviewItemReview(String login, String password, String title, Review laReview,
 			float mark, String comment) throws BadEntryException,
 			NotMemberException, NotItemException {
-		if(login==null || login.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le login est null");}
-		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Erreur le password est null");}
-		if(laReview==null) { throw new BadEntryException("Erreur la review est null");}
-		if(comment==null) { throw new BadEntryException("Erreur le commentaire est null");}
-		if(mark<0 || mark > 10) { throw new BadEntryException("Erreur la note est invalide");}
+		if(login==null || login.replaceAll(" ", "").length()==0) { throw new NotMemberException("Error login null");}
+		if(password==null || password.replaceAll(" ", "").length()==0) { throw new NotMemberException("Error password null");}
+		if(laReview==null) { throw new BadEntryException("Error review null");}
+		if(comment==null) { throw new BadEntryException("Error comment null");}
+		if(mark<0 || mark > 10) { throw new BadEntryException("Error the mark is invalid");}
 
 		Review reviewTrouve = laReview;
 		for (Review eachReview : reviewTrouve.listeReview) {
 			if (eachReview.getMember() == login) {
-				throw new NotItemException("Erreur le membre a déja review cet objet");
+				throw new NotItemException("Error, the member has already a review on this object");
 			}
 		}
 
@@ -264,7 +264,7 @@ public class SocialNetwork implements ISocialNetwork {
 			}
 		}
 		if (memberTrouve==null){
-			throw new NotItemException("Erreur les identifiants du membre sont incorrects");
+			throw new NotItemException("Error, incorrect identification");
 		}
 
 
