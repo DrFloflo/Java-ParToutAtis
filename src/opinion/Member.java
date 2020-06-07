@@ -45,13 +45,14 @@ public class Member {
      */
     public int getKarma() {
         int mykarma = 0;
-        float total = 0f;
+        float total = 0;
         int nbReview = 0;
         for (Review eachReview : this.listeReview) { //For each review the member wrote
             for (Review eachReviewReview : eachReview.listeReview) { //For each review this review
                 nbReview++;
                 total = total + eachReviewReview.getNote();
             }
+        if (nbReview==0) return 1;
         }
         mykarma = (int) (total/nbReview);
         return mykarma;

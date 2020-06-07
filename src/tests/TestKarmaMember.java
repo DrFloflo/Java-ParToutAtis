@@ -274,16 +274,6 @@ public class TestKarmaMember {
             membre = sn.getMember(login);
             System.out.println(membre.getKarma());
             // No exception was thrown. That's a good start !
-            if (sn.nbMembers() != nbMembers + 1) { // But the number of members
-                // hasn't changed
-                // accordingly
-                System.out.println("Err " + testId
-                        + " : the number of members (" + nbMembers
-                        + ") was not incremented"); // Error message displayed
-                return 1; // return error code
-            } else
-                return 0; // return success code : everything is OK, nothing to
-            // display
         } catch (Exception e) {// An exception was thrown by addMember() : this
             // is an error case
             System.out
@@ -293,6 +283,7 @@ public class TestKarmaMember {
             e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error code
         }
+        return 0;
     }
 
     private static int addMemberBadEntryTest(ISocialNetwork sn, String login,
@@ -464,6 +455,7 @@ public class TestKarmaMember {
             nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "Gran Torino", "Drame/Thriller", "Clint Eastwood", "Nick Schenk",119, "2.2 Add a film");
             nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "2.3 Add a film review");
 
+            nbErrors += KarmaOKTest(sn,"Paul","3.1");
         } catch (Exception e) { //This shouldn't happen
             System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
             return null;
