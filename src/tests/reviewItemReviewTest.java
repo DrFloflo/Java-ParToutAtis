@@ -64,7 +64,7 @@ public class reviewItemReviewTest {
        // int nbReviews = sn.nbReviews(); // Number of films when starting to
         // run this method
         try {
-            sn.reviewItemReview( login, password, title, laReview, mark, comment); // Try to add this film
+            sn.reviewItemReview(login, password, title, laReview, mark, comment); // Try to add this film
             // Reaching this point means that no exception was thrown by
             // addReviews()
             System.out.println("Err " + testId + " : " + errorMessage); // display

@@ -3,6 +3,7 @@ package tests;
 import exceptions.*;
 import opinion.ISocialNetwork;
 import opinion.Member;
+import opinion.Review;
 import opinion.SocialNetwork;
 
 /**
@@ -357,78 +358,33 @@ public class TestKarmaMember {
         }
     }
 
-    private static int addMemberAlreadyExistsTest(ISocialNetwork sn,
-                                                  String login, String pwd, String profile, String testId,
-                                                  String errorMessage) {
-        int nbMembers = sn.nbMembers(); // Number of members when starting to
+    private static int reviewItemReviewOKTest(ISocialNetwork sn, String login, String password,
+                                              String title, Review laReview, float mark, String comment, String testId,
+                                              String errorMessage) {
+        // int nbFilms = sn.nbFilms(); // Number of films when starting to
         // process this method
         try {
-            sn.addMember(login, pwd, profile); // Try to add this member
-            // Reaching this point means that no exception was thrown by
-            // addMember()
-            System.out.println("Err " + testId + " : " + errorMessage); // display
-            // the
-            // error
+            sn.reviewItemReview(login, password, title, laReview, mark, comment); // Try to add this film
+            System.out.println("Err " + testId + " : unexpected exception "); // Error
+        } catch (NotItemException e) {
+            return 1;
+        }catch (Exception e) {// An exception was thrown by addFilm() : this
+            // is an error case
+            System.out.println("Err " + testId + " : unexpected exception " + e); // Error
             // message
-            return 1; // and return the "error" value
-        } catch (BadEntryException e) { // BadEntry exception was thrown by
-            // addMember() : this is a good start!
-            // Let's now check if 'sn' was not
-            // impacted
-            if (sn.nbMembers() != nbMembers) { // The number of members has
-                // changed : this is an error
-                // case.
-                System.out
-                        .println("Err "
-                                + testId
-                                + " : BadEntry was thrown but the number of members was changed"); // Display
-                // a
-                // specific
-                // error
-                // message
-                return 1; // return "error" value
-            } else
-                // The number of members hasn't changed, which is considered a
-                // good indicator that 'sn' was not modified
-                return 0; // return success value : everything seems OK, nothing
-            // to display
-        }
-        catch (MemberAlreadyExistsException e) {// AlreadyExists exception was
-            // thrown by addMember() :
-            // this is a good start!
-            // Let's now check if 'sn'
-            // was not impacted
-            if (sn.nbMembers() != nbMembers) {
-                System.out
-                        .println("Err "
-                                + testId
-                                + " : MemberAlreadyExists was thrown, but the number of members was changed"); // Display
-                // a
-                // specific
-                // error
-                // message
-                return 1;// and return the "error" value
-            } else
-                return 0; // return success value : everything is OK, nothing to
-            // display
-        } catch (Exception e) { // An exception was thrown by addMember(), but
-            // it was not the expected exception
-            // AlreadyExists
-            System.out.println("Err " + testId + " : unexpected exception. "
-                    + e); // Display a specific error message
+            // displayed
             e.printStackTrace(); // Display contextual info about what happened
-            return 1; // return error value
+            return 1; // return error code
         }
+        return 0;
     }
 
     /**
-     * <i>addMember()</i> main test :
+     * <i>TestKarma()</i> main test :
      * <ul>
-     * <li>check if members can be added</li>
-     * <li>check if incorrect parameters cause addMember() to throw BadEntry
+     * <li>check if Karma can be calculated</li>
+     * <li>check if incorrect parameters cause getKarma() to throw BadEntry
      * exception</li>
-     * <li>check if adding already registered members cause addMember() to throw
-     * AlreadyExists exception</li>
      * </ul>
      *
      * @return a summary of the performed tests
@@ -454,6 +410,8 @@ public class TestKarmaMember {
             nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", "Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",120, "2.1 Add a film");
             nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "Gran Torino", "Drame/Thriller", "Clint Eastwood", "Nick Schenk",119, "2.2 Add a film");
             nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "2.3 Add a film review");
+
+
 
             nbErrors += KarmaOKTest(sn,"Paul","3.1");
         } catch (Exception e) { //This shouldn't happen
