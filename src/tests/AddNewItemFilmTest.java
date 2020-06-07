@@ -84,8 +84,14 @@ public class AddNewItemFilmTest {
                 return 0; // return success value : everything seems OK, nothing
             // to display
         } catch (NotMemberException e) {
-            System.out.println("Err "+ testId+ " : NotMemberException was thrown but the number of films was changed"); // Display
-            return 1;
+            if (sn.nbFilms() != nbFilms) {
+                System.out.println("Err " + testId + " : NotMemberException was thrown but the number of films was changed"); // Display
+                return 1;
+            }
+            else {
+                return 0;
+            }
+
         }
 
         catch (ItemFilmAlreadyExistsException e) { // BadEntry exception was thrown by
