@@ -454,7 +454,7 @@ public class TestKarmaMember {
         // Print a summary of the tests and return test results
         try{
             TestReport tr = new TestReport(nbTests, nbErrors);
-            System.out.println("AddMemberTest : " + tr);s
+            System.out.println("AddMemberTest : " + tr);
             return tr;
         }
         catch (NotTestReportException e){ //This shouldn't happen
