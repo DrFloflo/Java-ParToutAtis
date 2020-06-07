@@ -2,6 +2,7 @@ package tests;
 
 import exceptions.*;
 import opinion.ISocialNetwork;
+import opinion.Member;
 import opinion.SocialNetwork;
 
 /**
@@ -41,7 +42,9 @@ public class TestKarmaMember {
         int nbMembers = sn.nbMembers(); // Number of members when starting to
         // run this method
         try {
-            sn.addMember(login, pwd, profile); // Try to add this member
+            Member membre;
+            membre = sn.getMember(login);
+            System.out.println(membre.getKarma());
             // Reaching this point means that no exception was thrown by
             // addMember()
             System.out.println("Err " + testId + " : " + errorMessage); // display
@@ -463,115 +466,17 @@ public class TestKarmaMember {
         try {
             nbErrors += addMemberOK(sn, "Paul", "paul", "Nouveau", "1.1 Ajout membre");
             nbErrors += addMemberOK(sn, "Marc", "marc", "Nouveau", "1.2 Ajout membre");
-            nbErrors += addMemberOK(sn, "Flo", "flo", "Nouveau", "1.3 Ajout membre");
-            nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", "Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",
-                    120, "2.1 Add a film");
-            nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "Gran Torino", "Drame/Thriller", "Clint Eastwood", "Nick Schenk",
-                    119, "2.2 Add a film");
-            nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "3.1 Add a film review");
+            nbErrors += addMemberOK(sn, "Flo", "floo", "Nouveau", "1.3 Ajout membre");
+            nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "The big Lebowski", "Comédie", "Ethan Coen, Joel Coen", "Ethan Coen, Joel Coen",120, "2.1 Add a film");
+            nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "Gran Torino", "Drame/Thriller", "Clint Eastwood", "Nick Schenk",119, "2.2 Add a film");
+            nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "2.3 Add a film review");
 
-            System.out.println("Testing Karma");
         } catch (Exception e) { //This shouldn't happen
             System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
             return null;
         }
-//        catch (MemberAlreadyExistsException e) { //This shouldn't happen
-//            System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
-//            return null;
-//        }
-
-
-        // <=> test n°1
-
-        // check if incorrect parameters cause addMember() to throw BadEntry
-        // exception
-
-        nbTests++;
-        nbErrors += addMemberBadEntryTest(sn, null, "paul", "Nouveau", "1.1",
-                "addKarma() doesn't reject null logins");
-        nbTests++;
-        nbErrors += addMemberBadEntryTest(sn," ","qsdfgh","","1.2",
-                "addKarma() doesn't reject logins that don't contain at least one character other than space");
-        nbTests++;
-        nbErrors += addMemberBadEntryTest(sn, "Paul", null, "Nouveau", "1.3",
-                "addKarma() doesn't reject null passwords");
-        nbTests++;
-        nbErrors += addMemberBadEntryTest(sn,"B","   qwd ","Nouveau","1.4",
-                "addKarma() doesn't reject passwords that don't contain at least 4 characters (not taking into account leading or trailing blanks)");
-        nbTests++;
-        nbErrors += addMemberBadEntryTest(sn, "Paul", "paul", null, "1.5",
-                "addKarma() doesn't reject null profiles");
-
-        // <=> test n°2
-
-        // populate 'sn' with 3 members
-
-        nbTests++;
-        nbErrors += addMemberOKTest(sn, "Paul", "paul", "lecteur impulsif",
-                "2.1a");
-        nbTests++;
-        nbErrors += addMemberOKTest(sn, "Antoine", "antoine",
-                "grand amoureux de la littérature", "2.1b");
-        nbTests++;
-        nbErrors += addMemberOKTest(sn, "Alice", "alice",
-                "passionnée de bande dessinée", "2.1c");
 
         // try to add already registered members
-
-        nbTests++;
-        nbErrors += addMemberAlreadyExistsTest(sn, new String("Paul"),
-                "abcdefghij", "", "2.2",
-                "The login of the first member was accepted as login for a new member");
-        nbTests++;
-        nbErrors += addMemberAlreadyExistsTest(sn, new String("Alice"),
-                "abcdefghij", "", "2.3",
-                "The login of the last member was accepted as login for a new member");
-        nbTests++;
-        nbErrors += addMemberAlreadyExistsTest(
-                sn,
-                new String("anToine"),
-                "abcdefghij",
-                "",
-                "2.4",
-                "An already registered login, but with different case, was accepted as login for a new member");
-        nbTests++;
-        nbErrors += addMemberAlreadyExistsTest(
-                sn,
-                new String(" Antoine "),
-                "abcdefghij",
-                "",
-                "2.5",
-                "An already registered login, surrounded by leading/trailing blanks, was accepted as login for a new member");
-        nbTests++;
-        nbErrors += addMemberAlreadyExistsTest(
-                sn,
-                "An" + "toi" + "ne",
-                "abcdefghij",
-                "",
-                "2.6",
-                "A String concatenation building an already registered login was accepted as login for a new member");
-
-        nbTests++;
-        nbErrors += KarmaOKTest (   //(ISocialNetwork sn, String login,String pwd, String profile, String testId)
-                sn,
-                "An" + "toi" + "ne",
-                "abcdefghij",
-                "",
-                "2.6");
-
-        nbTests++;
-        // check that 'sn' was not modified
-        if (nbFilms != sn.nbFilms()) {
-            System.out
-                    .println("Error : the number of films was unexepectedly changed by addMember()");
-            nbErrors++;
-        }
-        nbTests++;
-        if (nbBooks != sn.nbBooks()) {
-            System.out
-                    .println("Error : the number of books was unexepectedly changed by addMember()");
-            nbErrors++;
-        }
 
         // Display final state of 'sn'
         System.out.println("Final state of the social network : " + sn);
