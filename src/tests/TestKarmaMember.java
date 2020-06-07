@@ -427,7 +427,8 @@ public class TestKarmaMember {
         nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "2.3 Add a film review");
 
         try {
-            nbErrors += reviewItemReviewOKTest(sn, "Marc", "marc", "Idem", sn.getReview("Gran Torino", "Paul"), 8f, "Tout à fait d'accord", "2.4", "Add a review of a review");
+            nbErrors += reviewItemReviewOKTest(sn, "Marc", "marc", "Idem", sn.getReview("Gran Torino", "Paul"), 9f, "Tout à fait d'accord", "2.4", "Add a review of a review");
+            nbErrors += reviewItemReviewOKTest(sn, "Flo", "floo", "Pareil", sn.getReview("Gran Torino", "Paul"), 7.5f, "I agree", "2.5", "Add a review of a review");
         }
         catch (BadEntryException e) {
             System.out.println("error in getReview");
