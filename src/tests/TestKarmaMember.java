@@ -24,10 +24,6 @@ public class TestKarmaMember {
      *            - the <i>ISocialNetwork</i>
      * @param login
      *            - new member's login
-     * @param pwd
-     *            - new member's password
-     * @param profile
-     *            - new member's profile
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
@@ -36,8 +32,7 @@ public class TestKarmaMember {
      *            thrown when adding this member
      * @return 0 if the test is OK, 1 if not
      */
-    private static int KarmaBadEntryTest(ISocialNetwork sn, String login,
-                                             String pwd, String profile, String testId, String errorMessage) {
+    private static int KarmaBadEntryTest(ISocialNetwork sn, String login, String testId, String errorMessage) {
 
         int nbMembers = sn.nbMembers(); // Number of members when starting to
         // run this method
@@ -266,32 +261,19 @@ public class TestKarmaMember {
      *            - the <i>ISocialNetwork</i>
      * @param login
      *            - new member's login
-     * @param pwd
-     *            - new member's password
-     * @param profile
-     *            - new member's profile
      * @param testId
      *            - the test ID that will prefix any error message displayed by
      *            this method
      * @return 0 if the test is OK, 1 if not
      */
-    private static int KarmaOKTest(ISocialNetwork sn, String login,
-                                       String pwd, String profile, String testId) {
+    private static int KarmaOKTest(ISocialNetwork sn, String login, String testId) {
         int nbMembers = sn.nbMembers(); // Number of members when starting to
         // process this method
         try {
-            sn.addMember(login, pwd, profile); // Try to add this member
+            Member membre;
+            membre = sn.getMember(login);
+            System.out.println(membre.getKarma());
             // No exception was thrown. That's a good start !
-            if (sn.nbMembers() != nbMembers + 1) { // But the number of members
-                // hasn't changed
-                // accordingly
-                System.out.println("Err " + testId
-                        + " : the number of members (" + nbMembers
-                        + ") was not incremented"); // Error message displayed
-                return 1; // return error code
-            } else
-                return 0; // return success code : everything is OK, nothing to
-            // display
         } catch (Exception e) {// An exception was thrown by addMember() : this
             // is an error case
             System.out
@@ -301,6 +283,7 @@ public class TestKarmaMember {
             e.printStackTrace(); // Display contextual info about what happened
             return 1; // return error code
         }
+        return 0;
     }
 
     private static int addMemberBadEntryTest(ISocialNetwork sn, String login,
@@ -472,6 +455,7 @@ public class TestKarmaMember {
             nbErrors += addNewItemFilmOK(sn, "Paul", "paul", "Gran Torino", "Drame/Thriller", "Clint Eastwood", "Nick Schenk",119, "2.2 Add a film");
             nbErrors += reviewItemFilmOK(sn, "Paul", "paul", "Gran Torino", 7.5f, "Film d'une grande qualitée", "2.3 Add a film review");
 
+            nbErrors += KarmaOKTest(sn,"Paul","3.1");
         } catch (Exception e) { //This shouldn't happen
             System.out.println("Unexpected error in AddMemberTest test code - Can't return valuable test results");
             return null;
