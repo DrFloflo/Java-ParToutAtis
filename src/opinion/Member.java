@@ -43,8 +43,8 @@ public class Member {
      *
      * @return the karam of the member
      */
-    public int getKarma() {
-        int mykarma = 0;
+    public float getKarma() {
+        float mykarma = 0;
         float total = 0;
         int nbReview = 0;
         for (Review eachReview : this.listeReview) { //For each review the member wrote
@@ -54,7 +54,7 @@ public class Member {
             }
         if (nbReview==0) return 1;
         }
-        mykarma = (int) (total/nbReview);
+        mykarma = (float) (total/nbReview);
         return mykarma;
     }
     /**
